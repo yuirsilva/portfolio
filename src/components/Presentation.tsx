@@ -28,7 +28,7 @@ const Presentation: FC<PresentationProps> = ({
   return (
     <motion.div
       ref={scope}
-      className="absolute inset-0 flex h-full w-full select-none flex-col items-center justify-center gap-8 overflow-hidden bg-secondary"
+      className="absolute inset-0 z-[999] flex h-full w-full select-none flex-col items-center justify-center gap-8 overflow-hidden bg-secondary"
       exit={{ y: "-100%", transition: { ease, duration: 1.2 } }}
     >
       {/* logo */}
