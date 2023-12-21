@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 
 import "@/style/globals.css";
 
+import Footer from "@/components/Footer";
 import { baseUrl, siteConfig } from "@/config/site";
 
 const neue = localFont({
@@ -62,7 +63,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`min-h-screen font-sans antialiased ${neue.variable}`}>
         <main className="relative flex min-h-screen flex-col">
-          <div className="flex flex-1 flex-col">{children}</div>
+          <div className="flex flex-1 flex-col">
+            {children}
+            <Footer />
+          </div>
         </main>
       </body>
     </html>
