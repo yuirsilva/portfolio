@@ -1,18 +1,17 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { FC, PointerEvent, ReactNode, useRef, useState } from "react";
+import { FC, HTMLAttributes, PointerEvent, useRef, useState } from "react";
 
-interface MagneticButtonProps {
-  children: ReactNode;
-}
+interface MagneticButtonProps extends HTMLAttributes<HTMLDivElement> {}
 
 interface Position {
   x: number;
   y: number;
 }
 
-const MagneticButton: FC<MagneticButtonProps> = ({ children }) => {
+const MagneticButton: FC<MagneticButtonProps> = ({ children, className }) => {
   const ref = useRef<HTMLDivElement>(null!);
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
 
@@ -34,7 +33,7 @@ const MagneticButton: FC<MagneticButtonProps> = ({ children }) => {
 
   return (
     <motion.div
-      style={{ position: "relative" }}
+      className={cn("relative", className)}
       ref={ref}
       onPointerMove={handlePointer}
       onPointerLeave={reset}
