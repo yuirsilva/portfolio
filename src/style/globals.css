@@ -94,3 +94,11 @@
     text-size-adjust: 100%;
   }
 }
+
+@layer components {
+  .lines-pattern {
+    @apply bg-lines;
+    background-position: 1px 0px;
+    background-size: 2px 2px;
+  }
+}

@@ -14,8 +14,8 @@ const Header: FC<HeaderProps> = ({}) => {
   const [isActive, setActive] = useState<boolean>(false);
 
   return (
-    <header className="flex w-full justify-between px-12 pt-8 md:px-16">
-      <div className="z-30">
+    <header className="z-[998] flex w-full justify-between px-12 pt-8 md:px-16">
+      <div className="z-[998]">
         <MagneticButton>
           <Link href="/">
             <Icons.smLogo className="fill-primary transition-colors hover:fill-blue-600" />

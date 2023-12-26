@@ -30,7 +30,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
       animate={state && "open"}
       initial="closed"
       exit="closed"
-      className="fixed inset-0 z-0 flex h-[512px] w-full flex-col justify-between bg-secondary px-12 py-8 uppercase md:px-16"
+      className="fixed inset-0 flex h-full w-full flex-col justify-between bg-secondary px-12 py-8 uppercase sm:h-[512px] md:px-16"
     >
       {/* INFO AND PHOTO */}
       <motion.div
@@ -38,14 +38,14 @@ const Menu: FC<MenuProps> = ({ state }) => {
         animate={state && "open"}
         initial="closed"
         exit="closed"
-        className="fixed inset-0 flex h-[456px] w-fit items-center gap-10 bg-secondary px-12 py-8 shadow-lg md:px-16"
+        className="fixed inset-0 flex h-fit w-fit items-center gap-10 bg-secondary px-12 py-24 shadow-lg md:px-16"
       >
         {/* INFO */}
-        <div className="space-y-2">
+        <div className="space-y-2 text-sm sm:text-base">
           <p className="text-xs font-medium leading-none text-muted-foreground">
             Info
           </p>
-          <div>
+          <div className="space-y-2">
             <p>
               Front-end / Creative{" "}
               <span className="lowercase">(experimenting)</span>
@@ -64,11 +64,12 @@ const Menu: FC<MenuProps> = ({ state }) => {
           height={200}
           alt="Yuri Silva's photo"
           src="https://placehold.co/320x400.png"
+          className="hidden sm:block"
         />
       </motion.div>
-      <div className="my-auto flex w-full items-center justify-end">
+      <div className="mt-auto flex w-full items-center sm:my-auto sm:justify-end">
         {/* LINKS */}
-        <nav className="space-x-16">
+        <nav className="flex flex-col gap-6 sm:flex-row sm:gap-16">
           <MenuLink href="/">Home</MenuLink>
           <MenuLink href="/about">About</MenuLink>
           <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">
@@ -79,10 +80,10 @@ const Menu: FC<MenuProps> = ({ state }) => {
 
       <footer className="flex w-full flex-wrap justify-between">
         <Separator className="my-4" />
-        <p>
+        <p className="hidden sm:block">
           {MARQUEE}. © {new Date().getFullYear()}
         </p>
-        <div className="space-x-4">
+        <div className="ml-auto space-x-4">
           <a href="https://CHANGE_THIS">LinkedIn ↗</a>
           <a href="https://CHANGE_THIS">GitHub ↗</a>
         </div>

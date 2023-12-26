@@ -78,6 +78,10 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-neue)"],
       },
+      backgroundImage: {
+        lines:
+          "repeating-conic-gradient(transparent 0% 25%, hsl(var(--primary)) 0% 75%)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
