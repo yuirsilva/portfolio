@@ -2,17 +2,16 @@
 
 import { MARQUEE } from "@/components/home/Marquee";
 import MenuLink from "@/components/menu/MenuLink";
+import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FC } from "react";
-
-import { Separator } from "../ui/separator";
 
 interface MenuProps {
   state: boolean;
 }
 
-const variants = {
+export const menuVariants = {
   open: {
     y: "0%",
     transition: { ease: [0.5, 0, 0, 1], duration: 1.4 },
@@ -26,68 +25,59 @@ const variants = {
 const Menu: FC<MenuProps> = ({ state }) => {
   return (
     <motion.div
-      variants={variants}
+      variants={menuVariants}
       animate={state && "open"}
       initial="closed"
       exit="closed"
-      className="fixed inset-0 flex h-full w-full flex-col justify-between bg-secondary px-12 py-8 uppercase sm:h-[512px] md:px-16"
+      // className="fixed inset-0 z-40 flex flex-col justify-end bg-secondary px-12 py-8 uppercase md:px-16 xl:h-fit"
+      className="fixed inset-0 z-40 flex flex-col justify-end bg-secondary px-12 py-8 uppercase md:px-16 lg:h-fit"
     >
       {/* INFO AND PHOTO */}
       <motion.div
-        variants={variants}
+        variants={menuVariants}
         animate={state && "open"}
         initial="closed"
         exit="closed"
-        className="fixed inset-0 flex h-fit w-fit items-center gap-10 bg-secondary px-12 py-24 shadow-lg md:px-16"
+        className="fixed inset-0 flex h-fit items-center gap-10 bg-secondary px-12 py-24 drop-shadow-lg min-[420px]:py-32 lg:w-fit lg:py-20"
       >
-        {/* INFO */}
-        <div className="space-y-2 text-sm sm:text-base">
-          <p className="text-xs font-medium leading-none text-muted-foreground">
-            Info
+        <div className="flex flex-col gap-2 text-sm min-[420px]:text-base">
+          <p className="text-xs text-muted-foreground">Info</p>
+          <p>Front-end / Creative</p>
+          <p>
+            Full-time / Freelance <span className="lowercase">(available)</span>
           </p>
-          <div className="space-y-2">
-            <p>
-              Front-end / Creative{" "}
-              <span className="lowercase">(experimenting)</span>
-            </p>
-            <p>
-              Full-time / Freelance{" "}
-              <span className="lowercase">(available)</span>
-            </p>
-            <p>São Paulo, Brazil</p>
-            <p>18Y</p>
-          </div>
+          <p>São Paulo, Brazil</p>
+          <p>18Y</p>
         </div>
-        {/* PHOTO */}
         <Image
           width={160}
           height={200}
-          alt="Yuri Silva's photo"
+          alt="Photo of Yuri Silva"
           src="https://placehold.co/320x400.png"
-          className="hidden sm:block"
+          className="hidden xl:block"
         />
       </motion.div>
-      <div className="mt-auto flex w-full items-center sm:my-auto sm:justify-end">
-        {/* LINKS */}
-        <nav className="flex flex-col gap-6 sm:flex-row sm:gap-16">
+      {/* LINKS */}
+      <div className="flex flex-1 flex-col justify-between gap-6">
+        {/* <nav className="flex flex-1 flex-col justify-end gap-4 lg:items-end lg:justify-center xl:py-24 2xl:flex-row 2xl:items-center 2xl:justify-end 2xl:gap-11 2xl:py-36"> */}
+        <nav className="flex flex-1 flex-col justify-end gap-4 lg:flex-row lg:items-end lg:justify-end lg:py-28 2xl:items-center 2xl:justify-end 2xl:gap-11 2xl:py-36">
           <MenuLink href="/">Home</MenuLink>
           <MenuLink href="/about">About</MenuLink>
           <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">
             Contact
           </MenuLink>
         </nav>
+        <footer className="flex flex-wrap justify-end gap-4 md:justify-between">
+          <Separator />
+          <p className="hidden md:block">
+            {MARQUEE}. © {new Date().getFullYear()}
+          </p>
+          <div className="space-x-4 whitespace-nowrap">
+            <a href="https://CHANGE_THIS">LinkedIn ↗</a>
+            <a href="https://CHANGE_THIS">GitHub ↗</a>
+          </div>
+        </footer>
       </div>
-
-      <footer className="flex w-full flex-wrap justify-between">
-        <Separator className="my-4" />
-        <p className="hidden sm:block">
-          {MARQUEE}. © {new Date().getFullYear()}
-        </p>
-        <div className="ml-auto space-x-4">
-          <a href="https://CHANGE_THIS">LinkedIn ↗</a>
-          <a href="https://CHANGE_THIS">GitHub ↗</a>
-        </div>
-      </footer>
     </motion.div>
   );
 };

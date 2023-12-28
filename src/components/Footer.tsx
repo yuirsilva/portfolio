@@ -5,10 +5,8 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
   return (
-    <footer className="flex w-full justify-between px-12 pb-8 md:px-16">
-      <p>
-        yuri silva—<span>{new Date().getFullYear()}</span>
-      </p>
+    <footer className="flex justify-between px-12 pb-8 max-[320px]:justify-end md:px-16">
+      <p className="max-[320px]:hidden">yuri silva</p>
       <div className="flex gap-6 uppercase">
         <MagneticButton>
           <a href="https://CHANGE_THIS">LinkedIn</a>

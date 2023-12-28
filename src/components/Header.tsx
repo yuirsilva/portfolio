@@ -14,20 +14,20 @@ const Header: FC<HeaderProps> = ({}) => {
   const [isActive, setActive] = useState<boolean>(false);
 
   return (
-    <header className="z-[998] flex w-full justify-between px-12 pt-8 md:px-16">
-      <div className="z-[998]">
+    <header className="px-12 pt-8 md:px-16">
+      <div className="relative z-50 flex justify-between">
         <MagneticButton>
           <Link href="/">
             <Icons.smLogo className="fill-primary transition-colors hover:fill-blue-600" />
           </Link>
         </MagneticButton>
+        <nav>
+          <MenuButton state={isActive} setState={setActive} />
+        </nav>
       </div>
       <AnimatePresence mode="wait">
         {isActive ? <Menu state={isActive} /> : null}
       </AnimatePresence>
-      <nav>
-        <MenuButton state={isActive} setState={setActive} />
-      </nav>
     </header>
   );
 };
