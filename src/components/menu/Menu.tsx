@@ -2,6 +2,7 @@
 
 import { MARQUEE } from "@/components/home/Marquee";
 import MenuLink from "@/components/menu/MenuLink";
+import Roll from "@/components/Roll";
 import { Separator } from "@/components/ui/separator";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -29,7 +30,6 @@ const Menu: FC<MenuProps> = ({ state }) => {
       animate={state && "open"}
       initial="closed"
       exit="closed"
-      // className="fixed inset-0 z-40 flex flex-col justify-end bg-secondary px-12 py-8 uppercase md:px-16 xl:h-fit"
       className="fixed inset-0 z-40 flex flex-col justify-end bg-secondary px-12 py-8 uppercase md:px-16 lg:h-fit"
     >
       {/* INFO AND PHOTO */}
@@ -72,8 +72,12 @@ const Menu: FC<MenuProps> = ({ state }) => {
             {MARQUEE}. © {new Date().getFullYear()}
           </p>
           <div className="space-x-4 whitespace-nowrap">
-            <a href="https://CHANGE_THIS">LinkedIn ↗</a>
-            <a href="https://CHANGE_THIS">GitHub ↗</a>
+            <a href="https://CHANGE_THIS" className="group">
+              LinkedIn <Roll content="↗" />
+            </a>
+            <a href="https://CHANGE_THIS" className="group">
+              GitHub <Roll content="↗" />
+            </a>
           </div>
         </footer>
       </div>
