@@ -9,7 +9,7 @@ interface MarqueeProps {
 
 const Marquee: FC<MarqueeProps> = ({ content = MARQUEE }) => {
   return (
-    <div className="absolute bottom-14 flex w-36 select-none overflow-hidden uppercase">
+    <div className="absolute bottom-[clamp(92px,8vh,192px)] flex w-36 select-none overflow-hidden uppercase">
       {[...Array(2)].map((_, i) => (
         <div key={i} className="animate-slider px-1">
           <span className="block w-max">{content}</span>
