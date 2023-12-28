@@ -68,9 +68,10 @@ const Menu: FC<MenuProps> = ({ state }) => {
         </nav>
         <footer className="flex flex-wrap justify-end gap-4 md:justify-between">
           <Separator />
-          <p className="hidden md:block">
-            {MARQUEE}. © {new Date().getFullYear()}
-          </p>
+          <div className="group hidden md:block">
+            <Roll initial="right-full" content={MARQUEE} />. ©{" "}
+            {new Date().getFullYear()}
+          </div>
           <div className="space-x-4 whitespace-nowrap">
             <a href="https://CHANGE_THIS" className="group">
               LinkedIn <Roll content="↗" />

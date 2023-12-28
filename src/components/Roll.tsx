@@ -22,7 +22,12 @@ const Roll: FC<RollProps> = ({ content, initial = "bottom-full" }) => {
         positions[initial]
       )}
     >
-      <span className={cn("pointer-events-none absolute", initial)}>
+      <span
+        className={cn(
+          "pointer-events-none absolute whitespace-nowrap",
+          initial
+        )}
+      >
         {content}
       </span>
       <span className="inline-block">{content}</span>
