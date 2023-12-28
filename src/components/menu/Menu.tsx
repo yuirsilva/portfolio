@@ -69,7 +69,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
         <footer className="flex flex-wrap justify-end gap-4 md:justify-between">
           <Separator />
           <div className="group hidden md:block">
-            <Roll initial="right-full" content={MARQUEE} />. ©{" "}
+            <Roll initial="top-full" content={MARQUEE} />. ©{" "}
             {new Date().getFullYear()}
           </div>
           <div className="space-x-4 whitespace-nowrap">
