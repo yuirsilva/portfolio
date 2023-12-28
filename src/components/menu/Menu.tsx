@@ -58,9 +58,8 @@ const Menu: FC<MenuProps> = ({ state }) => {
         />
       </motion.div>
       {/* LINKS */}
-      <div className="flex flex-1 flex-col justify-between gap-6">
-        {/* <nav className="flex flex-1 flex-col justify-end gap-4 lg:items-end lg:justify-center xl:py-24 2xl:flex-row 2xl:items-center 2xl:justify-end 2xl:gap-11 2xl:py-36"> */}
-        <nav className="flex flex-1 flex-col justify-end gap-4 lg:flex-row lg:items-end lg:justify-end lg:py-28 2xl:items-center 2xl:justify-end 2xl:gap-11 2xl:py-36">
+      <div className="flex flex-1 flex-col justify-between gap-4 sm:gap-6">
+        <nav className="flex flex-1 flex-col justify-end gap-3 lg:flex-row lg:items-end lg:justify-end lg:gap-5 lg:py-28 2xl:items-center 2xl:justify-end 2xl:gap-11 2xl:py-36">
           <MenuLink href="/">Home</MenuLink>
           <MenuLink href="/about">About</MenuLink>
           <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">

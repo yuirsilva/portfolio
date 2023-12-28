@@ -18,7 +18,7 @@ const MenuLink: FC<MenuLinkProps> = ({
   return (
     <Comp
       className={cn(
-        "font-semibold text-muted-foreground transition-colors [font-size:clamp(24px,calc(3vw+1rem+10%),64px)] hover:text-primary",
+        "font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl",
         className
       )}
       href={href}
