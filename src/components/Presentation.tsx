@@ -27,7 +27,7 @@ const Presentation: FC<PresentationProps> = ({ ease = EASE_2, setState }) => {
   return (
     <motion.div
       ref={scope}
-      className="absolute inset-0 z-[999] flex h-full w-full select-none flex-col items-center justify-center gap-4 overflow-hidden bg-secondary"
+      className="absolute inset-0 z-[999] flex h-full w-full select-none flex-col items-center justify-center gap-4 overflow-hidden bg-secondary lowercase"
       exit={{ y: "-100%", transition: { ease, duration: 1.2 } }}
     >
       <svg width="57" height="32" viewBox="0 0 57 32">
@@ -52,7 +52,7 @@ const Presentation: FC<PresentationProps> = ({ ease = EASE_2, setState }) => {
         <p className="invisible text-muted-foreground">
           you fall, you rise, you grind again.
         </p>
-        <div className="text absolute inset-0 text-center lowercase">
+        <div className="text absolute inset-0 text-center">
           <p className="text-muted-foreground">
             you fall, you rise, you grind again.
           </p>
