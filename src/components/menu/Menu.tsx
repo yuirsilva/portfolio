@@ -1,9 +1,10 @@
 "use client";
 
 import { MARQUEE } from "@/components/home/Marquee";
+import Icons from "@/components/Icons";
+import Background from "@/components/menu/Background";
 import MenuLink from "@/components/menu/MenuLink";
-import Roll from "@/components/Roll";
-import { Separator } from "@/components/ui/separator";
+import { EASE_1 } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FC } from "react";
@@ -12,77 +13,111 @@ interface MenuProps {
   state: boolean;
 }
 
-export const menuVariants = {
+const menuVariants = {
   open: {
     y: "0%",
-    transition: { ease: [0.5, 0, 0, 1], duration: 1.4 },
+    transition: { ease: EASE_1, duration: 1.4 },
   },
   closed: {
     y: "-100%",
-    transition: { ease: [0.5, 0, 0, 1], duration: 1.4 },
+    transition: { ease: EASE_1, duration: 1.4 },
+  },
+};
+
+const menuMainVariants = {
+  open: {
+    y: "0%",
+    transition: { ease: EASE_1, duration: 1.4 },
+    boxShadow:
+      "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+  },
+  closed: {
+    y: "-100%",
+    transition: { ease: EASE_1, duration: 1.4 },
+    boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0), 0 4px 6px -4px rgb(0 0 0 / 0)",
   },
 };
 
 const Menu: FC<MenuProps> = ({ state }) => {
   return (
-    <motion.div
-      variants={menuVariants}
-      animate={state && "open"}
-      initial="closed"
-      exit="closed"
-      className="fixed inset-0 z-40 flex flex-col justify-end bg-secondary px-12 py-8 uppercase md:px-16 lg:h-fit"
-    >
-      {/* INFO AND PHOTO */}
-      <motion.div
-        variants={menuVariants}
-        animate={state && "open"}
-        initial="closed"
-        exit="closed"
-        className="fixed inset-0 flex h-fit items-center gap-10 bg-secondary px-12 py-24 drop-shadow-lg min-[420px]:py-32 lg:w-fit lg:py-20"
-      >
-        <div className="flex flex-col gap-2 text-sm min-[420px]:text-base">
-          <p className="text-xs text-muted-foreground">Info</p>
-          <p>Front-end / Creative</p>
-          <p>
-            Full-time / Freelance <span className="lowercase">(available)</span>
-          </p>
-          <p>São Paulo, Brazil</p>
-          <p>18Y</p>
-        </div>
-        <Image
-          width={160}
-          height={200}
-          alt="Photo of Yuri Silva"
-          src="https://placehold.co/320x400.png"
-          className="hidden xl:block"
-        />
-      </motion.div>
-      {/* LINKS */}
-      <div className="flex flex-1 flex-col justify-between gap-4 sm:gap-6">
-        <nav className="flex flex-1 flex-col justify-end gap-3 lg:flex-row lg:items-end lg:justify-end lg:gap-5 lg:py-28 2xl:items-center 2xl:justify-end 2xl:gap-11 2xl:py-36">
-          <MenuLink href="/">Home</MenuLink>
-          <MenuLink href="/about">About</MenuLink>
-          <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">
-            Contact
-          </MenuLink>
-        </nav>
-        <footer className="flex flex-wrap justify-end gap-4 md:justify-between">
-          <Separator />
-          <div className="group hidden md:block">
-            <Roll initial="top-full" content={MARQUEE} />. ©{" "}
-            {new Date().getFullYear()}
+    <div className="fixed inset-0 z-40 h-full w-full">
+      <nav className="relative">
+        {/* MAIN */}
+        <motion.div
+          className="relative z-40 flex h-fit flex-col justify-between gap-9 bg-secondary px-8 pb-12 pt-28 uppercase sm:flex-row sm:items-center md:px-16 md:py-28"
+          variants={menuMainVariants}
+          animate={state && "open"}
+          initial="closed"
+          exit="closed"
+        >
+          {/* INFO AND PHOTO */}
+          <motion.div
+            className="flex items-center gap-8"
+            animate={state && "open"}
+            initial="closed"
+            exit="closed"
+          >
+            <Image
+              width={448}
+              height={160}
+              alt="Photo of Yuri Silva"
+              src="https://placehold.co/448x160.png"
+              className="hidden xl:block"
+            />
+            <div className="space-y-1 text-sm">
+              <p className="text-xs text-muted-foreground">Info</p>
+              <p>Front-end / Creative</p>
+              <p>
+                Full-time / Freelance{" "}
+                <span className="lowercase">(available)</span>
+              </p>
+              <p>São Paulo, Brazil</p>
+              <p>18Y</p>
+            </div>
+          </motion.div>
+          {/* LINKS */}
+          <nav className="flex flex-col gap-4 md:flex-row md:gap-8">
+            <MenuLink href="/">Home</MenuLink>
+            <MenuLink href="/about">About</MenuLink>
+            <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">
+              Contact
+            </MenuLink>
+          </nav>
+        </motion.div>
+        {/* BACK */}
+        <motion.div
+          className="absolute -bottom-28 left-0 right-0 top-0 z-30 w-full overflow-hidden bg-secondary uppercase"
+          variants={menuVariants}
+          animate={state && "open"}
+          initial="closed"
+          exit="closed"
+        >
+          <div className="relative flex h-full w-full items-end">
+            <footer className="flex flex-1 justify-end p-8 sm:justify-between md:px-16 md:pb-8">
+              <div className="hidden gap-1 sm:flex">
+                <p>{MARQUEE}</p>
+                <p>&#169; {new Date().getFullYear()}</p>
+              </div>
+              <div className="flex gap-4 *:flex *:items-center *:gap-2.5">
+                <a href="https://CHANGE_THIS">
+                  GitHub
+                  <span>
+                    <Icons.topRightArrow />
+                  </span>
+                </a>
+                <a href="https://CHANGE_THIS">
+                  LinkedIn
+                  <span>
+                    <Icons.topRightArrow />
+                  </span>
+                </a>
+              </div>
+            </footer>
+            <Background.background className="pointer-events-none absolute bottom-0 select-none opacity-50" />
           </div>
-          <div className="space-x-4 whitespace-nowrap">
-            <a href="https://CHANGE_THIS" className="group">
-              LinkedIn <Roll content="↗" />
-            </a>
-            <a href="https://CHANGE_THIS" className="group">
-              GitHub <Roll content="↗" />
-            </a>
-          </div>
-        </footer>
-      </div>
-    </motion.div>
+        </motion.div>
+      </nav>
+    </div>
   );
 };
 

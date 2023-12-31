@@ -32,7 +32,7 @@ const PlaneMaterial = shaderMaterial(
     vec2 newUV = (vUv - vec2(0.5)) * uResolution.zw + vec2(0.5);
     vec4 offset = texture2D(uDataTexture, newUV);
 
-    gl_FragColor = texture2D(uTexture, newUV - 0.02 * offset.rg);
+    gl_FragColor = texture2D(uTexture, vUv - 0.02 * offset.rg);
   }`
 );
 

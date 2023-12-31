@@ -26,8 +26,8 @@ declare module "@react-three/fiber" {
 const CELL_SIZE = 32;
 const MAX_DIST = CELL_SIZE / 4;
 const MAX_DIST_SQ = MAX_DIST ** 2;
-const WIDTH = 32;
-const HEIGHT = 32;
+const WIDTH = CELL_SIZE;
+const HEIGHT = CELL_SIZE;
 const SIZE = WIDTH * HEIGHT;
 
 const World = ({}) => {

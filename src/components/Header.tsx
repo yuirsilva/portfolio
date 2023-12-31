@@ -14,11 +14,11 @@ const Header: FC<HeaderProps> = ({}) => {
   const [isActive, setActive] = useState<boolean>(false);
 
   return (
-    <header className="px-12 pt-8 md:px-16">
+    <header className="p-8 md:px-16">
       <div className="relative z-50 flex justify-between">
         <MagneticButton>
           <Link href="/">
-            <Icons.smLogo className="fill-primary transition-colors hover:fill-blue-600" />
+            <Icons.smLogo className="fill-primary transition-colors hover:fill-muted-foreground" />
           </Link>
         </MagneticButton>
         <nav>

@@ -28,6 +28,21 @@ const Icons = {
       </svg>
     )
   ),
+  topRightArrow: forwardRef<SVGSVGElement, Partial<SVGProps<SVGSVGElement>>>(
+    ({ ...props }, ref) => (
+      <svg
+        ref={ref}
+        {...props}
+        width="20px"
+        height="20px"
+        viewBox="0 0 20 20"
+        className="fill-none stroke-foreground [stroke-width:1.75px]"
+      >
+        <polyline points="4.657,3.64 16.304,3.64 16.304,15.287" />
+        <line x1="3.77" y1="16.281" x2="16.304" y2="3.64" />
+      </svg>
+    )
+  ),
 };
 
 export default Icons;

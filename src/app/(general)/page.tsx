@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div className="flex flex-1 flex-col items-center justify-center gap-2">
-      <div className="absolute inset-0 h-[725px] w-[607px]">
+      {/* <div className="absolute inset-0 h-[725px] w-[607px]">
         <World />
-      </div>
+      </div> */}
       <Content />
       <Marquee />
     </div>
