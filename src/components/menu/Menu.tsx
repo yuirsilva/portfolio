@@ -4,6 +4,7 @@ import { MARQUEE } from "@/components/home/Marquee";
 import Icons from "@/components/Icons";
 import Background from "@/components/menu/Background";
 import MenuLink from "@/components/menu/MenuLink";
+import Roll from "@/components/Roll";
 import { EASE_1 } from "@/lib/utils";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -99,17 +100,19 @@ const Menu: FC<MenuProps> = ({ state }) => {
                 <p>&#169; {new Date().getFullYear()}</p>
               </div>
               <div className="flex gap-4 *:flex *:items-center *:gap-2.5">
-                <a href="https://CHANGE_THIS">
+                <a href="https://CHANGE_THIS" className="group">
                   GitHub
-                  <span>
-                    <Icons.topRightArrow />
-                  </span>
+                  <Roll
+                    initial="top-full right-full"
+                    thing={<Icons.topRightArrow />}
+                  />
                 </a>
-                <a href="https://CHANGE_THIS">
+                <a href="https://CHANGE_THIS" className="group">
                   LinkedIn
-                  <span>
-                    <Icons.topRightArrow />
-                  </span>
+                  <Roll
+                    initial="top-full right-full"
+                    thing={<Icons.topRightArrow />}
+                  />
                 </a>
               </div>
             </footer>
