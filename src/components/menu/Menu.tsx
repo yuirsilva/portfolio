@@ -17,31 +17,36 @@ interface MenuProps {
 const menuVariants = {
   open: {
     y: "0%",
-    transition: { ease: EASE_1, duration: 1.4 },
+    transition: { ease: EASE_1, duration: 1 },
   },
   closed: {
     y: "-100%",
-    transition: { ease: EASE_1, duration: 1.4 },
+    transition: { ease: EASE_1, duration: 1 },
   },
 };
 
 const menuMainVariants = {
   open: {
     y: "0%",
-    transition: { ease: EASE_1, duration: 1.4 },
+    transition: { ease: EASE_1, duration: 1 },
     boxShadow:
       "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
   },
   closed: {
     y: "-100%",
-    transition: { ease: EASE_1, duration: 1.4 },
+    transition: { ease: EASE_1, duration: 1 },
     boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0), 0 4px 6px -4px rgb(0 0 0 / 0)",
   },
 };
 
 const Menu: FC<MenuProps> = ({ state }) => {
   return (
-    <div className="fixed inset-0 z-40 h-full w-full">
+    <motion.div
+      animate={state && { backgroundColor: "rgb(38 38 38 / 0.2)" }}
+      initial={{ backgroundColor: "rgb(38 38 38 / 0)" }}
+      exit={{ backgroundColor: "rgb(38 38 38 / 0)" }}
+      className="fixed inset-0 z-40 h-full w-full"
+    >
       <nav className="relative">
         {/* MAIN */}
         <motion.div
@@ -120,7 +125,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
           </div>
         </motion.div>
       </nav>
-    </div>
+    </motion.div>
   );
 };
 

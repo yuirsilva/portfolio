@@ -126,8 +126,8 @@ const Experience = ({}) => {
     const height = gl.domElement.offsetHeight;
 
     const onPointerMove = (e: PointerEvent) => {
-      pointer.x = e.clientX / width;
-      pointer.y = e.clientY / height;
+      pointer.x = e.offsetX / width;
+      pointer.y = e.offsetY / height;
 
       pointer.vX = pointer.x - pointer.prevX;
       pointer.vY = pointer.y - pointer.prevY;
@@ -135,7 +135,7 @@ const Experience = ({}) => {
       pointer.prevX = pointer.x;
       pointer.prevY = pointer.y;
     };
-    window.addEventListener("pointermove", onPointerMove);
+    gl.domElement.addEventListener("pointermove", onPointerMove);
 
     let imageAspect = 1920 / 1080;
     let a1, a2;
