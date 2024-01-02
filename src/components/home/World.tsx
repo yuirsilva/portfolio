@@ -73,9 +73,9 @@ const createDataTexture = () => {
 
 const Experience = ({}) => {
   const planeMat = useRef<THREE.ShaderMaterial>(null!);
-  const image = useLoader(TextureLoader, "/joan.jpg");
+  const image = useLoader(TextureLoader, "/joan.png");
   const dataTexture = createDataTexture();
-  const scale = useAspect(1920, 1080);
+  const scale = useAspect(image.image.width, image.image.height);
   const { gl } = useThree();
 
   const pointer = {
@@ -99,7 +99,18 @@ const Experience = ({}) => {
 
     for (let i = 0; i < CELL_SIZE; i++) {
       for (let j = 0; j < CELL_SIZE; j++) {
-        let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+        // let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+
+        // COOL IDEA 1:
+        // let distance =
+        //   Math.acos(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+
+        let distance =
+          Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+
+        // COOL IDEA 2 (other way from first):
+        // let distance =
+        //   (gridPointerX - i) ** 2 + Math.cos(gridPointerY - j) ** 2;
 
         if (distance < MAX_DIST_SQ) {
           let index = 4 * (i + CELL_SIZE * j);
@@ -137,7 +148,7 @@ const Experience = ({}) => {
     };
     gl.domElement.addEventListener("pointermove", onPointerMove);
 
-    let imageAspect = 1920 / 1080;
+    let imageAspect = image.image.width / image.image.height;
     let a1, a2;
     // FIX IMAGE ASPECT RATIO
     if (imageAspect > width / height) {
