@@ -3,7 +3,6 @@ import { Vector4 } from "three";
 
 const PlaneMaterial = shaderMaterial(
   {
-    uTime: 0,
     uTexture: null,
     uDataTexture: null,
     uResolution: new Vector4(0, 0, 0, 0),

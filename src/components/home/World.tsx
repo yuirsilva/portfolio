@@ -99,10 +99,10 @@ const Experience = ({}) => {
 
     for (let i = 0; i < CELL_SIZE; i++) {
       for (let j = 0; j < CELL_SIZE; j++) {
-        // let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+        let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
 
-        let distance =
-          Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+        // let distance =
+        //   Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
 
         if (distance < MAX_DIST_SQ) {
           let index = 4 * (i + CELL_SIZE * j);
@@ -120,10 +120,7 @@ const Experience = ({}) => {
     dataTexture.needsUpdate = true;
   };
 
-  useFrame(({ clock: { elapsedTime } }) => {
-    updateDataTexture();
-    planeMat.current.uniforms["uTime"].value = elapsedTime;
-  });
+  useFrame(() => updateDataTexture());
   useEffect(() => {
     const width = gl.domElement.offsetWidth;
     const height = gl.domElement.offsetHeight;
@@ -152,7 +149,7 @@ const Experience = ({}) => {
     }
 
     planeMat.current.uniforms["uTexture"].value = image;
-    planeMat.current.uniforms["uDataTexture"].value = dataTexture;
+    planeMat.current.uniforms["uDataTexture"].value = new THREE.DataTexture();
     planeMat.current.uniforms["uResolution"].value = new THREE.Vector4(
       width,
       height,
@@ -161,7 +158,7 @@ const Experience = ({}) => {
     );
 
     return () => window.removeEventListener("pointermove", onPointerMove);
-  }, [image, dataTexture, gl.domElement, pointer]);
+  }, []);
 
   return (
     <mesh scale={scale}>
