@@ -4,10 +4,10 @@ import { MARQUEE } from "@/components/home/Marquee";
 import Icons from "@/components/Icons";
 import Background from "@/components/menu/Background";
 import MenuLink from "@/components/menu/MenuLink";
+import Portrait from "@/components/menu/portrait/Portrait";
 import Roll from "@/components/Roll";
 import { EASE_1 } from "@/lib/utils";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FC } from "react";
 
 interface MenuProps {
@@ -63,13 +63,9 @@ const Menu: FC<MenuProps> = ({ state }) => {
             initial="closed"
             exit="closed"
           >
-            <Image
-              width={448}
-              height={160}
-              alt="Photo of Yuri Silva"
-              src="https://placehold.co/448x160.png"
-              className="hidden xl:block"
-            />
+            <div className="h-full max-h-40 w-full max-w-md">
+              <Portrait />
+            </div>
             <div className="space-y-1 text-sm">
               <p className="text-xs text-muted-foreground">Info</p>
               <p>Front-end / Creative</p>
