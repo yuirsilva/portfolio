@@ -25,7 +25,7 @@ const Content: FC<ContentProps> = () => {
         </AnimatePresence> */}
         <p className="max-w-60 text-justify leading-6 sm:max-w-md">
           Yuri → Front-end developer based in São Paulo, Brazil 💚. I love
-          smooth animations, 3D and "crazy" web experiences.
+          smooth animations, 3D and &quot;crazy&quot; web experiences.
         </p>
         <Link href="/about" className="lowercase underline underline-offset-2">
           about me

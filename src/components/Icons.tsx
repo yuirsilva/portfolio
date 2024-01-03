@@ -46,5 +46,8 @@ const Icons = {
     )
   ),
 };
+Icons.logo.displayName = "Logo";
+Icons.smLogo.displayName = "SmallLogo";
+Icons.topRightArrow.displayName = "TopRightArrow";
 
 export default Icons;

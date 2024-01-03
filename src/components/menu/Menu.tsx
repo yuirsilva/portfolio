@@ -117,7 +117,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
                 </a>
               </div>
             </footer>
-            <Background.background className="pointer-events-none absolute bottom-0 select-none opacity-50" />
+            <Background className="pointer-events-none absolute bottom-0 select-none opacity-50" />
           </div>
         </motion.div>
       </nav>

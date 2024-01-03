@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import Link, { LinkProps } from "next/link";
+import Link from "next/link";
 import { FC, HTMLAttributes } from "react";
 
 interface MenuLinkProps extends HTMLAttributes<HTMLAnchorElement> {

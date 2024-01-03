@@ -101,16 +101,8 @@ const Experience = ({}) => {
       for (let j = 0; j < CELL_SIZE; j++) {
         // let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
 
-        // COOL IDEA 1:
-        // let distance =
-        //   Math.acos(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
-
         let distance =
           Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
-
-        // COOL IDEA 2 (other way from first):
-        // let distance =
-        //   (gridPointerX - i) ** 2 + Math.cos(gridPointerY - j) ** 2;
 
         if (distance < MAX_DIST_SQ) {
           let index = 4 * (i + CELL_SIZE * j);
@@ -169,7 +161,7 @@ const Experience = ({}) => {
     );
 
     return () => window.removeEventListener("pointermove", onPointerMove);
-  }, [image]);
+  }, [image, dataTexture, gl.domElement, pointer]);
 
   return (
     <mesh scale={scale}>
