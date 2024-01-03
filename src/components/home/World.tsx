@@ -1,6 +1,6 @@
 "use client";
 
-import PlaneMaterial from "@/components/home/shader/planeMaterial";
+import GridMaterial from "@/components/home/shader/gridMaterial";
 import { useAspect } from "@react-three/drei";
 import {
   Canvas,
@@ -14,12 +14,12 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { DoubleSide, TextureLoader } from "three";
 
-extend({ PlaneMaterial });
+extend({ GridMaterial });
 
 declare module "@react-three/fiber" {
   // eslint-disable-next-line no-unused-vars
   interface ThreeElements {
-    planeMaterial: MaterialNode<THREE.ShaderMaterial, typeof PlaneMaterial>;
+    gridMaterial: MaterialNode<THREE.ShaderMaterial, typeof GridMaterial>;
   }
 }
 
@@ -99,10 +99,10 @@ const Experience = ({}) => {
 
     for (let i = 0; i < CELL_SIZE; i++) {
       for (let j = 0; j < CELL_SIZE; j++) {
-        let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+        // let distance = (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
 
-        // let distance =
-        //   Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+        let distance =
+          Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
 
         if (distance < MAX_DIST_SQ) {
           let index = 4 * (i + CELL_SIZE * j);
@@ -149,7 +149,7 @@ const Experience = ({}) => {
     }
 
     planeMat.current.uniforms["uTexture"].value = image;
-    planeMat.current.uniforms["uDataTexture"].value = new THREE.DataTexture();
+    planeMat.current.uniforms["uDataTexture"].value = dataTexture;
     planeMat.current.uniforms["uResolution"].value = new THREE.Vector4(
       width,
       height,
@@ -163,7 +163,7 @@ const Experience = ({}) => {
   return (
     <mesh scale={scale}>
       <planeGeometry args={[1, 1, 1, 1]} />
-      <planeMaterial ref={planeMat} side={DoubleSide} />
+      <gridMaterial ref={planeMat} side={DoubleSide} />
     </mesh>
   );
 };

@@ -1,7 +1,7 @@
 import { shaderMaterial } from "@react-three/drei";
 import { Vector4 } from "three";
 
-const PlaneMaterial = shaderMaterial(
+const GridMaterial = shaderMaterial(
   {
     uTexture: null,
     uDataTexture: null,
@@ -35,4 +35,4 @@ const PlaneMaterial = shaderMaterial(
   }`
 );
 
-export default PlaneMaterial;
+export default GridMaterial;

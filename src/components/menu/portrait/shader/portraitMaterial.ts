@@ -1,7 +1,7 @@
 import { shaderMaterial } from "@react-three/drei";
 import { Vector2, Vector4 } from "three";
 
-const PlaneMaterial = shaderMaterial(
+const PortraitMaterial = shaderMaterial(
   {
     uTime: 0,
     uTexture: null,
@@ -51,4 +51,4 @@ const PlaneMaterial = shaderMaterial(
   }`
 );
 
-export default PlaneMaterial;
+export default PortraitMaterial;

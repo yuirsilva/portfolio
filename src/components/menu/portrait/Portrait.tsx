@@ -1,6 +1,6 @@
 "use client";
 
-import PlaneMaterial from "@/components/menu/portrait/shader/planeMaterial";
+import PortraitMaterial from "@/components/menu/portrait/shader/portraitMaterial";
 import { useAspect } from "@react-three/drei";
 import {
   Canvas,
@@ -14,12 +14,15 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { DoubleSide, TextureLoader } from "three";
 
-extend({ PlaneMaterial });
+extend({ PortraitMaterial });
 
 declare module "@react-three/fiber" {
   // eslint-disable-next-line no-unused-vars
   interface ThreeElements {
-    planeMaterial: MaterialNode<THREE.ShaderMaterial, typeof PlaneMaterial>;
+    portraitMaterial: MaterialNode<
+      THREE.ShaderMaterial,
+      typeof PortraitMaterial
+    >;
   }
 }
 
@@ -87,7 +90,7 @@ const Experience = ({}) => {
   return (
     <mesh scale={scale}>
       <planeGeometry args={[1, 1, 1, 1]} />
-      <planeMaterial ref={planeMat} side={DoubleSide} />
+      <portraitMaterial ref={planeMat} side={DoubleSide} />
     </mesh>
   );
 };
