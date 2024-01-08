@@ -17,8 +17,8 @@ interface MenuProps {
 const menuBackgroundVariants: Variants = {
   open: {
     backgroundColor: "rgb(38 38 38 / 0.2)",
-    userSelect: "all",
-    pointerEvents: "all",
+    userSelect: "initial",
+    pointerEvents: "initial",
     transition: { ease: EASE_1, duration: 1 },
   },
   closed: {
@@ -74,7 +74,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <div className="h-full max-h-40 w-full max-w-md">
+            <div className="hidden h-full max-h-40 w-full max-w-md lg:block">
               <Portrait />
             </div>
             <div className="space-y-1 text-sm">

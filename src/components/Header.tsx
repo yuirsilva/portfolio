@@ -26,7 +26,6 @@ const Header: FC<HeaderProps> = ({}) => {
         </nav>
       </div>
       <AnimatePresence mode="wait">
-        {/* {isActive ? <Menu state={isActive} /> : null} */}
         <Menu state={isActive} />
       </AnimatePresence>
     </header>
