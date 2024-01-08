@@ -7,14 +7,29 @@ import MenuLink from "@/components/menu/MenuLink";
 import Portrait from "@/components/menu/portrait/Portrait";
 import Roll from "@/components/Roll";
 import { EASE_1 } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { FC } from "react";
 
 interface MenuProps {
   state: boolean;
 }
 
-const menuVariants = {
+const menuBackgroundVariants: Variants = {
+  open: {
+    backgroundColor: "rgb(38 38 38 / 0.2)",
+    userSelect: "all",
+    pointerEvents: "all",
+    transition: { ease: EASE_1, duration: 1 },
+  },
+  closed: {
+    backgroundColor: "rgb(38 38 38 / 0)",
+    pointerEvents: "none",
+    userSelect: "none",
+    transition: { ease: EASE_1, duration: 1 },
+  },
+};
+
+const menuVariants: Variants = {
   open: {
     y: "0%",
     transition: { ease: EASE_1, duration: 1 },
@@ -25,16 +40,14 @@ const menuVariants = {
   },
 };
 
-const menuMainVariants = {
+const menuMainVariants: Variants = {
   open: {
-    y: "0%",
-    transition: { ease: EASE_1, duration: 1 },
+    ...menuVariants.open,
     boxShadow:
       "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
   },
   closed: {
-    y: "-100%",
-    transition: { ease: EASE_1, duration: 1 },
+    ...menuVariants.closed,
     boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0), 0 4px 6px -4px rgb(0 0 0 / 0)",
   },
 };
@@ -42,9 +55,9 @@ const menuMainVariants = {
 const Menu: FC<MenuProps> = ({ state }) => {
   return (
     <motion.div
-      animate={state && { backgroundColor: "rgb(38 38 38 / 0.2)" }}
-      initial={{ backgroundColor: "rgb(38 38 38 / 0)" }}
-      exit={{ backgroundColor: "rgb(38 38 38 / 0)" }}
+      variants={menuBackgroundVariants}
+      animate={state ? "open" : "closed"}
+      initial="closed"
       className="fixed inset-0 z-40 h-full w-full"
     >
       <nav className="relative">
@@ -52,16 +65,14 @@ const Menu: FC<MenuProps> = ({ state }) => {
         <motion.div
           className="relative z-40 flex h-fit flex-col justify-between gap-9 bg-secondary px-8 pb-12 pt-28 uppercase sm:flex-row sm:items-center md:px-16 md:py-28"
           variants={menuMainVariants}
-          animate={state && "open"}
+          animate={state ? "open" : "closed"}
           initial="closed"
-          exit="closed"
         >
           {/* INFO AND PHOTO */}
           <motion.div
             className="flex items-center gap-8"
-            animate={state && "open"}
+            animate={state ? "open" : "closed"}
             initial="closed"
-            exit="closed"
           >
             <div className="h-full max-h-40 w-full max-w-md">
               <Portrait />
@@ -90,9 +101,8 @@ const Menu: FC<MenuProps> = ({ state }) => {
         <motion.div
           className="absolute -bottom-28 left-0 right-0 top-0 z-30 w-full overflow-hidden bg-secondary uppercase"
           variants={menuVariants}
-          animate={state && "open"}
+          animate={state ? "open" : "closed"}
           initial="closed"
-          exit="closed"
         >
           <div className="relative flex h-full w-full items-end">
             <footer className="flex flex-1 justify-end p-8 sm:justify-between md:px-16 md:pb-8">
