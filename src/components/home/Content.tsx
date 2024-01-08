@@ -18,11 +18,11 @@ const Content: FC<ContentProps> = () => {
         <World />
       </div>
       <div className="flex w-2/4 flex-col gap-6 uppercase sm:self-end">
-        {/* <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait">
           {isFinished ? null : (
             <Presentation setState={setFinished} ease={EASE_1} />
           )}
-        </AnimatePresence> */}
+        </AnimatePresence>
         <p className="max-w-60 text-justify leading-6 sm:max-w-80 lg:max-w-md">
           Yuri → Front-end developer based in São Paulo, Brazil 💚. I love
           smooth animations, 3D and &quot;crazy&quot; web experiences.
