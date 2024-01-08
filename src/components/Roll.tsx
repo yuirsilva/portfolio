@@ -13,18 +13,18 @@ const positions = {
 type RollType = keyof typeof positions;
 
 interface RollProps extends React.HTMLAttributes<HTMLDivElement> {
-  // can't use "content" so "thing" is the worst I can do
-  thing: string | ReactElement;
+  text: string | ReactElement;
   initial?: RollType;
 }
 
-const Roll: FC<RollProps> = ({ thing, className, initial = "bottom-full" }) => {
+const Roll: FC<RollProps> = ({ text, className, initial = "bottom-full" }) => {
   // you need to add the tailwind "group" class to the parent for this component to work!
   // maybe i should implement a sort of -> add "group" class to parent when needed
+
   return (
     <div
       className={cn(
-        "relative inline-flex overflow-hidden *:[transition:_transform_400ms_cubic-bezier(0.87,0,0.13,1)]",
+        "relative inline-flex overflow-hidden *:[transition:_transform_0.75s_cubic-bezier(0.19,1,0.22,1)]",
         positions[initial],
         className
       )}
@@ -35,9 +35,9 @@ const Roll: FC<RollProps> = ({ thing, className, initial = "bottom-full" }) => {
           initial
         )}
       >
-        {thing}
+        {text}
       </span>
-      <span className="inline-block">{thing}</span>
+      <span className="inline-block">{text}</span>
     </div>
   );
 };

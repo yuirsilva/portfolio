@@ -3,7 +3,7 @@
 import World from "@/components/home/World";
 import Presentation from "@/components/Presentation";
 import { EASE_1 } from "@/lib/utils";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { FC, Fragment, useState } from "react";
 
@@ -13,16 +13,18 @@ const Content: FC<ContentProps> = () => {
   const [isFinished, setFinished] = useState<boolean>(false);
 
   return (
-    <Fragment>
-      <div className="absolute inset-0 left-[14%] top-2/4 hidden h-full max-h-[40rem] w-[clamp(320px,50vw,672px)] max-w-2xl -translate-x-2/4 -translate-y-2/4 sm:block xl:left-[21%] 2xl:left-1/4">
+    <motion.div className="grid h-full w-full grid-cols-2 grid-rows-1 items-center">
+      {/* <div className="absolute inset-0 left-[14%] top-2/4 hidden h-full max-h-[40rem] w-[clamp(320px,50vw,672px)] max-w-2xl -translate-x-2/4 -translate-y-2/4 sm:block xl:left-[21%] 2xl:left-1/4"> */}
+      <div className="row-auto mx-auto hidden h-full max-h-[40rem] w-[clamp(320px,50vw,672px)] sm:block">
         <World />
       </div>
-      <div className="flex w-2/4 flex-col gap-6 uppercase sm:self-end">
-        <AnimatePresence mode="wait">
+      {/* <div className="flex w-2/4 flex-col gap-6 uppercase sm:self-end"> */}
+      <div className="flex flex-col gap-6 uppercase">
+        {/* <AnimatePresence mode="wait">
           {isFinished ? null : (
             <Presentation setState={setFinished} ease={EASE_1} />
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
         <p className="max-w-60 text-justify leading-6 sm:max-w-80 lg:max-w-md">
           Yuri → Front-end developer based in São Paulo, Brazil 💚. I love
           smooth animations, 3D and &quot;crazy&quot; web experiences.
@@ -31,7 +33,7 @@ const Content: FC<ContentProps> = () => {
           about me
         </Link>
       </div>
-    </Fragment>
+    </motion.div>
   );
 };
 

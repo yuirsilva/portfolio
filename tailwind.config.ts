@@ -82,6 +82,9 @@ module.exports = {
         lines:
           "repeating-conic-gradient(transparent 0% 25%, hsl(var(--primary)) 0% 75%)",
       },
+      gridTemplateRows: {
+        fill: "auto 1fr",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -36,7 +36,7 @@ const Icons = {
         width="20px"
         height="20px"
         viewBox="0 0 20 20"
-        className={`fill-none stroke-foreground [stroke-width:1.25px] ${
+        className={`fill-none stroke-foreground [stroke-width:1.5px] ${
           className ?? null
         }`}
       >

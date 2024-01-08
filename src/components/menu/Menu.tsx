@@ -106,8 +106,13 @@ const Menu: FC<MenuProps> = ({ state }) => {
         >
           <div className="relative flex h-full w-full items-end">
             <footer className="flex flex-1 justify-end p-8 sm:justify-between md:px-16 md:pb-8">
-              <div className="hidden gap-1 sm:flex">
-                <p className="hidden sm:block sm:max-lg:max-w-72">{MARQUEE}</p>
+              <div className="group hidden select-none gap-1 sm:flex">
+                <Roll
+                  className="hidden sm:block sm:max-lg:max-w-72"
+                  initial="top-full"
+                  text={MARQUEE}
+                />
+                {/* <p className="hidden sm:block sm:max-lg:max-w-72">{MARQUEE}</p> */}
                 <p>&#169; {new Date().getFullYear()}</p>
               </div>
               <div className="flex gap-4 *:flex *:items-center *:gap-2.5">
@@ -115,14 +120,14 @@ const Menu: FC<MenuProps> = ({ state }) => {
                   GitHub
                   <Roll
                     initial="top-full right-full"
-                    thing={<Icons.topRightArrow />}
+                    text={<Icons.topRightArrow className="h-4 w-4" />}
                   />
                 </a>
                 <a href="https://CHANGE_THIS" className="group">
                   LinkedIn
                   <Roll
                     initial="top-full right-full"
-                    thing={<Icons.topRightArrow />}
+                    text={<Icons.topRightArrow className="h-4 w-4" />}
                   />
                 </a>
               </div>

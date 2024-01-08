@@ -64,7 +64,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`min-h-screen font-sans antialiased ${neue.variable}`}>
         <main className="relative flex min-h-screen flex-col">
-          <div className="flex flex-1 flex-col">
+          {/* <div className="flex flex-1 flex-col"> */}
+          <div className="grid-rows-fill grid flex-1">
             <Header />
             {children}
             <Footer />
