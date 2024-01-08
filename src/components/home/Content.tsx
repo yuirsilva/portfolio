@@ -23,7 +23,7 @@ const Content: FC<ContentProps> = () => {
             <Presentation setState={setFinished} ease={EASE_1} />
           )}
         </AnimatePresence> */}
-        <p className="max-w-60 text-justify leading-6 sm:max-w-md">
+        <p className="max-w-60 text-justify leading-6 sm:max-w-80 lg:max-w-md">
           Yuri → Front-end developer based in São Paulo, Brazil 💚. I love
           smooth animations, 3D and &quot;crazy&quot; web experiences.
         </p>

@@ -74,7 +74,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <div className="hidden h-full max-h-40 w-full max-w-md lg:block">
+            <div className="hidden h-full max-h-40 w-full max-w-md 2xl:block">
               <Portrait />
             </div>
             <div className="space-y-1 text-sm">
@@ -89,7 +89,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
             </div>
           </motion.div>
           {/* LINKS */}
-          <nav className="flex flex-col gap-4 md:flex-row md:gap-8">
+          <nav className="flex flex-col gap-4 sm:items-end md:gap-8 lg:flex-row">
             <MenuLink href="/">Home</MenuLink>
             <MenuLink href="/about">About</MenuLink>
             <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">
@@ -107,7 +107,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
           <div className="relative flex h-full w-full items-end">
             <footer className="flex flex-1 justify-end p-8 sm:justify-between md:px-16 md:pb-8">
               <div className="hidden gap-1 sm:flex">
-                <p>{MARQUEE}</p>
+                <p className="hidden sm:block sm:max-lg:max-w-72">{MARQUEE}</p>
                 <p>&#169; {new Date().getFullYear()}</p>
               </div>
               <div className="flex gap-4 *:flex *:items-center *:gap-2.5">

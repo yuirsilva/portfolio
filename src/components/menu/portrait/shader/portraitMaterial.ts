@@ -44,7 +44,6 @@ const PortraitMaterial = shaderMaterial(
 
     float diffuseIntensity = max(dot(normal, lightDirection), 0.6);
 
-    // vec3 finalColor = diffuse * diffuseIntensity;
     vec3 finalColor = ambientColor + diffuse * diffuseIntensity;
 
     gl_FragColor = vec4(finalColor, 1.);
