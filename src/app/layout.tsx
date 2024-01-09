@@ -8,8 +8,13 @@ import Header from "@/components/Header";
 import { baseUrl, siteConfig } from "@/config/site";
 
 const neue = localFont({
-  src: "../font/neuemontreal.woff",
+  src: "../font/HelveticaNowDisplayRegular.woff2",
   variable: "--font-neue",
+});
+
+const mono = localFont({
+  src: "../font/Favorit-Mono.woff2",
+  variable: "--font-mono",
 });
 
 export const viewport: Viewport = {
@@ -62,10 +67,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`min-h-screen font-sans antialiased ${neue.variable}`}>
+      <body
+        className={`min-h-screen font-sans antialiased ${neue.variable} ${mono.variable}`}
+      >
         <main className="relative flex min-h-screen flex-col">
           {/* <div className="flex flex-1 flex-col"> */}
-          <div className="grid-rows-fill grid flex-1">
+          <div className="grid flex-1 grid-rows-fill">
             <Header />
             {children}
             <Footer />

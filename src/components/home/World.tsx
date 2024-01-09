@@ -158,7 +158,7 @@ const Experience = ({}) => {
     );
 
     return () => window.removeEventListener("pointermove", onPointerMove);
-  }, [dataTexture, image]);
+  }, [dataTexture]);
 
   return (
     <mesh scale={scale}>

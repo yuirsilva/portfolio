@@ -1,5 +1,4 @@
 import Content from "@/components/home/Content";
-import Marquee from "@/components/home/Marquee";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,9 +7,8 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <div className="flex justify-center px-8 md:px-16">
+    <div className="flex justify-center overflow-hidden px-8 md:px-16">
       <Content />
-      <Marquee />
     </div>
   );
 };

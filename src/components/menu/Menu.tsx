@@ -4,53 +4,19 @@ import { MARQUEE } from "@/components/home/Marquee";
 import Icons from "@/components/Icons";
 import Background from "@/components/menu/Background";
 import MenuLink from "@/components/menu/MenuLink";
+import {
+  menuBackgroundVariants,
+  menuMainVariants,
+  menuVariants,
+} from "@/components/menu/MenuVariants";
 import Portrait from "@/components/menu/portrait/Portrait";
 import Roll from "@/components/Roll";
-import { EASE_1 } from "@/lib/utils";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 import { FC } from "react";
 
 interface MenuProps {
   state: boolean;
 }
-
-const menuBackgroundVariants: Variants = {
-  open: {
-    backgroundColor: "rgb(38 38 38 / 0.2)",
-    userSelect: "initial",
-    pointerEvents: "initial",
-    transition: { ease: EASE_1, duration: 1 },
-  },
-  closed: {
-    backgroundColor: "rgb(38 38 38 / 0)",
-    pointerEvents: "none",
-    userSelect: "none",
-    transition: { ease: EASE_1, duration: 1 },
-  },
-};
-
-const menuVariants: Variants = {
-  open: {
-    y: "0%",
-    transition: { ease: EASE_1, duration: 1 },
-  },
-  closed: {
-    y: "-100%",
-    transition: { ease: EASE_1, duration: 1 },
-  },
-};
-
-const menuMainVariants: Variants = {
-  open: {
-    ...menuVariants.open,
-    boxShadow:
-      "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-  },
-  closed: {
-    ...menuVariants.closed,
-    boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0), 0 4px 6px -4px rgb(0 0 0 / 0)",
-  },
-};
 
 const Menu: FC<MenuProps> = ({ state }) => {
   return (
@@ -74,7 +40,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <div className="hidden h-full max-h-40 w-full max-w-md 2xl:block">
+            <div className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md">
               <Portrait />
             </div>
             <div className="space-y-1 text-sm">
@@ -106,14 +72,14 @@ const Menu: FC<MenuProps> = ({ state }) => {
         >
           <div className="relative flex h-full w-full items-end">
             <footer className="flex flex-1 justify-end p-8 sm:justify-between md:px-16 md:pb-8">
-              <div className="group hidden select-none gap-1 sm:flex">
+              <div className="group hidden select-none sm:flex">
                 <Roll
                   className="hidden sm:block sm:max-lg:max-w-72"
                   initial="top-full"
-                  text={MARQUEE}
+                  text={MARQUEE + " " + "©" + new Date().getFullYear()}
                 />
-                {/* <p className="hidden sm:block sm:max-lg:max-w-72">{MARQUEE}</p> */}
-                <p>&#169; {new Date().getFullYear()}</p>
+                {/* &nbsp;
+                <p>&#169; {new Date().getFullYear()}</p> */}
               </div>
               <div className="flex gap-4 *:flex *:items-center *:gap-2.5">
                 <a href="https://CHANGE_THIS" className="group">

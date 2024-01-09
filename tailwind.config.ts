@@ -77,6 +77,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["var(--font-neue)"],
+        mono: ["var(--font-mono)"],
       },
       backgroundImage: {
         lines:

@@ -1,34 +1,10 @@
-"use client";
+import { forwardRef } from "react";
 
-import { EASE_2 } from "@/lib/utils";
-import { AnimationSequence, motion, stagger, useAnimate } from "framer-motion";
-import { Dispatch, FC, SetStateAction, useEffect } from "react";
-
-interface PresentationProps {
-  ease?: Array<number>;
-  setState: Dispatch<SetStateAction<boolean>>;
-}
-
-const Presentation: FC<PresentationProps> = ({ ease = EASE_2, setState }) => {
-  const [scope, animate] = useAnimate();
-
-  useEffect(() => {
-    const sequence = [
-      ["path", { opacity: 1 }, { delay: stagger(0.4), duration: 0.8 }],
-      [".text", { y: ["100%", "-100%"] }, { duration: 1.4, ease, at: "<" }],
-      [".text", { y: "-200%" }, { duration: 1.4, ease }],
-    ] as AnimationSequence;
-
-    animate(sequence).then(() => {
-      setState(true);
-    });
-  }, []);
-
+const Presentation = forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <motion.div
-      ref={scope}
-      className="absolute inset-0 z-[999] flex h-full w-full select-none flex-col items-center justify-center gap-4 overflow-hidden bg-secondary lowercase"
-      exit={{ y: "-100%", transition: { ease, duration: 1.2 } }}
+    <div
+      ref={ref}
+      className="fixed inset-0 z-[999] flex h-full w-full select-none flex-col items-center justify-center gap-4 overflow-hidden bg-secondary lowercase"
     >
       <svg width="57" height="32" viewBox="0 0 57 32">
         <path
@@ -62,8 +38,9 @@ const Presentation: FC<PresentationProps> = ({ ease = EASE_2, setState }) => {
           <p className="uppercase text-foreground">yuri silva</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-};
+});
+Presentation.displayName = "Presentation";
 
 export default Presentation;
