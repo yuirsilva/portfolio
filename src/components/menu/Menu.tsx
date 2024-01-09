@@ -3,14 +3,18 @@
 import { MARQUEE } from "@/components/home/Marquee";
 import Icons from "@/components/Icons";
 import Background from "@/components/menu/Background";
-import MenuLink from "@/components/menu/MenuLink";
 import {
+  infoVariants,
   menuBackgroundVariants,
   menuMainVariants,
   menuVariants,
+  navVariants,
+  portraitVariants,
 } from "@/components/menu/MenuVariants";
 import Portrait from "@/components/menu/portrait/Portrait";
 import Roll from "@/components/Roll";
+import { MenuInfo } from "@/content/menu-info";
+import { MenuLinks } from "@/content/menu-links";
 import { motion } from "framer-motion";
 import { FC } from "react";
 
@@ -40,27 +44,55 @@ const Menu: FC<MenuProps> = ({ state }) => {
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <div className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md">
+            <motion.div
+              variants={portraitVariants}
+              initial="closed"
+              animate={state ? "open" : "closed"}
+              className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md"
+            >
               <Portrait />
-            </div>
+            </motion.div>
             <div className="space-y-1 text-sm">
-              <p className="text-xs text-muted-foreground">Info</p>
+              {MenuInfo.map((info, i) => (
+                <div key={i} className="overflow-hidden">
+                  <motion.p
+                    className={info.className + "block"}
+                    variants={infoVariants}
+                    initial="closed"
+                    animate={state ? "open" : "closed"}
+                    custom={i}
+                  >
+                    {info.text}
+                    {info.children}
+                  </motion.p>
+                </div>
+              ))}
+              {/* <p className="text-xs text-muted-foreground">Info</p>
               <p>Front-end / Creative</p>
               <p>
                 Full-time / Freelance{" "}
                 <span className="lowercase">(available)</span>
               </p>
               <p>São Paulo, Brazil</p>
-              <p>18Y</p>
+              <p>18Y</p> */}
             </div>
           </motion.div>
           {/* LINKS */}
           <nav className="flex flex-col gap-4 sm:items-end md:gap-8 lg:flex-row">
-            <MenuLink href="/">Home</MenuLink>
-            <MenuLink href="/about">About</MenuLink>
-            <MenuLink asExternal href="mailto:yuxipersonal@gmail.com">
-              Contact
-            </MenuLink>
+            {MenuLinks.map((link, i) => (
+              <div key={i} className="overflow-hidden">
+                <motion.a
+                  variants={navVariants}
+                  initial="closed"
+                  animate={state ? "open" : "closed"}
+                  custom={i}
+                  href={link.href}
+                  className="block font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl"
+                >
+                  {link.title}
+                </motion.a>
+              </div>
+            ))}
           </nav>
         </motion.div>
         {/* BACK */}

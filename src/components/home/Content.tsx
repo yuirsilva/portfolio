@@ -33,7 +33,7 @@ const Content = () => {
       [
         marquee.current,
         { clipPath: ["inset(100% 0 0 0)", "inset(0 0 0 0)"] },
-        { ease: EASE_2, duration: 0.75 },
+        { ease: EASE_2, duration: 0.75, at: "-0.4" },
       ],
     ] as AnimationSequence;
 
