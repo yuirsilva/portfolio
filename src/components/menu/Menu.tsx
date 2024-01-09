@@ -120,14 +120,14 @@ const Menu: FC<MenuProps> = ({ state }) => {
                   GitHub
                   <Roll
                     initial="top-full right-full"
-                    text={<Icons.topRightArrow className="h-4 w-4" />}
+                    text={<Icons.topRightArrow className="size-4" />}
                   />
                 </a>
                 <a href="https://CHANGE_THIS" className="group">
                   LinkedIn
                   <Roll
                     initial="top-full right-full"
-                    text={<Icons.topRightArrow className="h-4 w-4" />}
+                    text={<Icons.topRightArrow className="size-4" />}
                   />
                 </a>
               </div>

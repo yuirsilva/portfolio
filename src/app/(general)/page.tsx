@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center gap-2">
+    <div className="flex justify-center px-8 md:px-16">
       <Content />
       <Marquee />
     </div>
