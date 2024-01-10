@@ -17,14 +17,25 @@ const Content = () => {
 
   useEffect(() => {
     const sequence = [
-      ["path", { opacity: 1 }, { delay: stagger(0.4), duration: 0.8 }],
+      [
+        "path",
+        { opacity: 1 },
+        { duration: 0.75, ease: EASE_2, delay: stagger(0.375) },
+      ],
       [
         ".text",
         { y: ["100%", "-100%"] },
-        { duration: 1.4, ease: EASE_2, at: "<", delay: 1 },
+        { duration: 0.75, ease: EASE_2, at: "<", delay: 1 },
       ],
-      [".text", { y: "-200%" }, { duration: 1.4, ease: EASE_2 }],
-      [presentation.current, { y: "-100%" }, { ease: EASE_2, duration: 1.4 }],
+      [".text", { y: "-200%" }, { duration: 0.75, ease: EASE_2 }],
+      ["path", { opacity: 0 }, { duration: 0.75, ease: EASE_2 }],
+
+      [
+        presentation.current,
+        { y: "-100%" },
+        { ease: EASE_2, duration: 1.4, at: "-0.75" },
+      ],
+
       [
         content.current,
         { y: ["50%", "0%"] },

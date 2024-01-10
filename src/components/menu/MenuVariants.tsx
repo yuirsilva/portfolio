@@ -66,11 +66,11 @@ export const portraitVariants: Variants = {
 export const infoVariants: Variants = {
   open: (i) => ({
     y: "0%",
-    transition: { ease: EASE_2, duration: 1.2, delay: 0.05 + i * 0.1 },
+    transition: { ease: EASE_2, duration: 1.2, delay: 0.05 * i + 0.25 },
   }),
   closed: (i) => ({
     y: "-100%",
-    transition: { ease: EASE_2, duration: 1.2, delay: 0.05 + i * 0.1 },
+    transition: { ease: EASE_2, duration: 1.2, delay: 0.05 * i + 0.25 },
   }),
 };
 

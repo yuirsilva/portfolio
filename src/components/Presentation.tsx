@@ -25,16 +25,10 @@ const Presentation = forwardRef<HTMLDivElement>((_, ref) => {
       </svg>
 
       <div className="relative overflow-hidden">
-        <p className="invisible text-muted-foreground">
-          you fall, you rise, you grind again.
-        </p>
+        <p className="invisible text-muted-foreground">today, not tomorrow</p>
         <div className="text absolute inset-0 text-center">
-          <p className="text-muted-foreground">
-            you fall, you rise, you grind again.
-          </p>
-          <p className="text-muted-foreground">
-            you fall, you rise, you grind again.
-          </p>
+          <p className="text-muted-foreground">today, not tomorrow</p>
+          <p className="text-muted-foreground">today, not tomorrow</p>
           <p className="uppercase text-foreground">yuri silva</p>
         </div>
       </div>

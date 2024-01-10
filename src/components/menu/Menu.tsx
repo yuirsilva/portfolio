@@ -56,7 +56,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
               {MenuInfo.map((info, i) => (
                 <div key={i} className="overflow-hidden">
                   <motion.p
-                    className={info.className + "block"}
+                    className={info.className + " block"}
                     variants={infoVariants}
                     initial="closed"
                     animate={state ? "open" : "closed"}
@@ -67,14 +67,6 @@ const Menu: FC<MenuProps> = ({ state }) => {
                   </motion.p>
                 </div>
               ))}
-              {/* <p className="text-xs text-muted-foreground">Info</p>
-              <p>Front-end / Creative</p>
-              <p>
-                Full-time / Freelance{" "}
-                <span className="lowercase">(available)</span>
-              </p>
-              <p>São Paulo, Brazil</p>
-              <p>18Y</p> */}
             </div>
           </motion.div>
           {/* LINKS */}
