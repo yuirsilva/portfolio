@@ -54,9 +54,9 @@ const Menu: FC<MenuProps> = ({ state }) => {
             </motion.div>
             <div className="space-y-1 text-sm">
               {MenuInfo.map((info, i) => (
-                <div key={i} className="overflow-hidden">
+                <div key={i} className="relative overflow-hidden">
                   <motion.p
-                    className={info.className + " block"}
+                    className={info.className + " block origin-bottom-left"}
                     variants={infoVariants}
                     initial="closed"
                     animate={state ? "open" : "closed"}
