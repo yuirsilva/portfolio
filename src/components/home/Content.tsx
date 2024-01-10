@@ -25,7 +25,7 @@ const Content = () => {
       [
         ".text",
         { y: ["100%", "-100%"] },
-        { duration: 0.75, ease: EASE_2, at: "<", delay: 1 },
+        { duration: 1, ease: EASE_2, at: "<", delay: 1 },
       ],
       [".text", { y: "-200%" }, { duration: 0.75, ease: EASE_2 }],
       ["path", { opacity: 0 }, { duration: 0.75, ease: EASE_2 }],
