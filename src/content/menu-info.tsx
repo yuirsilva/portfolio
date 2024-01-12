@@ -1,8 +1,19 @@
 type Info = Array<{
-  text: string;
+  text: string | number;
   className?: string;
   children?: React.ReactNode;
 }>;
+
+const getAge = () => {
+  var today = new Date();
+  var birthDate = new Date(2005, 9, 10);
+  var age = today.getFullYear() - birthDate.getFullYear();
+  var m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+};
 
 export const MenuInfo: Info = [
   {
@@ -20,6 +31,6 @@ export const MenuInfo: Info = [
     text: "São Paulo, Brazil",
   },
   {
-    text: "18Y",
+    text: getAge() + "Y",
   },
 ];
