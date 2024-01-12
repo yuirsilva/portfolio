@@ -45,9 +45,50 @@ const Icons = {
       </svg>
     )
   ),
+  aboutIcon: forwardRef<SVGSVGElement, Partial<SVGProps<SVGSVGElement>>>(
+    (props, ref) => (
+      <svg
+        ref={ref}
+        {...props}
+        className="animate-pulse"
+        width="40"
+        height="40"
+        viewBox="0 0 40 40"
+        fill="none"
+      >
+        <g clipPath="url(#clip0_50_125)">
+          <mask
+            id="mask0_50_125"
+            style={{ maskType: "luminance" }}
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="0"
+            width="40"
+            height="40"
+          >
+            <path d="M40 0H0V40H40V0Z" fill="white" />
+          </mask>
+          <g mask="url(#mask0_50_125)">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M0 20L1.52588e-06 0H20H40V20C28.956 20 20.0026 11.0483 20 0.00478516C19.9974 11.0483 11.0441 20 0 20ZM20 40C20 28.9542 28.9544 20 40 20V40H20ZM20 40C20 28.9542 11.0457 20 0 20V40H20Z"
+              fill="#2563EB"
+            />
+          </g>
+        </g>
+        <defs>
+          <clipPath id="clip0_50_125">
+            <rect width="40" height="40" fill="white" />
+          </clipPath>
+        </defs>
+      </svg>
+    )
+  ),
 };
 Icons.logo.displayName = "Logo";
 Icons.smLogo.displayName = "SmallLogo";
 Icons.topRightArrow.displayName = "TopRightArrow";
+Icons.aboutIcon.displayName = "AboutIcon";
 
 export default Icons;

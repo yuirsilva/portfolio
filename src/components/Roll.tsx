@@ -13,7 +13,7 @@ const positions = {
 type RollType = keyof typeof positions;
 
 interface RollProps extends React.HTMLAttributes<HTMLDivElement> {
-  text: string | ReactElement;
+  text: string | number | ReactElement;
   initial?: RollType;
 }
 

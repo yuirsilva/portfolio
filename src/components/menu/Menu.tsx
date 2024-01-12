@@ -98,12 +98,16 @@ const Menu: FC<MenuProps> = ({ state }) => {
             <footer className="flex flex-1 justify-end p-8 sm:justify-between md:px-16 md:pb-8">
               <div className="group hidden select-none sm:flex">
                 <Roll
-                  className="hidden sm:block sm:max-lg:max-w-72"
+                  className="hidden sm:max-lg:max-w-72 lg:block"
                   initial="top-full"
-                  text={MARQUEE + " " + "©" + new Date().getFullYear()}
+                  text={MARQUEE}
                 />
-                {/* &nbsp;
-                <p>&#169; {new Date().getFullYear()}</p> */}
+                &nbsp;
+                <Roll
+                  className="hidden sm:block"
+                  initial="top-full"
+                  text={<>&copy;{new Date().getFullYear()}</>}
+                />
               </div>
               <div className="flex gap-4 *:flex *:items-center *:gap-2.5">
                 <a href="https://CHANGE_THIS" className="group">
