@@ -4,18 +4,16 @@ import { MARQUEE } from "@/components/home/Marquee";
 import Icons from "@/components/Icons";
 import Background from "@/components/menu/Background";
 import {
-  infoVariants,
   menuBackgroundVariants,
   menuMainVariants,
   menuVariants,
-  navVariants,
-  portraitVariants,
 } from "@/components/menu/MenuVariants";
 import Portrait from "@/components/menu/portrait/Portrait";
 import Roll from "@/components/Roll";
 import { MenuInfo } from "@/content/menu-info";
 import { MenuLinks } from "@/content/menu-links";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { FC } from "react";
 
 interface MenuProps {
@@ -41,51 +39,42 @@ const Menu: FC<MenuProps> = ({ state }) => {
           {/* INFO AND PHOTO */}
           <motion.div
             className="flex items-center gap-8"
+            variants={menuVariants}
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <motion.div
-              variants={portraitVariants}
-              initial="closed"
-              animate={state ? "open" : "closed"}
-              className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md"
-            >
+            <div className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md">
               <Portrait />
-            </motion.div>
+            </div>
             <div className="space-y-1 text-sm">
               {MenuInfo.map((info, i) => (
                 <div key={i} className="relative overflow-hidden">
-                  <motion.p
-                    className={info.className + " block origin-bottom-left"}
-                    variants={infoVariants}
-                    initial="closed"
-                    animate={state ? "open" : "closed"}
-                    custom={i}
-                  >
+                  <p className={info.className + " block origin-bottom-left"}>
                     {info.text}
                     {info.children}
-                  </motion.p>
+                  </p>
                 </div>
               ))}
             </div>
           </motion.div>
           {/* LINKS */}
-          <nav className="flex flex-col gap-4 sm:items-end md:gap-8 lg:flex-row">
+          <motion.nav
+            variants={menuVariants}
+            animate={state ? "open" : "closed"}
+            initial="closed"
+            className="flex flex-col gap-4 sm:items-end md:gap-8 lg:flex-row"
+          >
             {MenuLinks.map((link, i) => (
               <div key={i} className="overflow-hidden">
-                <motion.a
-                  variants={navVariants}
-                  initial="closed"
-                  animate={state ? "open" : "closed"}
-                  custom={i}
+                <Link
                   href={link.href}
                   className="block font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl"
                 >
                   {link.title}
-                </motion.a>
+                </Link>
               </div>
             ))}
-          </nav>
+          </motion.nav>
         </motion.div>
         {/* BACK */}
         <motion.div

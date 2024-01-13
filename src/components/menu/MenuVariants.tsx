@@ -1,31 +1,29 @@
-import { EASE_1, EASE_2 } from "@/lib/utils";
+import { SECONDARY_TRANSITION } from "@/lib/utils";
 import { Variants } from "framer-motion";
-
-export const DEFAULT_DURATION = 1;
 
 export const menuBackgroundVariants: Variants = {
   open: {
     backgroundColor: "rgb(38 38 38 / 0.2)",
     userSelect: "initial",
     pointerEvents: "initial",
-    transition: { ease: EASE_1, duration: 0.75 },
+    transition: SECONDARY_TRANSITION,
   },
   closed: {
     backgroundColor: "rgb(38 38 38 / 0)",
     pointerEvents: "none",
     userSelect: "none",
-    transition: { ease: EASE_1, duration: 0.75 },
+    transition: SECONDARY_TRANSITION,
   },
 };
 
 export const menuVariants: Variants = {
   open: {
     y: "0%",
-    transition: { ease: EASE_1, duration: DEFAULT_DURATION },
+    transition: SECONDARY_TRANSITION,
   },
   closed: {
     y: "-100%",
-    transition: { ease: EASE_1, duration: DEFAULT_DURATION },
+    transition: SECONDARY_TRANSITION,
   },
 };
 
@@ -40,56 +38,3 @@ export const menuMainVariants: Variants = {
     boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0), 0 4px 6px -4px rgb(0 0 0 / 0)",
   },
 };
-
-export const navVariants: Variants = {
-  open: (i) => ({
-    y: 0,
-    transition: {
-      ease: EASE_2,
-      duration: DEFAULT_DURATION,
-      delay: 0.05 * i + 0.45,
-    },
-  }),
-  closed: (i) => ({
-    y: "-100%",
-    transition: {
-      ease: EASE_2,
-      duration: DEFAULT_DURATION,
-      delay: 0.05 * i,
-    },
-  }),
-};
-
-export const portraitVariants: Variants = {
-  open: {
-    clipPath: "inset(0 0 0 0)",
-    transition: { ease: EASE_1, duration: 1.4 },
-  },
-  closed: {
-    clipPath: "inset(100% 0 0 0)",
-    transition: { ease: EASE_1, duration: 1.4 },
-  },
-};
-
-export const infoVariants: Variants = {
-  open: (i) => ({
-    y: "0%",
-    rotateZ: "0deg",
-    transition: {
-      ease: EASE_2,
-      duration: DEFAULT_DURATION,
-      delay: 0.05 * i + 0.1,
-    },
-  }),
-  closed: (i) => ({
-    y: "-100%",
-    rotateZ: "-5deg",
-    transition: {
-      ease: EASE_2,
-      duration: DEFAULT_DURATION,
-      delay: 0.05 * i,
-    },
-  }),
-};
-
-// this is getting wayyyy too big

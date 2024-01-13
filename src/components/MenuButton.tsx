@@ -1,7 +1,7 @@
 "use client";
 
 import MagneticButton from "@/components/MagneticButton";
-import { EASE_3 } from "@/lib/utils";
+import { TERTIARY_TRANSITION } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Dispatch, FC, SetStateAction } from "react";
 
@@ -20,7 +20,7 @@ const MenuButton: FC<MenuButtonProps> = ({ setState, state }) => {
         <motion.div
           className="relative h-full"
           animate={{ top: state ? "-100%" : "0" }}
-          transition={{ ease: EASE_3, duration: 0.75 }}
+          transition={TERTIARY_TRANSITION}
         >
           <div className="flex h-full w-full items-center justify-center">
             <span>Menu</span>

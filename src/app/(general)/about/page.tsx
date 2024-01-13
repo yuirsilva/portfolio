@@ -2,6 +2,11 @@ import Content from "@/components/about/Content";
 import Icons from "@/components/Icons";
 import Roll from "@/components/Roll";
 import { technologies } from "@/content/about-tech";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 const page = ({}) => {
   return (
