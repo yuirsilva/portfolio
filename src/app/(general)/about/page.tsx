@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 const page = ({}) => {
   return (
-    <section className="container col-auto grid justify-center gap-10 py-12 [grid-template-columns:repeat(auto-fill,minmax(50%,1fr))] md:gap-x-16 md:gap-y-10">
+    <section className="container flex flex-col justify-center gap-10 py-12">
       <Content />
-      <div className="col-start-1 grid gap-y-6 font-mono text-sm uppercase [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] md:col-start-2">
+      <section className="grid gap-y-6 font-mono text-sm uppercase [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))] md:ml-auto md:w-[calc(50%-2.5rem)]">
         <p className="lines-pattern col-span-full w-full">
           Technologies I&apos;ve Worked With
         </p>
@@ -37,7 +37,7 @@ const page = ({}) => {
           </div>
           <Icons.aboutIcon />
         </div>
-      </div>
+      </section>
     </section>
   );
 };

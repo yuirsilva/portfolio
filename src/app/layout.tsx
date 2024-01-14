@@ -71,7 +71,6 @@ export default function RootLayout({
         className={`min-h-screen font-sans antialiased ${neue.variable} ${mono.variable}`}
       >
         <main className="relative flex min-h-screen flex-col">
-          {/* <div className="flex flex-1 flex-col"> */}
           <div className="grid flex-1 grid-rows-fill">
             <Header />
             {children}

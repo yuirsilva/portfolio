@@ -12,7 +12,6 @@ const SplitText: FC<SplitTextProps> = ({
   children,
   highlight,
   className,
-  custom,
   ...props
 }) => {
   if (children) {
@@ -21,13 +20,19 @@ const SplitText: FC<SplitTextProps> = ({
     return words.map((word, i) => (
       <div
         key={i}
-        className={"relative inline-block overflow-hidden " + className}
+        className={`relative inline-block overflow-hidden ${className ?? ""}`}
       >
         <motion.div
-          // {...props}
-          className={cn("test-block inline-block will-change-transform", {
-            "text-primary": word === highlight?.[i - (2 % 4)],
-          })}
+          {...props}
+          className={cn(
+            "animate-text-block inline-block will-change-transform",
+            {
+              "text-primary":
+                typeof highlight === "string"
+                  ? word === highlight
+                  : word === highlight?.[i - (2 % 4)],
+            }
+          )}
           custom={i}
         >
           {word + (i !== words.length - 1 ? "\u00A0" : "")}
