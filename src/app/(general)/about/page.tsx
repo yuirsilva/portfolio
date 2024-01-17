@@ -3,6 +3,7 @@ import Marquee from "@/components/home/Marquee";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Separator } from "@/components/ui/separator";
 import { technologies } from "@/content/about-tech";
+import { email } from "@/content/social-links";
 import { Metadata } from "next";
 import Image from "next/image";
 
@@ -66,7 +67,7 @@ const page = () => {
                 <p>Lets work together</p>
                 <p>Hit me up</p>
                 <a
-                  href="mailto:yuxipersonal@gmail.com"
+                  href={email}
                   className="text-primary underline underline-offset-2"
                 >
                   yuxipersonal@gmail.com
@@ -79,10 +80,7 @@ const page = () => {
       </section>
       <footer className="mb-20 flex w-full flex-wrap items-center justify-center gap-2 text-center text-sm sm:justify-between [&_p]:uppercase">
         <p>Yuri Candido da Silva—{new Date().getFullYear()}</p>
-        <a
-          className="underline underline-offset-2"
-          href="mailto:yuxipersonal@gmail.com"
-        >
+        <a className="underline underline-offset-2" href={email}>
           yuxipersonal@gmail.com
         </a>
         <p>Today, not tomorrow</p>

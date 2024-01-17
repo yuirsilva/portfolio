@@ -1,5 +1,6 @@
 import MagneticButton from "@/components/MagneticButton";
 import Roll from "@/components/Roll";
+import { email, linkedin } from "@/content/social-links";
 import { FC } from "react";
 
 interface FooterProps {}
@@ -16,10 +17,10 @@ const Footer: FC<FooterProps> = ({}) => {
       </div>
       <div className="flex gap-6 uppercase">
         <MagneticButton>
-          <a href="https://CHANGE_THIS">LinkedIn</a>
+          <a href={linkedin}>LinkedIn</a>
         </MagneticButton>
         <MagneticButton>
-          <a href="mailto:yuxipersonal@gmail.com">Contact</a>
+          <a href={email}>Contact</a>
         </MagneticButton>
       </div>
     </footer>

@@ -12,6 +12,7 @@ import Portrait from "@/components/menu/portrait/Portrait";
 import Roll from "@/components/Roll";
 import { MenuInfo } from "@/content/menu-info";
 import { MenuLinks } from "@/content/menu-links";
+import { github, linkedin } from "@/content/social-links";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Dispatch, FC, SetStateAction } from "react";
@@ -101,14 +102,14 @@ const Menu: FC<MenuProps> = ({ state, setState }) => {
                 />
               </div>
               <div className="flex gap-4 *:flex *:items-center *:gap-2.5">
-                <a href="https://CHANGE_THIS" className="group">
+                <a href={github} className="group">
                   GitHub
                   <Roll
                     initial="top-full right-full"
                     text={<Icons.topRightArrow className="size-4" />}
                   />
                 </a>
-                <a href="https://CHANGE_THIS" className="group">
+                <a href={linkedin} className="group">
                   LinkedIn
                   <Roll
                     initial="top-full right-full"
