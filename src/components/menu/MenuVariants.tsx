@@ -24,7 +24,7 @@ export const menuVariants: Variants = {
   },
   closed: {
     y: "-100%",
-    filter: "blur(4px)",
+    filter: "blur(2px)",
     transition: SECONDARY_TRANSITION,
   },
 };

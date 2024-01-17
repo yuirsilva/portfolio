@@ -6,7 +6,7 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = ({}) => {
   return (
-    <footer className="flex justify-between px-8 pb-8 max-[320px]:justify-end md:px-16">
+    <footer className="flex justify-between px-8 pb-8 max-[320px]:justify-end">
       <div className="group select-none">
         <Roll
           initial="top-full"

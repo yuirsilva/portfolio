@@ -22,21 +22,21 @@ const SplitText: FC<SplitTextProps> = ({
         key={i}
         className={`relative inline-block overflow-hidden ${className ?? ""}`}
       >
-        <motion.div
+        <motion.p
           {...props}
           className={cn(
             "animate-text-block inline-block will-change-transform",
             {
               "text-primary":
-                typeof highlight === "string"
-                  ? word === highlight
-                  : word === highlight?.[i - (2 % 4)],
+                highlight instanceof Array
+                  ? highlight.includes(word)
+                  : word === highlight,
             }
           )}
           custom={i}
         >
           {word + (i !== words.length - 1 ? "\u00A0" : "")}
-        </motion.div>
+        </motion.p>
       </div>
     ));
   }

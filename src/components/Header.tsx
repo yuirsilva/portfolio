@@ -4,7 +4,6 @@ import Icons from "@/components/Icons";
 import MagneticButton from "@/components/MagneticButton";
 import Menu from "@/components/menu/Menu";
 import MenuButton from "@/components/MenuButton";
-import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { FC, useState } from "react";
 
@@ -14,7 +13,7 @@ const Header: FC<HeaderProps> = ({}) => {
   const [isActive, setActive] = useState<boolean>(false);
 
   return (
-    <header className="px-8 pt-8 md:px-16">
+    <header className="z-[990] px-8 pt-8">
       <div className="relative z-50 flex justify-between">
         <MagneticButton>
           <Link href="/">
@@ -25,9 +24,7 @@ const Header: FC<HeaderProps> = ({}) => {
           <MenuButton state={isActive} setState={setActive} />
         </nav>
       </div>
-      <AnimatePresence mode="wait">
-        <Menu state={isActive} />
-      </AnimatePresence>
+      <Menu state={isActive} setState={setActive} />
     </header>
   );
 };

@@ -74,6 +74,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         slider: "slider 12s linear infinite",
+        "slider-6": "slider 6s linear infinite",
       },
       fontFamily: {
         sans: ["var(--font-neue)"],

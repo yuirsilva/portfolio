@@ -14,13 +14,14 @@ import { MenuInfo } from "@/content/menu-info";
 import { MenuLinks } from "@/content/menu-links";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 interface MenuProps {
   state: boolean;
+  setState: Dispatch<SetStateAction<boolean>>;
 }
 
-const Menu: FC<MenuProps> = ({ state }) => {
+const Menu: FC<MenuProps> = ({ state, setState }) => {
   return (
     <motion.div
       variants={menuBackgroundVariants}
@@ -69,6 +70,7 @@ const Menu: FC<MenuProps> = ({ state }) => {
                 <Link
                   href={link.href}
                   className="block font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl"
+                  onClick={() => setState(false)}
                 >
                   {link.title}
                 </Link>
