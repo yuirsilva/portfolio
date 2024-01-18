@@ -19,12 +19,10 @@ export const menuBackgroundVariants: Variants = {
 export const menuVariants: Variants = {
   open: {
     y: "0%",
-    filter: "blur(0px)",
     transition: SECONDARY_TRANSITION,
   },
   closed: {
     y: "-100%",
-    filter: "blur(2px)",
     transition: SECONDARY_TRANSITION,
   },
 };

@@ -3,6 +3,7 @@
 import Marquee from "@/components/home/Marquee";
 import World from "@/components/home/World";
 import Presentation from "@/components/Presentation";
+import { email } from "@/content/social-links";
 import { EASE_2 } from "@/lib/utils";
 import { AnimationSequence, motion, stagger, useAnimate } from "framer-motion";
 import Link from "next/link";
@@ -58,25 +59,34 @@ const Content = () => {
       <Presentation ref={presentation} />
       <motion.div
         ref={content}
-        className="relative grid h-full w-full auto-cols-fr grid-flow-col items-center gap-6 md:justify-start"
+        className="relative grid h-full w-full place-content-center"
       >
-        <div className="row-auto mx-auto hidden h-full max-h-[calc(100%-80px)] w-full max-w-2xl md:block">
+        <div className="absolute left-1/2 top-1/2 h-full max-h-[calc(100%-80px)] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 md:block">
           <World />
         </div>
-        <div className="flex flex-col gap-6 justify-self-center uppercase md:justify-self-start">
-          <p className="max-w-60 text-justify leading-6 sm:max-w-80 lg:max-w-md">
-            Yuri → Front-end developer based in São Paulo, Brazil 💚. I love
-            smooth animations, 3D and &quot;crazy&quot; web experiences.
-            (currently available)
+        <div className="pointer-events-none flex w-fit flex-col uppercase text-foreground mix-blend-color-dodge *:flex *:justify-between md:text-white [&>div:last-child]:mt-10">
+          <div>
+            <p>Yuri Silva</p>
+            <p>
+              <span className="italic">available</span>—
+              {new Date().getFullYear()}
+            </p>
+          </div>
+          <p className="text-justify">
+            I am creative developer from São Paulo, Brazil
           </p>
-          <Link
-            href="/about"
-            className="lowercase underline underline-offset-2"
-          >
-            about me
-          </Link>
+          <div className="pointer-events-auto items-baseline text-nowrap ">
+            <div className="flex w-full justify-between sm:justify-normal hover:[&>:not(span)]:underline">
+              <Link href="/about">About</Link>
+              <span className="hidden sm:inline">,</span>{" "}
+              <a href={email}>Contact</a>
+            </div>
+            <p className="hidden italic sm:block">Today, not tomorrow</p>
+          </div>
         </div>
-        <Marquee ref={marquee} />
+        <div className="absolute bottom-4 left-1/2 flex w-36 -translate-x-1/2 overflow-hidden uppercase">
+          <Marquee />
+        </div>
       </motion.div>
     </section>
   );

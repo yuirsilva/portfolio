@@ -62,9 +62,10 @@ const page = () => {
         <Separator />
         <div className="flex w-full overflow-hidden text-base uppercase md:text-2xl">
           <Marquee
+            quantity={6}
             nodes={
               <>
-                <p>Lets work together</p>
+                <p className="ml-5">Lets work together</p>
                 <p>Hit me up</p>
                 <a
                   href={email}

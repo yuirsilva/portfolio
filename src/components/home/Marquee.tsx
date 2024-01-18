@@ -5,14 +5,19 @@ export const MARQUEE =
 
 interface MarqueeProps extends HTMLAttributes<HTMLDivElement> {
   nodes?: ReactNode;
+  quantity?: number;
   faster?: boolean;
 }
 
-const Marquee: FC<MarqueeProps> = ({ nodes, faster }) => {
-  return [...Array(6)].map((_, i) => (
+const Marquee: FC<MarqueeProps> = ({
+  nodes = MARQUEE,
+  quantity = 2,
+  faster,
+}) => {
+  return [...Array(quantity)].map((_, i) => (
     <div
       key={i}
-      className={`${faster ? "animate-slider-6" : "animate-slider"} px-1`}
+      className={`${faster ? "animate-slider-6" : "animate-slider"}`}
     >
       <span className="flex w-max gap-5">{nodes}</span>
     </div>

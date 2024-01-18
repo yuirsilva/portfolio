@@ -12,11 +12,6 @@ const neue = localFont({
   variable: "--font-neue",
 });
 
-const mono = localFont({
-  src: "../font/Favorit-Mono.woff2",
-  variable: "--font-mono",
-});
-
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
@@ -67,9 +62,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`min-h-screen font-sans antialiased ${neue.variable} ${mono.variable}`}
-      >
+      <body className={`min-h-screen font-sans antialiased ${neue.variable}`}>
         <main className="relative flex min-h-screen flex-col">
           <div className="grid flex-1 grid-rows-fill">
             <Header />
