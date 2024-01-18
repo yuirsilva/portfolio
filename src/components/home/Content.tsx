@@ -61,7 +61,7 @@ const Content = () => {
         ref={content}
         className="relative grid h-full w-full place-content-center"
       >
-        <div className="absolute left-1/2 top-1/2 h-full max-h-[calc(100%-80px)] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 md:block">
+        <div className="absolute left-1/2 top-1/2 hidden h-full max-h-[calc(100%-80px)] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 md:block">
           <World />
         </div>
         <div className="pointer-events-none flex w-fit flex-col uppercase text-foreground mix-blend-color-dodge *:flex *:justify-between md:text-white [&>div:last-child]:mt-10">
