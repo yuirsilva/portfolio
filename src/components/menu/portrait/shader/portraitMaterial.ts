@@ -35,8 +35,8 @@ const PortraitMaterial = shaderMaterial(
 
     vec3 ambientColor = vec3(0.1, 0.1, 0.1); // Ambient light color
 
-    vec3 normal = normalize(texture2D(uNormalTexture, vUv).xyz * 2. - 1.);
-    vec3 diffuse = texture2D(uTexture, vUv).xyz;
+    vec3 normal = normalize(texture2D(uNormalTexture, vec2(vUv.x, vUv.y-0.05)).xyz * 2. - 1.);
+    vec3 diffuse = texture2D(uTexture, vec2(vUv.x, vUv.y-0.05)).xyz;
 
     vec3 lightDirection = normalize(vec3(1.0, 1.0, 2.0));
     lightDirection.x = uPointer.x;

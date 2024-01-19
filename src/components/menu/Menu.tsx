@@ -45,7 +45,7 @@ const Menu: FC<MenuProps> = ({ state, setState }) => {
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <div className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md">
+            <div className="hidden h-full max-h-44 w-full max-w-xs saturate-50 xl:block 2xl:max-w-md">
               <Portrait />
             </div>
             <div className="space-y-1 text-sm">
