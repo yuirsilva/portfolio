@@ -65,13 +65,26 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        slider: {
+          from: { transform: "translate3d(0, 0, 0)" },
+          to: { transform: "translate3d(-100%, 0, 0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        slider: "slider 12s linear infinite",
+        "slider-6": "slider 6s linear infinite",
       },
       fontFamily: {
         sans: ["var(--font-neue)"],
+      },
+      backgroundImage: {
+        lines:
+          "repeating-conic-gradient(transparent 0% 25%, hsl(var(--primary)) 0% 75%)",
+      },
+      gridTemplateRows: {
+        fill: "auto 1fr",
       },
     },
   },
