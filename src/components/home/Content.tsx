@@ -3,55 +3,69 @@
 import Marquee from "@/components/home/Marquee";
 import World from "@/components/home/World";
 import Presentation from "@/components/Presentation";
+import useIsomorphicLayoutEffect from "@/components/useIsomorphicLayoutEffect";
 import { email } from "@/content/social-links";
-import { EASE_2 } from "@/lib/utils";
-import { AnimationSequence, motion, stagger, useAnimate } from "framer-motion";
+import { gsap } from "@/lib/gsap";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 const Content = () => {
-  const [scope, animate] = useAnimate<HTMLDivElement>();
+  const scope = useRef<HTMLDivElement>(null);
 
   const presentation = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
-  const marquee = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const sequence = [
-      [
-        "path",
-        { opacity: 1 },
-        { duration: 0.75, ease: EASE_2, delay: stagger(0.375) },
-      ],
-      [
-        ".text",
-        { y: ["100%", "-100%"] },
-        { duration: 1, ease: EASE_2, at: "<", delay: 1 },
-      ],
-      [".text", { y: "-200%" }, { duration: 0.75, ease: EASE_2 }],
-      ["path", { opacity: 0 }, { duration: 0.75, ease: EASE_2 }],
+  useIsomorphicLayoutEffect(() => {
+    if (!presentation.current) return;
 
-      [
+    const timeline = gsap.timeline({
+      paused: true,
+      ease: "none",
+    });
+
+    timeline
+      .set(".gsap-yuri", { opacity: 0 })
+      .fromTo(
+        ".gsap-text",
+        {
+          duration: 0,
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          stagger: 0.3,
+          delay: 0.4,
+          scrambleText: "{original}",
+        }
+      )
+      .to(".gsap-text", { opacity: 0, duration: 0, stagger: 0.15 })
+      .to(".gsap-yuri", { opacity: 1, scrambleText: "{original}" })
+      .to(".gsap-yuri", { scrambleText: "6666 66666", delay: 0.4 })
+      .to(".gsap-yuri", { yPercent: -100, ease: "EASE_2" })
+      .to(
         presentation.current,
-        { y: "-100%" },
-        { ease: EASE_2, duration: 1.4, at: "-0.75" },
-      ],
-
-      [
+        {
+          yPercent: -100,
+          delay: 0.4,
+          ease: "EASE_2",
+          duration: 1.4,
+        },
+        "<-1"
+      )
+      .fromTo(
         content.current,
-        { y: ["50%", "0%"] },
-        { duration: 1.4, ease: EASE_2, at: "-1.4" },
-      ],
-      [
-        marquee.current,
-        { clipPath: ["inset(100% 0 0 0)", "inset(0 0 0 0)"] },
-        { ease: EASE_2, duration: 0.75, at: "-0.4" },
-      ],
-    ] as AnimationSequence;
+        { yPercent: 50 },
+        { yPercent: 0, ease: "EASE_2", duration: 1.4 },
+        "<"
+      );
+    timeline.play().then(() => {
+      scope.current?.removeChild(presentation.current!);
+    });
 
-    animate(sequence).then(() =>
-      scope.current.removeChild(presentation.current!)
-    );
+    return () => {
+      timeline.revert();
+    };
   }, []);
 
   return (
@@ -85,7 +99,7 @@ const Content = () => {
           </div>
         </div>
         <div className="absolute bottom-4 left-1/2 flex w-36 -translate-x-1/2 overflow-hidden uppercase">
-          <Marquee />
+          <Marquee aria-hidden />
         </div>
       </motion.div>
     </section>
