@@ -25,20 +25,12 @@ const Content = () => {
     });
 
     timeline
-      .set(".gsap-yuri", { opacity: 0 })
-      .fromTo(
-        ".gsap-text",
-        {
-          duration: 0,
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          stagger: 0.3,
-          delay: 0.4,
-          scrambleText: "{original}",
-        }
-      )
+      .to(".gsap-text", {
+        opacity: 1,
+        stagger: 0.3,
+        delay: 0.4,
+        scrambleText: "{original}",
+      })
       .to(".gsap-text", { opacity: 0, duration: 0, stagger: 0.15 })
       .to(".gsap-yuri", { opacity: 1, scrambleText: "{original}" })
       .to(".gsap-yuri", { scrambleText: "6666 66666", delay: 0.4 })
