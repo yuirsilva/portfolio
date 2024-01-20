@@ -41,7 +41,7 @@ const Portrait = ({}) => {
 
 const Experience = ({}) => {
   const planeMat = useRef<THREE.ShaderMaterial>(null!);
-  const image = useLoader(TextureLoader, "/woman.png");
+  const image = useLoader(TextureLoader, "/input.jpg");
   const normalImage = useLoader(TextureLoader, "/normal.jpg");
 
   const scale = useAspect(image.image.width, image.image.height);

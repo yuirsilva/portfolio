@@ -75,10 +75,10 @@ const Content = () => {
         ref={content}
         className="relative grid h-full w-full place-content-center"
       >
-        <div className="absolute left-1/2 top-1/2 hidden h-full max-h-[calc(100%-80px)] w-full max-w-2xl -translate-x-1/2 -translate-y-1/2 md:block">
+        <div className="absolute left-1/2 top-1/2 hidden h-full max-h-[calc(100%-80px)] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 md:block">
           <World />
         </div>
-        <div className="pointer-events-none flex w-fit flex-col uppercase text-foreground mix-blend-color-dodge *:flex *:justify-between md:text-white [&>div:last-child]:mt-10">
+        <div className="pointer-events-none flex w-fit flex-col uppercase text-foreground mix-blend-screen *:flex *:justify-between md:text-white [&>div:last-child]:mt-10">
           <div>
             <p>Yuri Silva</p>
             <p>
@@ -89,13 +89,15 @@ const Content = () => {
           <p className="text-justify">
             I am creative developer from São Paulo, Brazil
           </p>
-          <div className="pointer-events-auto items-baseline text-nowrap ">
+          <div className="pointer-events-auto items-baseline text-nowrap">
             <div className="flex w-full justify-between sm:justify-normal hover:[&>:not(span)]:underline">
               <Link href="/about">About</Link>
               <span className="hidden sm:inline">,</span>{" "}
               <a href={email}>Contact</a>
             </div>
-            <p className="hidden italic sm:block">Today, not tomorrow</p>
+            <p className="pointer-events-none hidden italic sm:block">
+              Today, not tomorrow
+            </p>
           </div>
         </div>
         <div className="absolute bottom-4 left-1/2 flex w-36 -translate-x-1/2 overflow-hidden uppercase">

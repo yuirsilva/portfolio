@@ -45,7 +45,7 @@ const Menu: FC<MenuProps> = ({ state, setState }) => {
             animate={state ? "open" : "closed"}
             initial="closed"
           >
-            <div className="hidden h-full max-h-44 w-full max-w-xs xl:block 2xl:max-w-md">
+            <div className="hidden h-full max-h-44 w-full max-w-xs saturate-50 xl:block 2xl:max-w-md">
               <Portrait />
             </div>
             <div className="space-y-1 text-sm">
@@ -68,13 +68,22 @@ const Menu: FC<MenuProps> = ({ state, setState }) => {
           >
             {MenuLinks.map((link, i) => (
               <div key={i} className="overflow-hidden">
-                <Link
-                  href={link.href}
-                  className="block font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl"
-                  onClick={() => setState(false)}
-                >
-                  {link.title}
-                </Link>
+                {i === 2 ? (
+                  <a
+                    href={link.href}
+                    className="block font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl"
+                  >
+                    {link.title}
+                  </a>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="block font-semibold text-muted-foreground transition-colors [font-size:clamp(36px,calc(5vw+1rem+10%),48px)] hover:text-primary 2xl:text-6xl"
+                    onClick={() => setState(false)}
+                  >
+                    {link.title}
+                  </Link>
+                )}
               </div>
             ))}
           </motion.nav>

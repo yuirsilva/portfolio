@@ -73,7 +73,7 @@ const createDataTexture = () => {
 
 const Experience = ({}) => {
   const planeMat = useRef<THREE.ShaderMaterial>(null!);
-  const image = useLoader(TextureLoader, "/woman.png");
+  const image = useLoader(TextureLoader, "/FOLIO-2024.png");
   const dataTexture = createDataTexture();
   const scale = useAspect(image.image.width, image.image.height);
   const { gl } = useThree();
