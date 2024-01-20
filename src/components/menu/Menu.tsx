@@ -33,7 +33,7 @@ const Menu: FC<MenuProps> = ({ state, setState }) => {
       <nav className="relative">
         {/* MAIN */}
         <motion.div
-          className="relative z-40 flex h-fit flex-col justify-between gap-9 bg-secondary px-8 pb-12 pt-28 uppercase sm:flex-row sm:items-center md:px-16 md:py-28"
+          className="relative z-40 flex h-fit flex-col justify-between gap-9 bg-secondary px-8 pb-12 pt-28 uppercase shadow-md sm:flex-row sm:items-center md:px-16 md:py-28"
           variants={menuMainVariants}
           animate={state ? "open" : "closed"}
           initial="closed"

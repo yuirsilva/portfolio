@@ -4,7 +4,7 @@ const Presentation = forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div
       ref={ref}
-      className="fixed inset-0 z-[999] grid select-none place-content-center overflow-hidden bg-foreground text-center uppercase text-background"
+      className="fixed inset-0 z-[999] grid select-none place-content-center overflow-hidden bg-foreground text-center uppercase text-background [&_p]:opacity-0"
     >
       <p className="gsap-text">Today</p>
       <p className="gsap-text">Not</p>
