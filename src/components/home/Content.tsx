@@ -81,15 +81,13 @@ const Content = () => {
           <p className="text-justify">
             I am creative developer from São Paulo, Brazil
           </p>
-          <div className="pointer-events-auto items-baseline text-nowrap">
-            <div className="flex w-full justify-between sm:justify-normal hover:[&>:not(span)]:underline">
+          <div className="items-baseline text-nowrap">
+            <div className="pointer-events-auto flex w-full justify-between sm:justify-normal hover:[&>:not(span)]:underline">
               <Link href="/about">About</Link>
               <span className="hidden sm:inline">,</span>{" "}
               <a href={email}>Contact</a>
             </div>
-            <p className="pointer-events-none hidden italic sm:block">
-              Today, not tomorrow
-            </p>
+            <p className="hidden italic sm:block">Today, not tomorrow</p>
           </div>
         </div>
         <div className="absolute bottom-4 left-1/2 flex w-36 -translate-x-1/2 overflow-hidden uppercase">
