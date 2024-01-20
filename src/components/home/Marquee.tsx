@@ -17,7 +17,7 @@ const Marquee: FC<MarqueeProps> = ({
   return [...Array(quantity)].map((_, i) => (
     <div
       key={i}
-      className={`${faster ? "animate-slider-6" : "animate-slider"}`}
+      className={`${faster ? "animate-slider-6" : "animate-slider px-1"}`}
     >
       <span className="flex w-max gap-5">{nodes}</span>
     </div>
