@@ -49,10 +49,6 @@ export const metadata: Metadata = {
     images: [`${siteConfig.url}/opengraph-image.png`],
     creator: "@yuirsilva",
   },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-icon.png",
-  },
 };
 
 export default function RootLayout({
