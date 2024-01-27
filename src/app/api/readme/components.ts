@@ -71,6 +71,9 @@ export const shared = /* css */ `
 	.justify-between {
 		justify-content: space-between;
 	}
+	.justify-end {
+		justify-content: flex-end;
+	}
 	.items-end {
 		align-items: flex-end;
 	}
@@ -96,6 +99,13 @@ export const shared = /* css */ `
 	}
 	.p-4 {
 		padding: 1rem;
+	}
+	.px-4 {
+		padding-left: 1rem/* 16px */;
+		padding-right: 1rem/* 16px */;
+	}
+	.pb-4 {
+		padding-bottom: 1rem/* 16px */;
 	}
 	.items-end {
 		align-items: flex-end;
@@ -189,7 +199,6 @@ export const link = (props: Props & { index: number }) => (label: string) => {
 
 		:root {
 			--size-height: ${props.height};
-			--size-width: ${props.width};
 			--i: ${props.index};
 		}
 
@@ -230,7 +239,6 @@ export const fallback = (props: Props & { width: number }) => {
 
 		:root {
 			--size-height: ${props.height};
-			--size-width: ${props.width};
 		}
 
 		.wrapper {
@@ -247,8 +255,7 @@ export const fallback = (props: Props & { width: number }) => {
 
   const html = /* html */ `
 		<main class="wrapper">
-			<div class="text-2xl">
-				<p>${BODY_COPY}</p>
+			<div class="text-2xl text-foreground">
 				<p class="text-xs italic">— YOU CAN EXPERIENCE BUGS ON FIREFOX</p>
 			</div>
 		</main>
@@ -275,7 +282,29 @@ export const main = (props: Props) => {
 		<main class="wrapper">
 			<article class="text-foreground flex flex-col gap-4 items-end p-4">
                 <p class="text-xl uppercase max-w-96 w-full text-end">${BODY_COPY}</p>
-                <p class="text-base">shout out <a target="_blank" class="underline underline-offset-2" href="https://github.com/terkelg">Terkel</a> for this one 🪄</p>
+			</article>
+		</main>
+	`;
+
+  return svg(styles, html, {
+    height: `${props.height}`,
+    "data-theme": `${props.theme}`,
+  });
+};
+
+export const credits = (props: Props) => {
+  const styles = /*css*/ `
+		${shared}
+
+		:root {
+			--size-height: ${props.height};
+		}
+	`;
+
+  const html = /* html */ `
+		<main class="wrapper">
+			<article class="text-foreground flex justify-end px-4 pb-4">
+                <p class="text-base">shout out <a class="underline underline-offset-2" href="https://github.com/terkelg">Terkel</a> for this one 🪄</p>
 			</article>
 		</main>
 	`;
