@@ -1,4 +1,10 @@
-import { fallback, link, main, top } from "@/app/api/readme/components";
+import {
+  credits,
+  fallback,
+  link,
+  main,
+  top,
+} from "@/app/api/readme/components";
 import { NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -25,6 +31,8 @@ export async function GET(request: NextRequest) {
     );
   } else if (section === "fallback") {
     content = fallback({ height: 180, width: 420, theme });
+  } else if (section === "credits") {
+    content = credits({ height: 25, theme });
   } else {
     content = main({ height: 250, theme });
   }
