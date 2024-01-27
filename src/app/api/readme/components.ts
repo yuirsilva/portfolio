@@ -25,7 +25,7 @@ const svg = (styles: string, html: string, attributes: Attributes) => {
 		<foreignObject width="100%" height="100%">
             <html xmlns="http://www.w3.org/1999/xhtml">
                 <head>
-                    <link rel="stylesheet" href="../_next/static/chunks/src_75cb5c._.css" />
+                    <link rel="stylesheet" href="/readme/readme.css" />
                 </head>
                 <body style="margin: 0; padding: 0;">
                     <div>
@@ -54,7 +54,7 @@ export const shared = /* css */ `
 		container-type: inline-size;
 		position: relative;
 		overflow: clip;
-        font-family: "__neue_14ca61";
+        font-family: "__neue_65e555";
 	}
 
 	/* Hide everything in Firefox by default – show fallback instead */
@@ -174,6 +174,10 @@ export const fallback = (props: Props & { width: number }) => {
 export const main = (props: Props) => {
   const styles = /*css*/ `
 		${shared}
+
+		:root {
+			--size-height: ${props.height};
+		}
 	`;
 
   const html = /* html */ `
