@@ -282,7 +282,7 @@ export const main = (props: Props) => {
 		<main class="wrapper">
 			<article class="text-foreground flex flex-col gap-4 items-end p-4">
                 <p class="text-xl uppercase max-w-96 w-full text-end">${BODY_COPY}</p>
-                <p class="text-base">shout out <a target="_blank" class="underline underline-offset-2" href="https://github.com/terkelg">Terkel</a> for this one 🪄</p>
+                <p class="text-base">shout out <a target="_blank" class="underline underline-offset-2" xlink:href="https://github.com/terkelg">Terkel</a> for this one 🪄</p>
 			</article>
 		</main>
 	`;
