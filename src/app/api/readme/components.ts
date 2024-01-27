@@ -34,7 +34,11 @@ const svg = (styles: string, html: string, attributes: Attributes) => {
 };
 
 export const shared = /* css */ `
-	@import url("https://portfolio-git-dev-projects-yuri.vercel.app/readme/readme.css");
+	@font-face {
+		font-family: "helvetica";
+		src: url("https://portfolio-git-dev-projects-yuri.vercel.app/readme/readme.woff2") format("woff2");
+		font-display: swap;
+	}
 
 	*,
 	*::before,
@@ -46,12 +50,87 @@ export const shared = /* css */ `
         contain: content;
     }
 
+	:root {
+		--foreground-light: 0 0% 3.9%;
+		--foreground-dark: 0 0% 98%;
+	}
+
+	[data-theme="dark"] {
+		--color-text: var(--foreground-dark);
+	}
+
+	[data-theme="light"] {
+		--color-text: var(--foreground-light);
+	}
+	
+	.flex {
+		display: flex;
+	}
+	.flex-col {
+		flex-direction: column;
+	}
+	.justify-between {
+		justify-content: space-between;
+	}
+	.items-end {
+		align-items: flex-end;
+	}
+	.gap-4 {
+		gap: 1rem;
+	}
+	.uppercase {
+		text-transform: uppercase;
+	}
+	.text-foreground {
+		color: hsl(var(--color-text));
+	}
+	.text-2xl {
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+	.text-xs {
+		font-size: 0.75rem;
+		line-height: 1rem;
+	}
+	.italic {
+		font-style: italic;
+	}
+	.p-4 {
+		padding: 1rem;
+	}
+	.items-end {
+		align-items: flex-end;
+	}
+	.w-full {
+		width: 100%;
+	}
+	.text-end {
+		text-align: end;
+	}
+	.text-xl {
+		font-size: 1.25rem/* 20px */;
+		line-height: 1.75rem/* 28px */;
+	}
+	.text-base {
+		font-size: 1rem/* 16px */;
+		line-height: 1.5rem/* 24px */;
+	}
+	.max-w-96 {
+		max-width: 24rem/* 384px */;
+	}
+	.underline {
+		text-decoration-line: underline;
+	}
+	.underline-offset-2 {
+		text-underline-offset: 2px;
+	}
+
 	.wrapper {
 		block-size: calc(var(--size-height) * 1px);
 		container-type: inline-size;
 		position: relative;
 		overflow: clip;
-        font-family: "__neue_65e555";
+		font-family: "helvetica";
 	}
 
 	/* Hide everything in Firefox by default – show fallback instead */
@@ -59,16 +138,6 @@ export const shared = /* css */ `
 		.wrapper {
 			display: none;
 		}
-	}
-
-	.label {
-		contain: content;
-		font-size: 14px;
-	}
-
-	.link {
-		contain: content;
-		font-size: 14px;
 	}
 
 	p {
@@ -87,7 +156,7 @@ export const top = (props: Props) => {
 
   const html = /*html*/ `
 		<div class="wrapper flex justify-between uppercase text-foreground">
-			<div class="menu">Links</div>
+			<div>Links</div>
             <div>readme.md</div>
 		</div>
 	`;
