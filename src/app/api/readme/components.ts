@@ -210,7 +210,7 @@ export const link = (props: Props & { index: number }) => (label: string) => {
 		.animate-link {
 			transform: translateY(100%);
 			animation-fill-mode: forwards;
-			animation-delay: calc(var(--i) * 0.4s);
+			animation-delay: calc(var(--i) * 0.15s);
 		}
 	`;
 
