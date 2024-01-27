@@ -123,6 +123,9 @@ export const shared = /* css */ `
 	.underline-offset-2 {
 		text-underline-offset: 2px;
 	}
+	.overflow-hidden {
+		overflow: hidden;
+	}
 
 	svg {
 		font-family: "helvetica";
@@ -147,6 +150,21 @@ export const shared = /* css */ `
 		contain: content;
 		margin: 0;
 	}
+
+	@keyframes slidein {
+		from {
+			transform: translateY(100%)
+		}
+		to {
+			transform: translateY(0%)
+		}
+	}
+
+	.animate {
+		animation-duration: 1.4s;
+		animation-name: slidein;
+		animation-timing-function: cubic-bezier(0.8, 0, 0, 1);
+	}
 `;
 
 export const top = (props: Props) => {
@@ -158,9 +176,11 @@ export const top = (props: Props) => {
 	`;
 
   const html = /*html*/ `
-		<div class="wrapper flex justify-between uppercase text-foreground">
-			<div>Links</div>
-            <div>readme.md</div>
+		<div class="wrapper flex justify-between uppercase text-foreground overflow-hidden">
+			<div class="overflow-hidden flex justify-between w-full">
+				<div class="animate">Links</div>
+				<div class="animate">readme.md</div>
+			</div>
 		</div>
 	`;
 
@@ -170,13 +190,14 @@ export const top = (props: Props) => {
   });
 };
 
-export const link = (props: Props) => (label: string) => {
+export const link = (props: Props & { index: number }) => (label: string) => {
   const styles = /*css*/ `
 		${shared}
 
 		:root {
 			--size-height: ${props.height};
 			--size-width: ${props.width};
+			--i: ${props.index};
 		}
 
 		@-moz-document url-prefix() {
@@ -185,12 +206,20 @@ export const link = (props: Props) => (label: string) => {
 				display: block;
 			}
 		}
+
+		.animate-link {
+			transform: translateY(100%);
+			animation-fill-mode: forwards;
+			animation-delay: calc(var(--i) * 0.4s);
+		}
 	`;
 
   const html = /*html*/ `
 		<main class="wrapper">
 			<a class="uppercase text-foreground">
-                <div>${label}</div>
+				<div class="overflow-hidden">
+					<div class="animate animate-link">${label}</div>
+				</div>
 			</a>
 		</main>
 	`;

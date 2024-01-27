@@ -5,17 +5,20 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const theme = (searchParams.get("theme") ?? "light") as "light" | "dark";
   const section = searchParams.get("section") ?? "";
-  let content;
+  let content =
+    "STOP! You've violated the law! Pay the court a fine or serve your sentence. Your stolen goods are now forfeit.";
 
-  //   content = top({ height: 20, theme });
   if (section === "top") {
     content = top({ height: 20, theme });
   } else if (section === "link-website") {
-    content = link({ height: 20, width: 100, theme })("Portfolio");
+    const index = Number(searchParams.get("i")) ?? 0;
+    content = link({ height: 20, width: 100, theme, index })("Portfolio");
   } else if (section === "link-linkedin") {
-    content = link({ height: 20, width: 100, theme })("LinkedIn");
+    const index = Number(searchParams.get("i")) ?? 0;
+    content = link({ height: 20, width: 100, theme, index })("LinkedIn");
   } else if (section === "link-twitter") {
-    content = link({ height: 20, width: 100, theme })("Twitter (X)");
+    const index = Number(searchParams.get("i")) ?? 0;
+    content = link({ height: 20, width: 100, theme, index })("Twitter (X)");
   } else if (section === "fallback") {
     content = fallback({ height: 180, width: 420, theme });
   } else {
