@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   } else if (section === "fallback") {
     content = fallback({ height: 180, width: 420, theme });
   } else {
-    content = main({ height: 130, theme });
+    content = main({ height: 250, theme });
   }
 
   return new Response(content, {
