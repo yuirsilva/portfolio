@@ -20,25 +20,22 @@ const attr = (obj: Record<string, string>) =>
 
 const svg = (styles: string, html: string, attributes: Attributes) => {
   if (!attributes.width) attributes.width = "100%";
+
   return /*html*/ `
 	<svg xmlns="http://www.w3.org/2000/svg" fill="none" ${attr(attributes)}>
 		<foreignObject width="100%" height="100%">
-            <html xmlns="http://www.w3.org/1999/xhtml">
-                <head>
-                    <link rel="stylesheet" href="https://portfolio-git-dev-projects-yuri.vercel.app/readme/readme.css" />
-                </head>
-                <body style="margin: 0; padding: 0;">
-                    <div>
-                        <style>${styles}</style>
-                        ${html}
-                    </div>
-                </body>
-            </html>
+			<div xmlns="http://www.w3.org/1999/xhtml">
+				<style>${styles}</style>
+				${html}
+			</div>
 		</foreignObject>
-	</svg>`;
+	</svg>
+  `;
 };
 
 export const shared = /* css */ `
+	@import url("https://portfolio-git-dev-projects-yuri.vercel.app/readme/readme.css");
+
 	*,
 	*::before,
 	*::after {
