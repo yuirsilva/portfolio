@@ -37,7 +37,6 @@ export const shared = /* css */ `
 	@font-face {
 		font-family: "helvetica";
 		src: url("https://portfolio-git-dev-projects-yuri.vercel.app/readme/readme.woff2") format("woff2");
-		font-display: swap;
 	}
 
 	*,
@@ -123,6 +122,10 @@ export const shared = /* css */ `
 	}
 	.underline-offset-2 {
 		text-underline-offset: 2px;
+	}
+
+	svg {
+		font-family: "helvetica";
 	}
 
 	.wrapper {
