@@ -11,15 +11,15 @@ export async function GET(request: NextRequest) {
 
   if (section === "top") {
     content = top({ height: 20, theme });
-  } else if (section === "link-website" && index === "0") {
+  } else if (section === "link-website" && index === "1") {
     content = link({ height: 20, width: 100, theme, index: Number(index) })(
       "Portfolio"
     );
-  } else if (section === "link-linkedin" && index === "1") {
+  } else if (section === "link-linkedin" && index === "2") {
     content = link({ height: 20, width: 100, theme, index: Number(index) })(
       "LinkedIn"
     );
-  } else if (section === "link-twitter" && index === "2") {
+  } else if (section === "link-twitter" && index === "3") {
     content = link({ height: 20, width: 100, theme, index: Number(index) })(
       "Twitter (X)"
     );
