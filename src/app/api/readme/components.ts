@@ -139,13 +139,6 @@ export const shared = /* css */ `
 		font-family: "helvetica";
 	}
 
-	/* Hide everything in Firefox by default – show fallback instead */
-	@-moz-document url-prefix() {
-		.wrapper {
-			display: none;
-		}
-	}
-
 	p {
 		contain: content;
 		margin: 0;
@@ -256,7 +249,7 @@ export const fallback = (props: Props & { width: number }) => {
 		<main class="wrapper">
 			<div class="text-2xl">
 				<p>${BODY_COPY}</p>
-				<p class="text-xs italic">— I'm all for the foxy browser, but try Chrome/Safari for this one!</p>
+				<p class="text-xs italic">— YOU CAN EXPERIENCE BUGS ON FIREFOX</p>
 			</div>
 		</main>
 	`;
