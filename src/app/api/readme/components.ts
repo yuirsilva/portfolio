@@ -25,7 +25,7 @@ const svg = (styles: string, html: string, attributes: Attributes) => {
 		<foreignObject width="100%" height="100%">
             <html xmlns="http://www.w3.org/1999/xhtml">
                 <head>
-                    <link rel="stylesheet" href="/readme/readme.css" />
+                    <link rel="stylesheet" href="https://portfolio-git-dev-projects-yuri.vercel.app/readme/readme.css" />
                 </head>
                 <body style="margin: 0; padding: 0;">
                     <div>
