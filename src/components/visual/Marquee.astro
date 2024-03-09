@@ -1,0 +1,19 @@
+---
+const MARQUEE =
+    "A developer who can only write code in the form of haiku poems";
+
+interface Props {
+    quantity?: number;
+    fast?: boolean;
+}
+
+const { quantity = 2, fast } = Astro.props;
+---
+
+{
+    [...Array(quantity)].map(() => (
+        <div class={`${fast ? "animate-slider-6" : "animate-slider"} px-1`}>
+            <span class="flex w-max gap-5">{MARQUEE}</span>
+        </div>
+    ))
+}

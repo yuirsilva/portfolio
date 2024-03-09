@@ -2,19 +2,19 @@
 import type { HTMLAttributes } from "astro/types";
 
 const positions = {
-  "top-full": "*:group-hover:-translate-y-full",
-  "top-full right-full":
-    "*:group-hover:translate-x-full *:group-hover:-translate-y-full",
-  "right-full": "*:group-hover:translate-x-full",
-  "bottom-full": "*:group-hover:translate-y-full",
-  "left-full": "*:group-hover:-translate-x-full",
+    "top-full": "*:group-hover:-translate-y-full",
+    "top-full right-full":
+        "*:group-hover:translate-x-full *:group-hover:-translate-y-full",
+    "right-full": "*:group-hover:translate-x-full",
+    "bottom-full": "*:group-hover:translate-y-full",
+    "left-full": "*:group-hover:-translate-x-full",
 };
 
 type RollType = keyof typeof positions;
 
 interface Props extends HTMLAttributes<"div"> {
-  text: string | number;
-  initial?: RollType;
+    text: string | number;
+    initial?: RollType;
 }
 
 const { text, initial = "bottom-full" } = Astro.props;
@@ -22,10 +22,10 @@ const { text, initial = "bottom-full" } = Astro.props;
 
 <!-- Add "group" Tailwind class to parent! -->
 <div
-  class={`relative inline-flex overflow-hidden *:[transition:_transform_0.75s_cubic-bezier(0.19,1,0.22,1)] ${positions[initial]}`}
+    class={`relative inline-flex overflow-hidden *:[transition:_transform_0.75s_cubic-bezier(0.19,1,0.22,1)] ${positions[initial]}`}
 >
-  <span class={`pointer-events-none absolute whitespace-nowrap ${initial}`}>
-    {text}
-  </span>
-  <span class="inline-block">{text}</span>
+    <span class={`pointer-events-none absolute whitespace-nowrap ${initial}`}>
+        {text}
+    </span>
+    <span class="inline-block">{text}</span>
 </div>

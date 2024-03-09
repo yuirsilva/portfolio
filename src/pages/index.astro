@@ -1,8 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import HomeContent from "@components/HomeContent.astro";
+import Marquee from "@components/visual/Marquee.astro";
 ---
 
-<Layout title="Home">
-  <HomeContent />
+<Layout title="Yuri Silva - Creative Developer">
+    <HomeContent />
+    <div
+        class="absolute bottom-24 left-1/2 flex w-36 -translate-x-1/2 select-none overflow-hidden uppercase"
+    >
+        <Marquee />
+    </div>
 </Layout>

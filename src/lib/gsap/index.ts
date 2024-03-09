@@ -10,27 +10,27 @@ const DURATION = RECIPROCAL_GR;
 const EASE = CustomEase.create("ease", "0.175, 0.885, 0.32, 1");
 
 gsap.config({
-  autoSleep: 60,
+    autoSleep: 60,
 });
 
 gsap.defaults({
-  duration: DURATION,
-  ease: EASE,
+    duration: DURATION,
+    ease: EASE,
 });
 
 const home_tl = gsap.timeline({
-  defaults: {
-    ease: EASE,
-    duration: DURATION,
-  },
+    defaults: {
+        ease: EASE,
+        duration: DURATION,
+    },
 });
 
 export {
-  CustomEase,
-  ScrambleTextPlugin,
-  DURATION,
-  EASE,
-  GOLDEN_RATIO,
-  gsap,
-  home_tl,
+    CustomEase,
+    ScrambleTextPlugin,
+    DURATION,
+    EASE,
+    GOLDEN_RATIO,
+    gsap,
+    home_tl,
 };
