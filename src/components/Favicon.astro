@@ -1,0 +1,12 @@
+<script>
+  document.addEventListener("visibilitychange", () => {
+    var link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+    if (document.visibilityState === "visible") {
+      if (!link) return;
+      link.href = "https://stackoverflow.com/favicon.ico";
+    } else if (document.visibilityState === "hidden") {
+      if (!link) return;
+      link.href = "https://x.com/favicon.ico";
+    }
+  });
+</script>

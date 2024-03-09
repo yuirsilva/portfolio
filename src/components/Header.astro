@@ -1,0 +1,18 @@
+---
+import { Image } from "astro:assets";
+import Logo from "@/assets/LOGO.svg";
+import MagneticButton from "@components/nav/MagneticButton.astro";
+---
+
+<header class="px-8 pt-8 flex justify-between w-full">
+  <MagneticButton>
+    <a href="/">
+      <Image src={Logo} alt="Yuri's personal logo" loading="eager" />
+    </a>
+  </MagneticButton>
+  <nav>
+    <MagneticButton>
+      <button class="uppercase">Menu</button>
+    </MagneticButton>
+  </nav>
+</header>
