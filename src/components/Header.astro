@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Logo from "@/assets/LOGO.svg";
 import MagneticButton from "@components/nav/MagneticButton.astro";
+import Menu from "@components/nav/Menu.astro";
 ---
 
 <header class="flex w-full items-center justify-between px-8 pt-8">
@@ -15,4 +16,5 @@ import MagneticButton from "@components/nav/MagneticButton.astro";
             <button class="uppercase">Menu</button>
         </MagneticButton>
     </nav>
+    <Menu />
 </header>
