@@ -6,7 +6,7 @@ interface Props {
 const { className } = Astro.props;
 ---
 
-<div class=`magnetic-wrapper inline-block relative ${className}`>
+<div class=`magnetic-wrapper inline-block relative ${className ?? null}`>
     <slot />
 </div>
 

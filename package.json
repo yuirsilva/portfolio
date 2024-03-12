@@ -13,6 +13,8 @@
         "@astrojs/check": "^0.5.6",
         "@astrojs/react": "^3.0.10",
         "@astrojs/tailwind": "^5.1.0",
+        "@react-three/drei": "^9.102.3",
+        "@react-three/fiber": "^8.15.19",
         "@types/react": "^18.2.64",
         "@types/react-dom": "^18.2.21",
         "astro": "^4.4.15",
@@ -20,10 +22,12 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "tailwindcss": "^3.4.1",
+        "three": "^0.162.0",
         "typescript": "^5.4.2"
     },
     "devDependencies": {
         "prettier": "^3.2.5",
+        "prettier-plugin-astro": "^0.13.0",
         "prettier-plugin-tailwindcss": "^0.5.12"
     }
 }

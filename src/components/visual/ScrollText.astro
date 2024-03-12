@@ -13,19 +13,21 @@ const positions = {
 type RollType = keyof typeof positions;
 
 interface Props extends HTMLAttributes<"div"> {
-    text: string | number;
     initial?: RollType;
+    className?: string;
 }
 
-const { text, initial = "bottom-full" } = Astro.props;
+const { initial = "bottom-full", className } = Astro.props;
 ---
 
 <!-- Add "group" Tailwind class to parent! -->
 <div
-    class={`relative inline-flex overflow-hidden *:[transition:_transform_0.75s_cubic-bezier(0.19,1,0.22,1)] ${positions[initial]}`}
+    class={`relative inline-flex overflow-hidden *:[transition:_transform_0.75s_cubic-bezier(0.19,1,0.22,1)] ${positions[initial]} ${className}`}
 >
-    <span class={`pointer-events-none absolute whitespace-nowrap ${initial}`}>
-        {text}
+    <span
+        class={`pointer-events-none w-full absolute whitespace-nowrap ${initial}`}
+    >
+        <slot />
     </span>
-    <span class="inline-block">{text}</span>
+    <span class="inline-block"><slot /></span>
 </div>

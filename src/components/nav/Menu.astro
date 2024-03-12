@@ -1,16 +1,106 @@
-<div>
-    <div class="uppercase">
-        <span class="text-muted-foreground">Info</span>
-        <p>Front-end / Creative</p>
-        <p>Full-time / Freelance (available)</p>
-        <p>São Paulo, Brazil</p>
-        <p>18Y</p>
+---
+import { github, linkedin } from "@/content/social-links";
+import MenuBackground from "@components/visual/MenuBackground.astro";
+import ScrollText from "@components/visual/ScrollText.astro";
+import TopRightArrow from "@/assets/TopRightArrow.svg";
+import { Image } from "astro:assets";
+import { MARQUEE } from "@components/visual/Marquee.astro";
+import { MenuLinks } from "@/content/menu-links";
+import Portrait from "@/components/visual/MenuPortrait";
+
+const year = new Date().getFullYear();
+---
+
+<nav
+    class="menu-back pointer-events-none invisible fixed inset-0 w-full select-none bg-foreground/0"
+>
+    <div class="relative">
+        <div
+            class="menu-main relative z-10 flex flex-col justify-between gap-9 bg-background px-8 pb-12 shadow-md sm:flex-row"
+        >
+            <div class="flex items-center gap-8">
+                <div
+                    class="hidden h-full max-h-44 w-full max-w-xs overflow-hidden rounded xl:block 2xl:max-w-md"
+                >
+                    <Portrait client:idle />
+                </div>
+                <div>
+                    <div class="uppercase">
+                        <span class="text-muted-foreground">Info</span>
+                        <p>Front-end / Creative</p>
+                        <p>Full-time / Freelance (available)</p>
+                        <p>São Paulo, Brazil</p>
+                        <p>18Y</p>
+                    </div>
+                </div>
+            </div>
+            <nav
+                class="flex max-w-44 flex-wrap items-center gap-4 sm:max-w-full sm:justify-end md:gap-8"
+            >
+                {
+                    MenuLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class="text-5xl font-medium uppercase text-muted-foreground transition-colors hover:text-primary 2xl:text-6xl"
+                        >
+                            {link.title}
+                        </a>
+                    ))
+                }
+            </nav>
+        </div>
+        <footer
+            class="menu-more absolute inset-0 -bottom-16 flex items-end justify-between overflow-hidden bg-background px-8 pb-8 uppercase"
+        >
+            <MenuBackground />
+            <div class="group flex select-none">
+                <ScrollText className="hidden sm:max-lg:max-w-72 lg:block">
+                    {MARQUEE}
+                </ScrollText>
+                &nbsp;
+                <ScrollText>
+                    &copy; {year}
+                </ScrollText>
+            </div>
+            <div class="flex gap-4">
+                <a href={github} class="group flex items-center gap-2"
+                    >GitHub
+                    <ScrollText
+                        initial="top-full right-full"
+                        className="hidden sm:inline-flex"
+                    >
+                        <Image
+                            src={TopRightArrow}
+                            alt="Arrow pointing up"
+                            class="size-4"
+                        />
+                    </ScrollText>
+                </a>
+                <a href={linkedin} class="group flex items-center gap-2"
+                    >LinkedIn
+                    <ScrollText
+                        initial="top-full right-full"
+                        className="hidden sm:inline-flex"
+                    >
+                        <Image
+                            src={TopRightArrow}
+                            alt="Arrow pointing up"
+                            class="size-4"
+                        />
+                    </ScrollText>
+                </a>
+            </div>
+        </footer>
     </div>
-    <nav
-        class="*:text-muted-foreground flex max-w-44 flex-wrap gap-2 *:text-5xl *:font-medium *:uppercase md:gap-8"
-    >
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/posts">Posts</a>
-    </nav>
-</div>
+</nav>
+
+<script>
+    const headerHeight = document
+        .getElementsByClassName("header")[0]
+        ?.getBoundingClientRect().height;
+
+    const menuMain = document.getElementsByClassName(
+        "menu-main"
+    )[0] as HTMLDivElement;
+    menuMain.style.paddingTop = `${(headerHeight ? headerHeight : 0) + 32}px`;
+</script>

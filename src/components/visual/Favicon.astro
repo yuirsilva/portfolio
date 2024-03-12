@@ -12,7 +12,7 @@
 
         link.href = FaviconsAnim[numba]!;
         numba += 1;
-        if (numba != 3) {
+        if (numba != FaviconsAnim.length) {
             setTimeout(() => {
                 animateFavicon(link, numba);
             }, 400);

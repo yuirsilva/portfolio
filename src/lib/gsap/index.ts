@@ -4,10 +4,10 @@ import { ScrambleTextPlugin } from "@/lib/gsap/ScrambleTextPlugin";
 
 gsap.registerPlugin(CustomEase, ScrambleTextPlugin);
 
-const GOLDEN_RATIO = (1 + Math.sqrt(5)) / 2;
-const RECIPROCAL_GR = 1 / GOLDEN_RATIO;
-const DURATION = RECIPROCAL_GR;
+const DURATION = 0.75;
 const EASE = CustomEase.create("ease", "0.175, 0.885, 0.32, 1");
+const EASE_1 = CustomEase.create("ease_1", "0.8, 0, 0.1, 1");
+const EASE_2 = CustomEase.create("ease_2", "0.19, 1, 0.22, 1");
 
 gsap.config({
     autoSleep: 60,
@@ -18,19 +18,4 @@ gsap.defaults({
     ease: EASE,
 });
 
-const home_tl = gsap.timeline({
-    defaults: {
-        ease: EASE,
-        duration: DURATION,
-    },
-});
-
-export {
-    CustomEase,
-    ScrambleTextPlugin,
-    DURATION,
-    EASE,
-    GOLDEN_RATIO,
-    gsap,
-    home_tl,
-};
+export { CustomEase, ScrambleTextPlugin, DURATION, EASE, EASE_1, EASE_2, gsap };
