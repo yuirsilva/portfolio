@@ -13,7 +13,7 @@ const { quantity = 2, fast } = Astro.props;
 {
     [...Array(quantity)].map(() => (
         <div class={`${fast ? "animate-slider-6" : "animate-slider"} px-1`}>
-            <span class="flex w-max gap-5">{MARQUEE}</span>
+            <span class="flex w-max gap-5 text-background">{MARQUEE}</span>
         </div>
     ))
 }

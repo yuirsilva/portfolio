@@ -45,14 +45,18 @@ const Experience = ({}) => {
     const { gl } = useThree();
 
     useFrame(({ clock: { elapsedTime }, pointer }) => {
+        // @ts-expect-error one day i'll fix this
         planeMat.current.uniforms["uTime"].value = elapsedTime;
+        // @ts-expect-error one day i'll fix this
         planeMat.current.uniforms["uPointer"].value = new THREE.Vector2(
             THREE.MathUtils.lerp(
+                // @ts-expect-error one day i'll fix this
                 planeMat.current.uniforms["uPointer"].value.x,
                 pointer.x,
                 0.05
             ),
             THREE.MathUtils.lerp(
+                // @ts-expect-error one day i'll fix this
                 planeMat.current.uniforms["uPointer"].value.y,
                 pointer.y,
                 0.05
@@ -60,6 +64,13 @@ const Experience = ({}) => {
         );
     });
     useEffect(() => {
+        if (
+            !planeMat.current.uniforms["uTexture"] ||
+            !planeMat.current.uniforms["uNormalTexture"] ||
+            !planeMat.current.uniforms["uResolution"]
+        )
+            return;
+
         const width = gl.domElement.offsetWidth;
         const height = gl.domElement.offsetHeight;
 

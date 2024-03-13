@@ -37,6 +37,7 @@ import MagneticButton from "@components/nav/MagneticButton.astro";
     function init() {
         gsap.set(".menu-back", { autoAlpha: 1 });
         gsap.set(".menu-main, .menu-more", { yPercent: -100 });
+        gsap.set(".menu-nav-item > a", { yPercent: -100 });
 
         timeline
             .to(".menu-back", {
@@ -49,7 +50,6 @@ import MagneticButton from "@components/nav/MagneticButton.astro";
                 {
                     yPercent: 0,
                     duration: 1,
-                    ease: "none",
                 },
                 "<"
             )
@@ -58,7 +58,23 @@ import MagneticButton from "@components/nav/MagneticButton.astro";
                 {
                     yPercent: 0,
                     duration: 1,
-                    ease: "none",
+                },
+                "<"
+            )
+            .to(
+                ".menu-nav-item > a",
+                {
+                    yPercent: 0,
+                    duration: 1,
+                },
+                "<"
+            )
+            .from(
+                ".menu-portrait",
+                {
+                    yPercent: -100,
+                    clipPath: "inset(100% 0% 0% 0%)",
+                    duration: 1,
                 },
                 "<"
             );

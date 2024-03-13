@@ -20,7 +20,7 @@ const year = new Date().getFullYear();
         >
             <div class="flex items-center gap-8">
                 <div
-                    class="hidden h-full max-h-44 w-full max-w-xs overflow-hidden rounded xl:block 2xl:max-w-md"
+                    class="menu-portrait hidden h-full max-h-44 w-full max-w-xs overflow-hidden rounded xl:inline-block 2xl:max-w-md"
                 >
                     <Portrait client:idle />
                 </div>
@@ -39,12 +39,14 @@ const year = new Date().getFullYear();
             >
                 {
                     MenuLinks.map((link) => (
-                        <a
-                            href={link.href}
-                            class="text-5xl font-medium uppercase text-muted-foreground transition-colors hover:text-primary 2xl:text-6xl"
-                        >
-                            {link.title}
-                        </a>
+                        <div class="menu-nav-item overflow-hidden">
+                            <a
+                                href={link.href}
+                                class="inline-block text-5xl font-medium uppercase text-muted-foreground transition-colors hover:text-primary 2xl:text-6xl"
+                            >
+                                {link.title}
+                            </a>
+                        </div>
                     ))
                 }
             </nav>
