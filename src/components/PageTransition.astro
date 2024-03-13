@@ -1,0 +1,49 @@
+<div
+    class="page-transition fixed inset-0 z-[999] grid place-content-center bg-foreground"
+>
+</div>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    gsap.to(".page-transition", {
+        yPercent: -100,
+        delay: 0.2,
+        ease: "ease_1",
+        duration: 1,
+    });
+
+    function ready(fn: () => void) {
+        if (document.readyState !== "loading") {
+            fn();
+            return;
+        }
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+    const transition = () => {
+        const anchors = document.querySelectorAll("a");
+        anchors.forEach((anchor) => {
+            anchor.addEventListener("click", (e) => {
+                if (
+                    anchor.href.indexOf("#") === -1 &&
+                    anchor.target !== "_blank"
+                ) {
+                    e.preventDefault();
+                    const destination = anchor.href;
+                    gsap.set(".page-transition", {
+                        yPercent: 100,
+                    });
+                    gsap.to(".page-transition", {
+                        yPercent: 0,
+                        ease: "ease_1",
+                        duration: 1,
+                        onComplete: () => {
+                            window.location.assign(destination);
+                        },
+                    });
+                }
+            });
+        });
+    };
+    ready(transition);
+</script>

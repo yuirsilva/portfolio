@@ -98,13 +98,9 @@ const Experience = ({}) => {
 
         for (let i = 0; i < CELL_SIZE; i++) {
             for (let j = 0; j < CELL_SIZE; j++) {
-                // let distance =
-                //     (gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
-
                 let distance =
-                    Math.abs(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
-                // let distance =
-                //     Math.asinh(gridPointerX - i) ** 2 + (gridPointerY - j) ** 2;
+                    Math.sinh(gridPointerX - i) ** 2 +
+                    Math.cosh(gridPointerY - j) ** 2;
 
                 if (distance < MAX_DIST_SQ) {
                     let index = 4 * (i + CELL_SIZE * j);
