@@ -85,7 +85,6 @@ import MagneticButton from "@components/nav/MagneticButton.astro";
         isActive = !isActive;
         gsap.to(menu_button_anim, {
             time: isActive ? menu_button_anim.duration() : 0,
-            ease: "ease_2",
         });
         timeline.tweenTo(isActive ? timeline.duration() : 0, {
             ease: "ease_1",
