@@ -29,7 +29,7 @@ const WIDTH = CELL_SIZE;
 const HEIGHT = CELL_SIZE;
 const SIZE = WIDTH * HEIGHT;
 
-const Portrait = ({}) => {
+const HomePortrait = ({}) => {
     return (
         <Canvas
             orthographic
@@ -173,4 +173,4 @@ const Experience = ({}) => {
     );
 };
 
-export default Portrait;
+export default HomePortrait;

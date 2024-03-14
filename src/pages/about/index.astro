@@ -6,13 +6,19 @@ import { Picture } from "astro:assets";
 import Marquee from "@components/visual/Marquee.astro";
 import { email } from "@/content/social-links";
 import ScrambleText from "@components/visual/ScrambleText.astro";
+import FlowerPortrait from "@components/about/Flower";
 ---
 
 <Layout title="About">
     <section class="flex flex-col gap-20 lg:gap-40">
         <section
-            class="container grid h-[70dvh] place-content-center text-center uppercase"
+            class="container relative grid h-[70dvh] place-content-center text-center uppercase"
         >
+            <div
+                class="absolute left-1/2 top-1/2 -z-10 aspect-square w-3/5 max-w-md -translate-x-1/2 -translate-y-1/2"
+            >
+                <FlowerPortrait client:load />
+            </div>
             <h1 class="text-center text-5xl md:text-9xl">Yuri Silva</h1>
             <p>
                 <span class="italic">(</span>Creative Developer<span
@@ -22,7 +28,7 @@ import ScrambleText from "@components/visual/ScrambleText.astro";
         </section>
         <section class="container space-y-5 *:text-justify">
             <p
-                class="text-balance text-2xl tracking-tighter before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(about_me)'] md:text-5xl md:before:mr-6"
+                class="text-balance text-2xl leading-tight before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(about_me)'] md:text-5xl md:leading-tight md:before:mr-6"
             >
                 I'm <span class="text-primary">creative developer</span> based in
                 Brazil, dedicated to creating seamless and interactive web experiences
@@ -30,7 +36,7 @@ import ScrambleText from "@components/visual/ScrambleText.astro";
                 elements that make a website truly engaging.
             </p>
             <p
-                class="text-balance text-2xl before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(where_are_your_projects?)'] md:text-5xl md:before:mr-6"
+                class="text-balance text-2xl leading-tight before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(where_are_your_projects?)'] md:text-5xl md:leading-tight md:before:mr-6"
             >
                 This portfolio is basically my creative playground. I'll be
                 tossing in updates whenever I dive into new projects throughout
@@ -95,13 +101,13 @@ import ScrambleText from "@components/visual/ScrambleText.astro";
             </div>
         </section>
         <footer
-            class="container mb-6 flex flex-col items-center gap-2 text-sm uppercase sm:flex-row sm:justify-between sm:text-base"
+            class="container mb-6 flex flex-col items-center gap-2 text-sm uppercase sm:text-base md:flex-row md:justify-between"
         >
             <p>Yuri Candido da Silva—{new Date().getFullYear()}</p>
             <a href={email} class="lowercase underline underline-offset-2"
                 >yuxipersonal@gmail.com</a
             >
-            <ScrambleText className="text-end sm:w-48"
+            <ScrambleText className="text-end md:w-48"
                 ><p>No days off</p></ScrambleText
             >
         </footer>
