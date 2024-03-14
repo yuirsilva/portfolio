@@ -26,7 +26,8 @@
             anchor.addEventListener("click", (e) => {
                 if (
                     anchor.href.indexOf("#") === -1 &&
-                    anchor.target !== "_blank"
+                    anchor.target !== "_blank" &&
+                    anchor.href.indexOf("mailto") === -1
                 ) {
                     e.preventDefault();
                     const destination = anchor.href;

@@ -1,5 +1,109 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import technologies from "@/content/technologies-about-me";
+import Visage from "@/assets/visage.jpg";
+import { Picture } from "astro:assets";
+import Marquee from "@components/visual/Marquee.astro";
+import { email } from "@/content/social-links";
+import ScrambleText from "@components/visual/ScrambleText.astro";
 ---
 
-<Layout title="About" />
+<Layout title="About">
+    <section class="flex flex-col gap-20 lg:gap-40">
+        <section
+            class="container grid h-[70dvh] place-content-center text-center uppercase"
+        >
+            <h1 class="text-center text-5xl md:text-9xl">Yuri Silva</h1>
+            <p>
+                <span class="italic">(</span>Creative Developer<span
+                    class="italic">)</span
+                >
+            </p>
+        </section>
+        <section class="container space-y-5 *:text-justify">
+            <p
+                class="text-balance text-2xl tracking-tighter before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(about_me)'] md:text-5xl md:before:mr-6"
+            >
+                I'm <span class="text-primary">creative developer</span> based in
+                Brazil, dedicated to creating seamless and interactive web experiences
+                that resonate with users. Focusing on the visual and interactive
+                elements that make a website truly engaging.
+            </p>
+            <p
+                class="text-balance text-2xl before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(where_are_your_projects?)'] md:text-5xl md:before:mr-6"
+            >
+                This portfolio is basically my creative playground. I'll be
+                tossing in updates whenever I dive into new projects throughout
+                the year. Stay tuned for the cool stuff I'll be building!
+            </p>
+        </section>
+        <section class="container space-y-5 text-base uppercase sm:text-2xl">
+            <p>
+                <span class="italic">(</span>Technologies in my arsenal<span
+                    class="italic">)</span
+                >
+            </p>
+            <ul>
+                {
+                    technologies.map((line) => (
+                        <li class="flex flex-wrap gap-4 border-b border-muted-foreground py-2.5 first:border-t">
+                            {line.map((tech) => (
+                                <p>{tech}</p>
+                            ))}
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+        <section class="container flex flex-col gap-5 uppercase">
+            <h1
+                class="text-justify text-base before:mr-3 before:text-base before:lowercase before:italic before:text-muted-foreground before:content-['(facts?)'] sm:text-2xl md:before:mr-6"
+            >
+                I like to play CS2 in my free time, make music sometimes, read
+                blog posts
+            </h1>
+            <div
+                class="group relative h-[clamp(144px,12vh,224px)] w-full overflow-hidden saturate-[0.25]"
+            >
+                <div
+                    class="absolute inset-0 z-40 grid place-content-center bg-background/50 opacity-0 transition-opacity group-hover:opacity-100"
+                >
+                    (Visage)
+                </div>
+                <Picture
+                    src={Visage}
+                    formats={["webp", "jpg"]}
+                    alt="A screenshot from the game Visage"
+                    class="h-full object-none object-center"
+                />
+            </div>
+        </section>
+        <section class="container relative w-full">
+            <div
+                class="flex w-full overflow-hidden border-y border-muted-foreground bg-background py-2.5 text-base uppercase md:text-2xl"
+            >
+                <Marquee quantity={6}>
+                    <p class="ml-5">Let's work together</p>
+                    <p>Hit me up</p>
+                    <a
+                        href={email}
+                        class="text-primary underline underline-offset-2"
+                    >
+                        yuxipersonal@gmail.com</a
+                    >
+                </Marquee>
+            </div>
+        </section>
+        <footer
+            class="container mb-6 flex flex-col items-center gap-2 text-sm uppercase sm:flex-row sm:justify-between sm:text-base"
+        >
+            <p>Yuri Candido da Silva—{new Date().getFullYear()}</p>
+            <a href={email} class="lowercase underline underline-offset-2"
+                >yuxipersonal@gmail.com</a
+            >
+            <ScrambleText className="text-end sm:w-48"
+                ><p>No days off</p></ScrambleText
+            >
+        </footer>
+    </section>
+</Layout>

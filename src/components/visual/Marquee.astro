@@ -5,15 +5,18 @@ export const MARQUEE =
 interface Props {
     quantity?: number;
     fast?: boolean;
+    className?: string;
 }
 
-const { quantity = 2, fast } = Astro.props;
+const { quantity = 2, fast, className } = Astro.props;
 ---
 
 {
     [...Array(quantity)].map(() => (
-        <div class={`${fast ? "animate-slider-6" : "animate-slider"} px-1`}>
-            <span class="flex w-max gap-5 text-background">{MARQUEE}</span>
+        <div class={`${fast ? "animate-slider-6" : "animate-slider"}`}>
+            <span class={`flex w-max gap-5${className ? " " + className : ""}`}>
+                {<slot /> ?? MARQUEE}
+            </span>
         </div>
     ))
 }

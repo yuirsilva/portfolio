@@ -1,0 +1,30 @@
+---
+interface Props {
+    className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class={`text select-none${className ? " " + className : ""}`}>
+    <slot />
+</div>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    const target = document.querySelector<HTMLDivElement>("div.text");
+
+    const scramble = gsap.to(".text > *", {
+        scrambleText: "today, not tomorrow",
+        ease: "none",
+    });
+    scramble.reverse();
+
+    target?.addEventListener("pointerenter", () => {
+        scramble.play();
+    });
+    target?.addEventListener("pointerleave", () => {
+        scramble.reverse();
+    });
+</script>
