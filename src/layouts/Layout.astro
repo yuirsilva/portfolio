@@ -9,6 +9,8 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+const postsRegex = /posts\/./g;
 ---
 
 <!doctype html>
@@ -30,7 +32,7 @@ const { title } = Astro.props;
         class="flex min-h-screen flex-col font-sans tracking-tighter antialiased"
     >
         <Favicon />
-        <Header />
+        {postsRegex.test(Astro.url.pathname) ? null : <Header />}
         <main class="relative flex flex-1 flex-col">
             <slot />
         </main>
