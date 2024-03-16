@@ -9,7 +9,7 @@ import Reveal from "@components/visual/Reveal.astro";
     <div
         class="absolute left-1/2 top-1/2 hidden h-full max-h-[624px] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 md:block"
     >
-        <Portrait client:load />
+        <Portrait client:only="react" />
     </div>
     <section
         class="container relative my-auto uppercase sm:max-w-96 md:text-background [&_div]:flex [&_div]:justify-between"
