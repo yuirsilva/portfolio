@@ -1,0 +1,13 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import { four_oh_four as quotes } from "@/content/quotes";
+---
+
+<Layout title="Page not found">
+    <section class="container my-auto">
+        <h1>Page not <span class="italic">found</span></h1>
+        <p class="mb-4 mt-2">{quotes[(quotes.length * Math.random()) | 0]}</p>
+        <a href="/" class="underline underline-offset-2">Go back to homepage</a>
+    </section>
+</Layout>

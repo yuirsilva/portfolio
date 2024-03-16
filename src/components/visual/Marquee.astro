@@ -1,0 +1,22 @@
+---
+export const MARQUEE =
+    "A developer who can only write code in the form of haiku poems";
+
+interface Props {
+    quantity?: number;
+    fast?: boolean;
+    className?: string;
+}
+
+const { quantity = 2, fast, className } = Astro.props;
+---
+
+{
+    [...Array(quantity)].map(() => (
+        <div class={`${fast ? "animate-slider-6" : "animate-slider"}`}>
+            <span class={`flex w-max gap-5${className ? " " + className : ""}`}>
+                {<slot /> ?? MARQUEE}
+            </span>
+        </div>
+    ))
+}

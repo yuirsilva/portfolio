@@ -1,0 +1,32 @@
+<script>
+    import FaviconAway from "/favicon-away.ico";
+    import FaviconAnim1 from "/favicon-anim-1.ico";
+    import FaviconAnim2 from "/favicon-anim-2.ico";
+    import Favicon from "/favicon.ico";
+
+    const FaviconsAnim = [FaviconAnim1, FaviconAnim2, Favicon];
+    const animateFavicon = (link: HTMLLinkElement, counter: number) => {
+        if (!link) return;
+        if (document.visibilityState === "hidden") return;
+        let numba = counter; // 0
+
+        link.href = FaviconsAnim[numba]!;
+        numba += 1;
+        if (numba != FaviconsAnim.length) {
+            setTimeout(() => {
+                animateFavicon(link, numba);
+            }, 400);
+        }
+    };
+
+    document.addEventListener("visibilitychange", () => {
+        var link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+        if (document.visibilityState === "visible") {
+            if (!link) return;
+            animateFavicon(link, 0);
+        } else if (document.visibilityState === "hidden") {
+            if (!link) return;
+            link.href = FaviconAway;
+        }
+    });
+</script>

@@ -1,0 +1,36 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Portrait from "@components/HomePortrait";
+import Marquee from "@components/visual/Marquee.astro";
+import Reveal from "@components/visual/Reveal.astro";
+---
+
+<Layout title="Creative Developer">
+    <div
+        class="absolute left-1/2 top-1/2 hidden h-full max-h-[624px] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 md:block"
+    >
+        <Portrait client:load />
+    </div>
+    <section
+        class="container relative my-auto uppercase sm:max-w-96 md:text-background [&_div]:flex [&_div]:justify-between"
+    >
+        <div>
+            <p>Yuri Silva</p>
+            <p class="italic">Available—2024</p>
+        </div>
+        <p class="text-justify">
+            Olá, my name is Yuri and I'm a creative developer based in São
+            Paulo.
+        </p>
+        <div class="mt-4 hover:*:underline hover:*:underline-offset-2">
+            <a href="/about">About me</a>
+            <a href="/posts">Posts</a>
+        </div>
+    </section>
+    <div
+        class="absolute bottom-24 left-1/2 flex w-36 -translate-x-1/2 select-none overflow-hidden uppercase"
+    >
+        <Marquee />
+    </div>
+</Layout>
+<Reveal />

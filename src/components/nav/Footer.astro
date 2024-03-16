@@ -1,0 +1,19 @@
+---
+import { linkedin, email } from "@/content/social-links";
+import ScrollText from "@/components/visual/ScrollText.astro";
+import MagneticButton from "@/components/nav/MagneticButton.astro";
+---
+
+<footer class="flex w-full justify-between px-8 pb-8">
+    <div class="group select-none">
+        <ScrollText>yuri silva</ScrollText>
+    </div>
+    <div class="space-x-6 uppercase">
+        <MagneticButton>
+            <a href={linkedin} target="_blank">LinkedIn</a>
+        </MagneticButton>
+        <MagneticButton>
+            <a href={email}>Mail</a>
+        </MagneticButton>
+    </div>
+</footer>

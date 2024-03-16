@@ -1,0 +1,33 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+const positions = {
+    "top-full": "*:group-hover:-translate-y-full",
+    "top-full right-full":
+        "*:group-hover:translate-x-full *:group-hover:-translate-y-full",
+    "right-full": "*:group-hover:translate-x-full",
+    "bottom-full": "*:group-hover:translate-y-full",
+    "left-full": "*:group-hover:-translate-x-full",
+};
+
+type RollType = keyof typeof positions;
+
+interface Props extends HTMLAttributes<"div"> {
+    initial?: RollType;
+    className?: string;
+}
+
+const { initial = "bottom-full", className } = Astro.props;
+---
+
+<!-- Add "group" Tailwind class to parent! -->
+<div
+    class={`relative inline-flex overflow-hidden *:[transition:_transform_0.75s_cubic-bezier(0.19,1,0.22,1)] ${positions[initial]} ${className}`}
+>
+    <span
+        class={`pointer-events-none w-full absolute whitespace-nowrap ${initial}`}
+    >
+        <slot />
+    </span>
+    <span class="inline-block"><slot /></span>
+</div>

@@ -1,0 +1,95 @@
+---
+import MagneticButton from "@components/nav/MagneticButton.astro";
+---
+
+<MagneticButton className="h-full">
+    <button class="menu-button relative h-full w-14 overflow-hidden uppercase">
+        <div class="relative h-full">
+            <div class="flex h-full w-full items-center justify-center">
+                <span>Menu</span>
+            </div>
+            <div
+                class="absolute top-full flex h-full w-full items-center justify-center"
+            >
+                <span>Close</span>
+            </div>
+        </div>
+    </button>
+</MagneticButton>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    const menuButton = document.getElementsByClassName(
+        "menu-button"
+    )[0] as HTMLButtonElement;
+
+    const timeline = gsap.timeline({
+        paused: true,
+        defaults: { ease: "none" },
+    });
+    const menu_button_anim = gsap.to(".menu-button > div", {
+        yPercent: -100,
+        duration: 0.75,
+        ease: "none",
+        paused: true,
+    });
+    function init() {
+        gsap.set(".menu-back", { autoAlpha: 1 });
+        gsap.set(".menu-main, .menu-more", { yPercent: -100 });
+        gsap.set(".menu-nav-item > a", { yPercent: -100 });
+
+        timeline
+            .to(".menu-back", {
+                backgroundColor: "rgb(38 38 38 / 0.3)",
+                userSelect: "initial",
+                pointerEvents: "initial",
+            })
+            .to(
+                ".menu-more",
+                {
+                    yPercent: 0,
+                    duration: 1,
+                },
+                "<"
+            )
+            .to(
+                ".menu-main",
+                {
+                    yPercent: 0,
+                    duration: 1,
+                },
+                "<"
+            )
+            .to(
+                ".menu-nav-item > a",
+                {
+                    yPercent: 0,
+                    duration: 1,
+                },
+                "<"
+            )
+            .from(
+                ".menu-portrait",
+                {
+                    yPercent: -100,
+                    clipPath: "inset(100% 0% 0% 0%)",
+                    duration: 1,
+                },
+                "<"
+            );
+    }
+
+    let isActive = false;
+    menuButton.addEventListener("click", () => {
+        isActive = !isActive;
+        gsap.to(menu_button_anim, {
+            time: isActive ? menu_button_anim.duration() : 0,
+        });
+        timeline.tweenTo(isActive ? timeline.duration() : 0, {
+            ease: "ease_1",
+        });
+    });
+
+    window.addEventListener("load", () => init());
+</script>

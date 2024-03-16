@@ -1,0 +1,41 @@
+---
+interface Props {
+    className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<div class=`magnetic-wrapper inline-block relative ${className ?? null}`>
+    <slot />
+</div>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    const buttons = document.getElementsByClassName(
+        "magnetic-wrapper"
+    ) as HTMLCollectionOf<HTMLButtonElement>;
+
+    for (let button of buttons) {
+        const xTo = gsap.quickTo(button, "x", {
+                duration: 1,
+                ease: "elastic.out(1, 0.4)",
+            }),
+            yTo = gsap.quickTo(button, "y", {
+                duration: 1,
+                ease: "elastic.out(1, 0.4)",
+            });
+
+        button.addEventListener("mousemove", (e) => {
+            const { clientX, clientY } = e;
+
+            const { width, height, top, left } = button.getBoundingClientRect();
+            const x = clientX - (left + width / 2);
+            const y = clientY - (top + height / 2);
+            xTo(x), yTo(y);
+        });
+
+        button.addEventListener("mouseleave", () => (xTo(0), yTo(0)));
+    }
+</script>
