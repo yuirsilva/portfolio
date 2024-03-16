@@ -1,5 +1,3 @@
-"use client";
-
 import GridMaterial from "@/components/visual/shaders/home/gridMaterial";
 import { useAspect } from "@react-three/drei";
 import {
