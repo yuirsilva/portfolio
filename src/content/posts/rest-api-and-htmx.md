@@ -11,17 +11,17 @@ tags: ["rest-api", "htmx", "hypertext"]
 
 > What needs to be done to make the REST architectural style clear on the notion that hypertext is a constraint? In other words, if the engine of application state (and hence the API) is not being driven by hypertext, then it cannot be RESTful and cannot be a REST API. Period. Is there some broken manual somewhere that needs to be fixed?
 
-Two weeks ago, I made my <a href="https://github.com/yuirsilva/justdoit" target="_blank">first project</a> using HTMX and Golang: a simple to-do app. I decided to build this after reading "<a href="https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/">How Did REST Come To Mean The Opposite of REST?</a>", an essay by Carson Gross. What really got me in this essay was the fact that I was one of them: the people that misuse the term REST (REpresentational State Transfer).
+Two weeks ago, I made my <a href="https://github.com/yuirsilva/justdoit" target="_blank">first project</a> using HTMX and Golang: a simple to-do app. I decided to build this after reading "<a href="https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/">How Did REST Come To Mean The Opposite of REST?</a>", an essay by Carson Gross. What really got me in this essay was the fact that I was one of them: the people who misuse the term REST (REpresentational State Transfer).
 
-Matter fact, I never searched what a REST API was about, my friends always referred to as a JSON API and it didn't sound strange. Why? The thing is: the whole industry is used to referring to it as a JSON API, even though it's wrong.
+Matter fact, I had never looked up the definition of a REST API; my friends always referred to it as a JSON API, and it didn't sound strange to me. Why? The thing is: the whole industry is used to referring to it as a JSON API, even though it's wrong.
 
 ### HATEOAS
 
-Hypermedia as the Engine of Application State (HATEOAS) is a crucial constraint in the REST architecture, basically, the server's response is easily understandable by the client, as it only needs to know how to render HTML. The available actions are tied to the resource.
+HATEOAS stands for "Hypermedia as the Engine of Application State." It is a constraint in the REST architecture that aims to guide the design of web APIs. The fundamental idea behind HATEOAS is to make APIs more self-descriptive. Also, the server's response is easily understandable by the client, as it only needs to know how to render HTML. The available actions are tied to the resource.
 
 #### Example
 
-Picture this example: You have an API that returns information about the air quality in your bedroom, if you have more than 1400 ppm (unhealthy by the way), you can't close your windows, what should be the HTTP response?
+Picture this example: You have an API that returns information about the air quality in your bedroom. If you have more than 1400 ppm (unhealthy by the way), you can’t close your windows. What should be the HTTP response?
 
 For an HTML response, we could have something like this for good air quality (using HTMX of course):
 
@@ -37,7 +37,7 @@ For an HTML response, we could have something like this for good air quality (us
 </div>
 ```
 
-Notice how self-descriptive is the HTML response, the possible performant actions by the user is in the response itself, the client doesn't need a ternary operator to render the air quality, the "Close windows" button or whatever is attached in the response. Again, the client only needs to know how to render HTML.
+Notice how self-descriptive the HTML response is, the possible performant actions by the user are within the response itself. The client doesn't need a ternary operator to render the air quality, the "Close windows" button or whatever is attached in the response. Again, the client only needs to know how to render HTML.
 
 For a bad air quality, we can have this:
 
@@ -52,8 +52,7 @@ For a bad air quality, we can have this:
 </div>
 ```
 
-See the difference? The client will render the available button and the other information, nothing more. \
-Believe it or not, you don't even have to write a **documentation** to understand a REST API (Swagger users in shambles rn).
+See the difference? The client will render the available button and the other information, nothing more. Believe it or not, you don't even have to write a **documentation** to understand a REST API (Swagger users in shambles rn).
 
 Now for a JSON response, we could have something like this for bad air quality:
 
@@ -64,11 +63,11 @@ Now for a JSON response, we could have something like this for bad air quality:
 }
 ```
 
-Even though the server's response is smaller, what happens is that the client needs to understand what to do with the `status`. For example, in a React application, we would fetch this API and use conditionals to render a different UI.
+Despite the server's smaller response size, the client still needs to understand how to handle the `status`. For example, in a React application, we would fetch this API and use conditionals to render a different UI.
 
 ### So what?
 
-Going back to HATEOAS, we saw that the client needs no prior knowledge about the application or server to handle the response, just an understanding of hypermedia (HTML). By that, we can conclude that JSON APIs are NOT REST APIs, they're JSON RPC APIs! They fail to follow the HATEOAS constraint, therefore, they're not RESTful APIs (We can call them <a href="https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/#how-rest-came-to-mean-restless" target="_blank">RESTless APIs</a>).
+Going back to HATEOAS, we saw that the client requires no prior knowledge of the application or server to handle the response, just an understanding of hypermedia (HTML). From this, we can conclude that JSON APIs are NOT REST APIs; they're JSON RPC APIs! They fail to follow the HATEOAS constraint, therefore, they cannot be considered RESTful APIs. We can call them <a href="https://htmx.org/essays/how-did-rest-come-to-mean-the-opposite-of-rest/#how-rest-came-to-mean-restless" target="_blank">RESTless APIs</a>.
 
 So please, don't say that these JSON RPC APIs are REST, they fail to achieve the <a href="https://martinfowler.com/articles/richardsonMaturityModel.html" target="_blank">Glory of REST</a>.
 
