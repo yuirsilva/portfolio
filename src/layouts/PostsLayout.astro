@@ -2,7 +2,8 @@
 import Layout from "@/layouts/Layout.astro";
 import TopRightArrow from "@/assets/top-right-arrow.svg";
 import { Image } from "astro:assets";
-const { frontmatter } = Astro.props;
+
+const { frontmatter, slug } = Astro.props;
 
 const monthYear = new Intl.DateTimeFormat("en-US", {
     month: "long",
@@ -10,9 +11,9 @@ const monthYear = new Intl.DateTimeFormat("en-US", {
 }).format(frontmatter.pubDate);
 ---
 
-<Layout title={frontmatter.title}>
+<Layout title={frontmatter.title} ogImage={`posts/${slug}-og.png`}>
     <section
-        class="container mb-6 max-w-3xl space-y-8 pt-20 [font-variation-settings:'opsz'_12] tracking-tight"
+        class="container mb-6 max-w-3xl space-y-8 pt-20 tracking-tight [font-variation-settings:'opsz'_12]"
     >
         <header class="flex justify-between">
             <div class="flex w-1/2 flex-col">
