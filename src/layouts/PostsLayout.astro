@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import TopRightArrow from "@/assets/top-right-arrow.svg";
 import { Image } from "astro:assets";
+
 const { frontmatter, slug } = Astro.props;
 
 const monthYear = new Intl.DateTimeFormat("en-US", {
