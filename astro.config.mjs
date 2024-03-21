@@ -9,8 +9,5 @@ export default defineConfig({
     image: {
         domains: ["github.com"],
     },
-    site:
-        import.meta.env.MODE === "development"
-            ? "http://localhost:4321"
-            : "https://portfolio-git-og-image-projects-yuri.vercel.app",
+    site: "https://portfolio-git-og-image-projects-yuri.vercel.app",
 });
