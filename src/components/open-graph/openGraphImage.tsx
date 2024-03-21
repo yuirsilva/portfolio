@@ -27,8 +27,9 @@ const openGraphImage: FC<openGraphImageProps> = ({
                     fontFamily: "Helvetica",
                     textTransform: "uppercase",
                     letterSpacing: "-0.05em",
-                    fontSize: "30px",
-                    lineHeight: "36px",
+                    fontSize: "60px",
+                    lineHeight: "1",
+                    textAlign: "center",
                 }}
             >
                 {title}
