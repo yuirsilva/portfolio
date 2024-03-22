@@ -27,7 +27,7 @@ const openGraphImage: FC<openGraphImageProps> = ({
                     fontFamily: "Helvetica",
                     textTransform: "uppercase",
                     letterSpacing: "-0.05em",
-                    fontSize: "72px",
+                    fontSize: "80px",
                     lineHeight: "1",
                     textAlign: "center",
                 }}
@@ -37,9 +37,10 @@ const openGraphImage: FC<openGraphImageProps> = ({
             <p
                 style={{
                     color: "hsl(0 0% 45.1%)",
-                    fontSize: "48px",
+                    fontSize: "56px",
                     lineHeight: "1",
                     letterSpacing: "-0.05em",
+                    textAlign: "center",
                 }}
             >
                 {description}
