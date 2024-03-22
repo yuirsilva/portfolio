@@ -6,7 +6,10 @@ import { posts_index as quotes } from "@/content/quotes";
 const posts = await getCollection("posts");
 ---
 
-<Layout title="Posts — Yuri Silva">
+<Layout
+    title="Posts — Yuri Silva"
+    description="Where I post about projects and everything."
+>
     <section class="container max-w-3xl space-y-3 pt-10">
         <p class="select-none text-muted-foreground">
             {quotes[(quotes.length * Math.random()) | 0]}

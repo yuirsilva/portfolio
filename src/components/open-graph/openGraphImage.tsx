@@ -37,8 +37,9 @@ const openGraphImage: FC<openGraphImageProps> = ({
             <p
                 style={{
                     color: "hsl(0 0% 45.1%)",
-                    fontSize: "36px",
-                    lineHeight: "40px",
+                    fontSize: "48px",
+                    lineHeight: "1",
+                    letterSpacing: "-0.05em",
                 }}
             >
                 {description}
