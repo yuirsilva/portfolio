@@ -9,7 +9,7 @@ export async function SVG(component: JSX.Element) {
         fonts: [
             {
                 name: "Helvetica",
-                data: await fs.readFile("./src/assets/Geist-Regular.otf"),
+                data: await fs.readFile("./src/assets/Helvetica.ttf"),
                 weight: 400,
             },
         ],
