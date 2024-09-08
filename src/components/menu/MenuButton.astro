@@ -4,7 +4,10 @@ import MagneticButton from "@components/nav/MagneticButton.astro";
 ---
 
 <MagneticButton className="h-full">
-    <Button class="menu-button relative h-full w-20 overflow-hidden text-sm">
+    <Button
+        class="menu-button relative h-full w-20 overflow-hidden text-sm"
+        aria-label="Menu"
+    >
         <div class="relative h-full" aria-hidden="true">
             <div class="flex h-full w-full items-center justify-center">
                 <span>[ Menu ]</span>
