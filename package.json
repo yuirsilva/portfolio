@@ -10,27 +10,32 @@
         "astro": "astro"
     },
     "dependencies": {
-        "@astrojs/check": "^0.5.6",
+        "@astrojs/check": "^0.9.3",
         "@astrojs/react": "^3.0.10",
         "@astrojs/tailwind": "^5.1.0",
         "@react-three/drei": "^9.102.3",
-        "@react-three/fiber": "^8.15.19",
+        "@react-three/fiber": "^8.17.6",
         "@types/react": "^18.2.64",
         "@types/react-dom": "^18.2.21",
+        "@types/three": "^0.168.0",
         "astro": "^4.4.15",
         "gsap": "^3.12.5",
+        "howler": "^2.2.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "satori": "^0.10.13",
         "tailwindcss": "^3.4.1",
-        "three": "^0.162.0",
+        "three": "^0.168.0",
         "typescript": "^5.4.2"
     },
     "devDependencies": {
-        "@tailwindcss/typography": "^0.5.10",
-        "@types/node": "^20.11.28",
-        "prettier": "^3.2.5",
-        "prettier-plugin-astro": "^0.13.0",
-        "prettier-plugin-tailwindcss": "^0.5.12"
+        "@total-typescript/ts-reset": "^0.6.0",
+        "@types/howler": "^2.2.11",
+        "@types/node": "^22.5.0",
+        "@typescript-eslint/parser": "^8.3.0",
+        "eslint": "^9.9.1",
+        "eslint-plugin-astro": "^1.2.3",
+        "prettier": "^3.3.3",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-tailwindcss": "^0.6.6"
     }
 }

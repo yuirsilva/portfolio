@@ -1,25 +1,28 @@
 import PortraitMaterial from "@/components/visual/shaders/menu/portraitMaterial";
-import { useAspect } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import {
     Canvas,
     extend,
     useFrame,
-    useLoader,
     useThree,
-    type MaterialNode,
+    type ShaderMaterialProps,
 } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { DoubleSide, TextureLoader } from "three";
 
 extend({ PortraitMaterial });
 
+interface Material extends ShaderMaterialProps {
+    u_resolution?: THREE.Vector4;
+    u_time?: number;
+    u_pointer?: THREE.Vector2;
+
+    u_depthtexture: THREE.Texture;
+}
+
 declare module "@react-three/fiber" {
     interface ThreeElements {
-        portraitMaterial: MaterialNode<
-            THREE.ShaderMaterial,
-            typeof PortraitMaterial
-        >;
+        portraitMaterial: Material;
     }
 }
 
@@ -28,7 +31,12 @@ const Portrait = ({}) => {
         <Canvas
             orthographic
             camera={{
-                zoom: 100,
+                near: -1000,
+                far: 1000,
+                left: -0.5,
+                right: 0.5,
+                top: 0.5,
+                bottom: -0.5,
             }}
         >
             <Experience />
@@ -37,69 +45,56 @@ const Portrait = ({}) => {
 };
 
 const Experience = ({}) => {
-    const planeMat = useRef<THREE.ShaderMaterial>(null!);
-    const image = useLoader(TextureLoader, "/images/input.webp");
-    const normalImage = useLoader(TextureLoader, "/images/normal.jpg");
+    const material = useRef<THREE.ShaderMaterial & Material>(null!);
+    const mesh = useRef<THREE.Mesh>(null);
 
-    const scale = useAspect(image.image.width, image.image.height);
+    const depth = useTexture("/images/input_depth.png");
+
     const { gl } = useThree();
 
     useFrame(({ clock: { elapsedTime }, pointer }) => {
-        // @ts-expect-error one day i'll fix this
-        planeMat.current.uniforms["uTime"].value = elapsedTime;
-        // @ts-expect-error one day i'll fix this
-        planeMat.current.uniforms["uPointer"].value = new THREE.Vector2(
-            THREE.MathUtils.lerp(
-                // @ts-expect-error one day i'll fix this
-                planeMat.current.uniforms["uPointer"].value.x,
-                pointer.x,
-                0.05
-            ),
-            THREE.MathUtils.lerp(
-                // @ts-expect-error one day i'll fix this
-                planeMat.current.uniforms["uPointer"].value.y,
-                pointer.y,
-                0.05
-            )
-        );
+        material.current.u_time = elapsedTime;
+        material.current.u_pointer = pointer;
     });
-    useEffect(() => {
-        if (
-            !planeMat.current.uniforms["uTexture"] ||
-            !planeMat.current.uniforms["uNormalTexture"] ||
-            !planeMat.current.uniforms["uResolution"]
-        )
-            return;
 
+    useEffect(() => {
         const width = gl.domElement.offsetWidth;
         const height = gl.domElement.offsetHeight;
 
-        let imageAspect = image.image.width / image.image.height;
-        let a1, a2;
-        // FIX IMAGE ASPECT RATIO
-        if (imageAspect > width / height) {
-            a1 = imageAspect / (width / height);
-            a2 = 1;
-        } else {
-            a1 = 1;
-            a2 = width / height / imageAspect;
-        }
+        let imageAspect = depth.image.width / depth.image.height;
+        let viewportAspect = width / height;
 
-        planeMat.current.uniforms["uTexture"].value = image;
-        planeMat.current.uniforms["uNormalTexture"].value = normalImage;
-        planeMat.current.uniforms["uResolution"].value = new THREE.Vector4(
+        let scaleX, scaleY;
+        // FIX IMAGE ASPECT RATIO
+        if (imageAspect > viewportAspect) {
+            scaleX = imageAspect / viewportAspect;
+            scaleY = 1;
+        } else {
+            scaleX = 1;
+            scaleY = viewportAspect / imageAspect;
+        }
+        material.current.u_resolution = new THREE.Vector4(
             width,
             height,
-            a1,
-            a2
+            scaleX,
+            scaleY
         );
-    }, [image]);
+
+        if (mesh.current) mesh.current.scale.set(scaleX, scaleY, 1);
+    }, [depth]);
 
     return (
-        <mesh scale={scale}>
-            <planeGeometry args={[1, 1, 1, 1]} />
-            <portraitMaterial ref={planeMat} side={DoubleSide} />
-        </mesh>
+        <>
+            <mesh ref={mesh}>
+                <planeGeometry args={[1, 1]} />
+                <portraitMaterial
+                    ref={material}
+                    key={PortraitMaterial.key}
+                    side={THREE.DoubleSide}
+                    u_depthtexture={depth}
+                />
+            </mesh>
+        </>
     );
 };
 

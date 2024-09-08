@@ -1,118 +1,155 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import technologies from "@/content/technologies-about-me";
-import Visage from "@/assets/visage.jpg";
 import { Picture } from "astro:assets";
-import Marquee from "@components/visual/Marquee.astro";
+
 import { email } from "@/content/social-links";
-import ScrambleText from "@components/visual/ScrambleText.astro";
-import FlowerPortrait from "@components/about/Flower";
+import visage from "@/assets/visage.webp";
+import { technologies, body } from "@/content/about-me";
+
+import Graphics from "@components/Graphics";
+import Layout from "@/layouts/Layout.astro";
+import Marquee from "@components/visual/Marquee.astro";
 ---
 
 <Layout
     title="About — Yuri Silva"
     description="If you can do it today don't wait until tomorrow."
 >
-    <section class="flex flex-col gap-20 lg:gap-40">
-        <section
-            class="container relative grid h-[70dvh] place-content-center text-center uppercase"
-        >
-            <div
-                class="absolute left-1/2 top-1/2 -z-10 aspect-square w-3/5 max-w-md -translate-x-1/2 -translate-y-1/2"
-            >
-                <FlowerPortrait client:only="react" />
+    <section
+        class="container flex max-w-xl flex-col gap-20 px-5 pb-6 pt-32 text-brand-black"
+    >
+        <!-- top -->
+        <section class="flex flex-col items-center gap-12 overflow-hidden">
+            <div class="w-fit border border-brand-black px-1.5 py-1 uppercase">
+                <p class="-mb-[3px]">please, create something</p>
             </div>
-            <h1 class="text-center text-5xl md:text-9xl">Yuri Silva</h1>
-            <p>
-                <span class="italic">(</span>Creative Developer<span
-                    class="italic">)</span
+            <div class="relative h-16">
+                <h1
+                    class="flex flex-col text-5xl tracking-tighter *:leading-[8px]"
+                    id="about-h1"
                 >
-            </p>
+                    <span>YURI SILVA</span>
+                    <span>is</span>
+                    <span>a</span>
+                    <span>creative</span>
+                    <span>developer</span>
+                </h1>
+            </div>
+            <Marquee className="bg-brand-secondary uppercase text-brand-black">
+                <li class="pt-[3px]">{"// please, create something"}</li>
+                <li class="pt-[3px]">{"// please, create something"}</li>
+            </Marquee>
         </section>
-        <section class="container space-y-5 *:text-justify">
-            <p
-                class="text-balance text-2xl leading-tight before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(about_me)'] md:text-5xl md:leading-tight md:before:mr-6"
-            >
-                I'm <span class="text-primary">creative developer</span> based in
-                Brazil, dedicated to creating seamless and interactive web experiences
-                that resonate with users. Focusing on the visual and interactive
-                elements that make a website truly engaging.
-            </p>
-            <p
-                class="text-balance text-2xl leading-tight before:mr-3 before:text-base before:italic before:text-muted-foreground before:content-['(where_are_your_projects?)'] md:text-5xl md:leading-tight md:before:mr-6"
-            >
-                This portfolio is basically my creative playground. I'll be
-                tossing in updates whenever I dive into new projects throughout
-                the year. Stay tuned for the cool stuff I'll be building!
-            </p>
+        <!--  -->
+        <section class="space-y-5 [&_p]:text-pretty">
+            <p>{body[0]}</p>
+            <p>{body[1]}</p>
+            <p>{body[2]}</p>
         </section>
-        <section class="container space-y-5 text-base uppercase sm:text-2xl">
-            <p>
-                <span class="italic">(</span>Technologies in my arsenal<span
-                    class="italic">)</span
-                >
-            </p>
+        <section class="space-y-5 text-base">
+            <p class="uppercase">[Technologies in My Arsenal]</p>
             <ul>
                 {
                     technologies.map((line) => (
-                        <li class="flex flex-wrap gap-4 border-b border-muted-foreground py-2.5 first:border-t">
-                            {line.map((tech) => (
-                                <p>{tech}</p>
-                            ))}
+                        <li class="flex flex-wrap gap-4 border-b border-brand-neutral-200 py-2.5 first:border-t">
+                            <p>{line}</p>
                         </li>
                     ))
                 }
             </ul>
         </section>
-        <section class="container flex flex-col gap-5 uppercase">
-            <h1
-                class="text-justify text-base before:mr-3 before:text-base before:lowercase before:italic before:text-muted-foreground before:content-['(facts?)'] sm:text-2xl md:before:mr-6"
-            >
+        <section class="flex flex-col gap-5">
+            <h2 class="text-justify text-base">
                 I like to play CS2 in my free time, make music sometimes, read
                 blog posts
-            </h1>
+            </h2>
             <div
-                class="group relative h-[clamp(144px,12vh,224px)] w-full overflow-hidden saturate-[0.25]"
+                class="about-image relative h-[clamp(144px,12vh,224px)] w-full overflow-hidden saturate-[0.25]"
             >
-                <div
-                    class="absolute inset-0 z-40 grid place-content-center bg-background/50 opacity-0 transition-opacity group-hover:opacity-100"
-                >
-                    (Visage)
-                </div>
                 <Picture
-                    src={Visage}
+                    src={visage}
                     formats={["webp", "jpg"]}
                     alt="A screenshot from the game Visage"
-                    class="h-full object-none object-center"
+                    class="about-main-image h-full object-none object-center"
                 />
+                {
+                    [...Array(4)].map((_, i) => (
+                        <Picture
+                            style={{ zIndex: i }}
+                            src={visage}
+                            formats={["webp", "jpg"]}
+                            alt="A screenshot from the game Visage"
+                            class="pointer-events-none absolute inset-0 size-full select-none object-none object-center"
+                        />
+                    ))
+                }
             </div>
         </section>
-        <section class="container relative w-full">
-            <div
-                class="flex w-full overflow-hidden border-y border-muted-foreground bg-background py-2.5 text-base uppercase md:text-2xl"
-            >
-                <Marquee quantity={6}>
-                    <p class="ml-5">Let's work together</p>
-                    <p>Hit me up</p>
+        <footer class="flex flex-col items-center gap-4">
+            <div class="flex">
+                <Graphics.ce />
+                <Graphics.recycle />
+                <Graphics.rain />
+            </div>
+            <div class="flex flex-col items-center gap-3 uppercase">
+                <Graphics.todaynottomorrow />
+                <div class="text-center">
+                    <p>Today, not tomorrow</p>
+                    <p>São Paulo, Brazil</p>
                     <a
                         href={email}
-                        class="text-primary underline underline-offset-2"
+                        class="lowercase underline underline-offset-2"
+                        >yuxipersonal@gmail.com</a
                     >
-                        yuxipersonal@gmail.com</a
-                    >
-                </Marquee>
+                </div>
             </div>
-        </section>
-        <footer
-            class="container mb-6 flex flex-col items-center gap-2 text-sm uppercase sm:text-base md:flex-row md:justify-between"
-        >
-            <p>Yuri Candido da Silva—{new Date().getFullYear()}</p>
-            <a href={email} class="lowercase underline underline-offset-2"
-                >yuxipersonal@gmail.com</a
-            >
-            <ScrambleText className="text-end md:w-48"
-                ><p>No days off</p></ScrambleText
-            >
         </footer>
     </section>
 </Layout>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    gsap.set("#about-h1 span", {
+        color: "var(--neutral-200)",
+    });
+
+    let tl = gsap.timeline({
+        repeat: -1,
+        onRepeat: () => {
+            gsap.set("#about-h1 span", { clearProps: "all" });
+        },
+    });
+    tl.to("#about-h1 span", {
+        keyframes: {
+            color: ["var(--black)", "var(--neutral-200)"],
+        },
+        ease: "steps(1)",
+        stagger: 1,
+        duration: 2,
+    }).set(
+        "#about-h1 span",
+        {
+            zIndex: 90,
+            stagger: 1,
+            duration: 2,
+        },
+        "<"
+    );
+
+    gsap.set(".about-image picture:not(:first-child) img", {
+        xPercent: 100,
+        objectPosition: "80% 50%",
+    });
+    const img_anim = gsap.to(".about-image picture:not(:first-child) img", {
+        objectPosition: "50% 50%",
+        xPercent: 0,
+        stagger: 0.14,
+        paused: true,
+    });
+
+    let main_image = document.querySelector(
+        ".about-main-image"
+    ) as HTMLPictureElement;
+    main_image.addEventListener("pointerenter", () => img_anim.play());
+    main_image.addEventListener("pointerleave", () => img_anim.reverse());
+</script>

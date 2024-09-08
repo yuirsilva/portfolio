@@ -1,0 +1,24 @@
+<p id="menu-clock">
+    {
+        new Date().toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+        })
+    }
+</p>
+
+<script>
+    const clock = document.getElementById("menu-clock") as HTMLDivElement;
+
+    let date = new Date();
+
+    function refreshClock() {
+        date = new Date();
+        clock.innerText = date.toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+        });
+    }
+
+    setInterval(refreshClock, 1000);
+</script>

@@ -12,8 +12,4 @@ export const MenuLinks: Links = [
         title: "About",
         href: "/about",
     },
-    {
-        title: "Posts",
-        href: "/posts",
-    },
 ];

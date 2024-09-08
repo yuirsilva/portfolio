@@ -1,6 +1,5 @@
 ---
 import Header from "@components/nav/Header.astro";
-import Footer from "@components/nav/Footer.astro";
 import Favicon from "@components/visual/Favicon.astro";
 import PageTransition from "@components/visual/PageTransition.astro";
 import Head from "@components/Head.astro";
@@ -16,114 +15,89 @@ const {
     description = "Creative Developer.",
     ogImage = "/default-opengraph.png",
 } = Astro.props;
-
-const postsRegex = /posts\/./g;
 ---
 
 <!doctype html>
 <html lang="en">
     <Head title={title} description={description} ogImage={ogImage} />
+
     <body
-        class="flex min-h-screen flex-col font-sans tracking-tighter antialiased"
+        class="flex min-h-screen flex-col overflow-x-hidden font-mono text-base tracking-[-0.4px] antialiased"
     >
         <Favicon />
-        {postsRegex.test(Astro.url.pathname) ? null : <Header />}
+        <Header />
+
         <main class="relative flex flex-1 flex-col">
             <slot />
         </main>
-        <Footer />
+
         <PageTransition />
+
         <style is:global>
             @tailwind base;
             @tailwind components;
             @tailwind utilities;
 
             @font-face {
-                font-family: "Helvetica";
-                src: url("/fonts/HelveticaNowVar.woff2") format("woff2");
+                font-family: "Supply Mono";
+                src: url("/fonts/PPSupplyMono-Regular.woff2") format("woff2");
                 font-display: swap;
             }
-            ::-webkit-scrollbar {
-                width: 12px;
-            }
 
-            ::-webkit-scrollbar-thumb {
-                border: 4px solid rgb(0, 0, 0, 0);
-                background-clip: padding-box;
-                border-radius: 9999px;
-                background-color: #242424;
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            body {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
             }
 
             @layer base {
                 :root {
-                    --background: 0 0% 100%;
-                    --foreground: 0 0% 3.9%;
+                    /* DEFAULT theme */
+                    --white: theme("colors.white");
+                    --black: theme("colors.black");
+                    --neutral-100: theme("colors.neutral.100");
+                    --neutral-200: theme("colors.neutral.200");
 
-                    --card: 0 0% 100%;
-                    --card-foreground: 0 0% 3.9%;
-
-                    --popover: 0 0% 100%;
-                    --popover-foreground: 0 0% 3.9%;
-
-                    --primary: 221 83% 53%;
-                    --primary-foreground: 0 0% 98%;
-
-                    --secondary: 0 0% 96.1%;
-                    --secondary-foreground: 0 0% 9%;
-
-                    --muted: 0 0% 96.1%;
-                    --muted-foreground: 0 0% 45.1%;
-
-                    --accent: 0 0% 96.1%;
-                    --accent-foreground: 0 0% 9%;
-
-                    --destructive: 0 84.2% 60.2%;
-                    --destructive-foreground: 0 0% 98%;
-
-                    --border: 0 0% 89.8%;
-                    --input: 0 0% 89.8%;
-                    --ring: 0 0% 3.9%;
-
-                    --radius: 0.5rem;
+                    --primary: #2563ea;
+                    --secondary: #d7e5ff;
                 }
 
-                .dark {
-                    --background: 0 0% 3.9%;
-                    --foreground: 0 0% 98%;
+                [data-theme="neutro"] {
+                    --white: theme("colors.stone.100");
+                    --black: theme("colors.stone.700");
+                    --neutral-100: theme("colors.stone.100");
+                    --neutral-200: theme("colors.stone.200");
 
-                    --card: 0 0% 3.9%;
-                    --card-foreground: 0 0% 98%;
+                    --primary: #747169;
+                    --secondary: theme("colors.stone.200");
+                }
 
-                    --popover: 0 0% 3.9%;
-                    --popover-foreground: 0 0% 98%;
+                [data-theme="red"] {
+                    --white: #f00901;
+                    --black: theme("colors.black");
+                    --neutral-100: #ff554f;
+                    --neutral-200: #ff5f59;
 
-                    --primary: 221 83% 53%;
-                    --primary-foreground: 0 0% 9%;
+                    --primary: theme("colors.black");
+                    --secondary: theme("colors.red.400");
+                }
 
-                    --secondary: 0 0% 14.9%;
-                    --secondary-foreground: 0 0% 98%;
+                [data-theme="periwinkle"] {
+                    --white: #7287c0;
+                    --black: theme("colors.black");
+                    --neutral-100: theme("colors.black");
+                    --neutral-200: #8496c8;
 
-                    --muted: 0 0% 14.9%;
-                    --muted-foreground: 0 0% 63.9%;
-
-                    --accent: 0 0% 14.9%;
-                    --accent-foreground: 0 0% 98%;
-
-                    --destructive: 0 62.8% 30.6%;
-                    --destructive-foreground: 0 0% 98%;
-
-                    --border: 0 0% 14.9%;
-                    --input: 0 0% 14.9%;
-                    --ring: 0 0% 83.1%;
+                    --primary: theme("colors.black");
+                    --secondary: #b8c3df;
                 }
             }
 
             @layer base {
-                * {
-                    @apply border-border;
-                }
                 body {
-                    @apply bg-background text-foreground;
+                    @apply bg-brand-white text-brand-black;
                     font-feature-settings:
                         "rlig" 1,
                         "calt" 1;

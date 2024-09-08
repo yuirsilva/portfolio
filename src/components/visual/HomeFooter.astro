@@ -1,0 +1,153 @@
+---
+import Graphics from "@components/Graphics";
+---
+
+<footer
+    class="absolute bottom-0 flex w-full items-end justify-between gap-4 p-5 uppercase motion-reduce:justify-end"
+>
+    <div
+        class="footer-sequence text-sm text-brand-black motion-reduce:hidden sm:text-base"
+    >
+        <!-- first -->
+        <div class="footer-first w-24">
+            <p>Today</p>
+            <p class="text-center">Not</p>
+            <p class="text-end">Tomorrow</p>
+        </div>
+
+        <!-- second -->
+        <div class="footer-second">
+            <p>(...)</p>
+        </div>
+
+        <!-- third -->
+        <div class="footer-third flex flex-col [&_p]:leading-none">
+            <p>Just do it</p>
+            <p>Just do it</p>
+            <p>Just do it</p>
+        </div>
+
+        <!-- fourth -->
+        <div class="footer-fourth lowercase">
+            <p>—|—\—†þ⁄(:wq)|+]-0</p>
+        </div>
+
+        <!-- fifth -->
+        <div class="footer-fifth flex">
+            <Graphics.rain />
+            <Graphics.ce />
+            <Graphics.recycle />
+            <Graphics.cup />
+        </div>
+
+        <!-- sixth -->
+        <div
+            class="footer-sixth flex items-center gap-3 border border-brand-black bg-brand-white px-2 py-1.5"
+        >
+            <p>Create something new</p><p>(!!)</p>
+        </div>
+    </div>
+
+    <div
+        class="flex items-center gap-1.5 max-[300px]:hidden [&_*]:inline-block"
+    >
+        <p class="footer-detail">[!!\]</p>
+        <Graphics.homeFooter />
+    </div>
+</footer>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    gsap.to(".footer-detail", {
+        text: "[¡¡/]",
+        repeat: -1,
+        ease: "none",
+        duration: 2,
+    });
+
+    gsap.set(".footer-sequence > div", {
+        autoAlpha: 0,
+        display: "none",
+    });
+
+    let tl = gsap.timeline({
+        paused: true,
+        repeat: -1,
+    });
+
+    tl.set(".footer-first", { autoAlpha: 1, display: "initial" });
+
+    tl.to(".footer-first p", {
+        autoAlpha: 0,
+        stagger: {
+            amount: 0.8,
+            repeat: 6,
+            repeatDelay: 1,
+            yoyo: true,
+        },
+        ease: "steps(2)",
+    });
+
+    tl.set(".footer-second", { autoAlpha: 1, display: "initial" });
+    tl.set(".footer-first", { autoAlpha: 0, display: "none" }, "<");
+
+    tl.to(".footer-second p", {
+        scrambleText: { text: "when?", chars: "01" },
+        repeat: 6,
+        repeatDelay: 1,
+        duration: 1,
+        yoyo: true,
+        ease: "steps(4)",
+    });
+
+    tl.set(".footer-third", { autoAlpha: 1, display: "flex" });
+    tl.set(".footer-second", { autoAlpha: 0, display: "none" }, "<");
+
+    tl.to(".footer-third p", {
+        autoAlpha: 0,
+        stagger: 0.1,
+        yoyo: true,
+        ease: "steps(2)",
+        repeat: 6,
+        repeatDelay: 1,
+    });
+
+    tl.set(".footer-fourth", { autoAlpha: 1, display: "initial" });
+    tl.set(".footer-third", { autoAlpha: 0, display: "none" }, "<");
+
+    tl.to(".footer-fourth p", {
+        text: { value: "|—|/|†þ⁄):wq(-|[|1", type: "diff" },
+        repeat: 6,
+        repeatDelay: 1,
+        yoyo: true,
+        ease: "steps(8)",
+    });
+
+    tl.set(".footer-fifth", { autoAlpha: 1, display: "flex" });
+    tl.set(".footer-fourth", { autoAlpha: 0, display: "none" }, "<");
+
+    tl.to(".footer-fifth svg", {
+        keyframes: {
+            autoAlpha: [1, 0, 1, 0, 1],
+        },
+        repeat: 6,
+        repeatDelay: 1,
+        ease: "steps(8)",
+        duration: 1,
+    });
+
+    tl.set(".footer-sixth", { autoAlpha: 1, display: "flex" });
+    tl.set(".footer-fifth", { autoAlpha: 0, display: "none" }, "<");
+
+    tl.to(".footer-sixth p:nth-child(2)", {
+        keyframes: {
+            autoAlpha: [1, 0, 1, 0, 1],
+        },
+        repeat: 6,
+        repeatDelay: 1,
+        ease: "steps(4)",
+    });
+
+    tl.play();
+</script>

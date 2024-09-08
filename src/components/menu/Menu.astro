@@ -1,108 +1,79 @@
 ---
 import { github, linkedin } from "@/content/social-links";
-import MenuBackground from "@components/menu/Background.astro";
 import ScrollText from "@components/visual/ScrollText.astro";
-import TopRightArrow from "@/assets/top-right-arrow.svg";
-import { Image } from "astro:assets";
-import { MARQUEE } from "@components/visual/Marquee.astro";
 import { MenuLinks } from "@/content/menu-links";
 import Portrait from "@components/menu/Portrait";
-
-const year = new Date().getFullYear();
+import ThemeToggle from "@components/ThemeToggle.astro";
+import Clock from "@components/menu/Clock.astro";
+import Link from "@components/nav/Link.astro";
+import Button from "@components/nav/Button.astro";
 ---
 
-<nav
-    class="menu-back pointer-events-none invisible fixed inset-0 w-full select-none bg-foreground/0"
+<div
+    class="menu-main fixed z-10 flex flex-col justify-between border border-brand-black bg-brand-white text-sm uppercase max-[384px]:w-[calc(100%_-_40px)] min-[385px]:w-60"
 >
-    <div class="relative">
-        <div
-            class="menu-main relative z-10 flex flex-col justify-between gap-9 bg-background px-8 pb-12 shadow-md sm:flex-row"
-        >
-            <div class="flex items-center gap-8">
-                <div
-                    class="menu-portrait hidden h-full max-h-44 w-full max-w-xs overflow-hidden rounded xl:inline-block 2xl:max-w-md"
-                >
-                    <Portrait client:idle />
-                </div>
-                <div>
-                    <div class="uppercase">
-                        <span class="text-muted-foreground">Info</span>
-                        <p>Front-end / Creative</p>
-                        <p>Full-time / Freelance (available)</p>
-                        <p>São Paulo, Brazil</p>
-                        <p>18Y</p>
-                    </div>
-                </div>
-            </div>
-            <nav
-                class="flex max-w-44 flex-wrap items-center gap-4 sm:max-w-full sm:justify-end md:gap-8"
-            >
-                {
-                    MenuLinks.map((link) => (
-                        <div class="menu-nav-item overflow-hidden">
-                            <a
-                                href={link.href}
-                                class="inline-block text-5xl font-medium uppercase text-muted-foreground transition-colors hover:text-primary 2xl:text-6xl"
-                            >
-                                {link.title}
-                            </a>
-                        </div>
-                    ))
-                }
-            </nav>
-        </div>
-        <footer
-            class="menu-more absolute inset-0 -bottom-16 flex items-end justify-between overflow-hidden bg-background px-8 pb-8 uppercase"
-        >
-            <MenuBackground />
-            <div class="group flex select-none">
-                <ScrollText className="hidden sm:max-lg:max-w-72 lg:block">
-                    {MARQUEE}
-                </ScrollText>
-                &nbsp;
-                <ScrollText>
-                    &copy; {year}
-                </ScrollText>
-            </div>
-            <div class="flex gap-4">
-                <a href={github} class="group flex items-center gap-2"
-                    >GitHub
-                    <ScrollText
-                        initial="top-full right-full"
-                        className="hidden sm:inline-flex"
-                    >
-                        <Image
-                            src={TopRightArrow}
-                            alt="Arrow pointing up"
-                            class="size-4"
-                        />
-                    </ScrollText>
-                </a>
-                <a href={linkedin} class="group flex items-center gap-2"
-                    >LinkedIn
-                    <ScrollText
-                        initial="top-full right-full"
-                        className="hidden sm:inline-flex"
-                    >
-                        <Image
-                            src={TopRightArrow}
-                            alt="Arrow pointing up"
-                            class="size-4"
-                        />
-                    </ScrollText>
-                </a>
-            </div>
-        </footer>
+    <div class="w-full p-2 text-center">
+        <p>// menu</p>
     </div>
-</nav>
+    <nav
+        class="flex flex-col items-center gap-4 border-y border-brand-black py-4"
+    >
+        {
+            MenuLinks.map((link) => (
+                <div class="menu-nav-item overflow-hidden">
+                    <Link href={link.href} class="group leading-none">
+                        <ScrollText initial="top-full right-full">
+                            {link.title}
+                        </ScrollText>
+                    </Link>
+                </div>
+            ))
+        }
+    </nav>
+    <div class="menu-portrait h-20 border-b border-brand-black">
+        <Portrait client:idle />
+    </div>
+    <div class="flex w-full justify-center gap-4 py-3">
+        <Link href={github} target="_blank" class="group">
+            <ScrollText>GitHub [↗]</ScrollText>
+        </Link>
+        <Link href={linkedin} target="_blank" class="group">
+            <ScrollText>LinkedIn [↗]</ScrollText>
+        </Link>
+    </div>
+    <div class="flex w-full justify-center gap-4 py-3">
+        <ThemeToggle />
+        <Button id="menu-music-switch">[ sound off ]</Button>
+    </div>
+    <div
+        class="flex w-full justify-between border-t border-brand-black px-3 py-2 [&_p]:tracking-tighter"
+    >
+        <Clock />
+        <p>São Paulo, Brazil</p>
+    </div>
+</div>
 
 <script>
-    const headerHeight = document
-        .getElementsByClassName("header")[0]
-        ?.getBoundingClientRect().height;
+    import { sound, FADE_DURATION, VOLUME } from "@/lib/howler";
 
-    const menuMain = document.getElementsByClassName(
-        "menu-main"
-    )[0] as HTMLDivElement;
-    menuMain.style.paddingTop = `${(headerHeight ? headerHeight : 0) + 32}px`;
+    const menuMusicBtn = document.getElementById(
+        "menu-music-switch"
+    ) as HTMLButtonElement;
+
+    menuMusicBtn.addEventListener("click", () => {
+        if (sound.playing()) {
+            menuMusicBtn.innerText = "[ sound off ]";
+
+            sound.fade(sound.volume(), 0, FADE_DURATION);
+
+            setTimeout(() => {
+                sound.pause();
+            }, FADE_DURATION);
+        } else {
+            menuMusicBtn.innerText = "[ sound on ]";
+
+            sound.play();
+            sound.fade(0, VOLUME, FADE_DURATION);
+        }
+    });
 </script>
