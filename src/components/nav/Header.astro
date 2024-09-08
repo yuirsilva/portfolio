@@ -1,17 +1,16 @@
 ---
-import { Image } from "astro:assets";
-import Logo from "../../assets/logo.svg";
 import MagneticButton from "@components/nav/MagneticButton.astro";
 import Menu from "@components/menu/Menu.astro";
 import MenuButton from "@components/menu/MenuButton.astro";
+import Graphics from "@components/Graphics";
 ---
 
 <header
-    class="header sticky top-0 z-10 flex w-full items-center justify-between px-8 pt-8"
+    class="header sticky top-0 z-[99] flex w-full items-center justify-between overflow-hidden px-5 pt-5"
 >
     <MagneticButton className="z-10">
-        <a href="/">
-            <Image src={Logo} alt="Yuri's personal logo" loading="eager" />
+        <a href="/" aria-label="Go to homepage">
+            <Graphics.logo />
         </a>
     </MagneticButton>
     <nav class="z-10">

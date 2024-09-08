@@ -1,22 +1,21 @@
 ---
-export const MARQUEE =
-    "A developer who can only write code in the form of haiku poems";
-
 interface Props {
-    quantity?: number;
-    fast?: boolean;
     className?: string;
 }
 
-const { quantity = 2, fast, className } = Astro.props;
+const { className } = Astro.props;
 ---
 
-{
-    [...Array(quantity)].map(() => (
-        <div class={`${fast ? "animate-slider-6" : "animate-slider"}`}>
-            <span class={`flex w-max gap-5${className ? " " + className : ""}`}>
-                {<slot /> ?? MARQUEE}
-            </span>
-        </div>
-    ))
-}
+<div class={"flex select-none gap-4 overflow-hidden " + className}>
+    <ul
+        class="flex min-w-full shrink-0 animate-slider justify-around gap-4 motion-reduce:animate-[slider_24s_linear_infinite]"
+    >
+        <slot />
+    </ul>
+    <ul
+        class="flex min-w-full shrink-0 animate-slider justify-around gap-4 motion-reduce:animate-[slider_24s_linear_infinite]"
+        aria-hidden="true"
+    >
+        <slot />
+    </ul>
+</div>

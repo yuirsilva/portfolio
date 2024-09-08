@@ -1,8 +1,9 @@
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrambleTextPlugin } from "@/lib/gsap/ScrambleTextPlugin";
+import TextPlugin from "gsap/TextPlugin";
 
-gsap.registerPlugin(CustomEase, ScrambleTextPlugin);
+gsap.registerPlugin(CustomEase, ScrambleTextPlugin, TextPlugin);
 
 const DURATION = 0.75;
 const EASE_1 = CustomEase.create("ease_1", "0.8, 0, 0.1, 1");

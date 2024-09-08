@@ -1,10 +1,11 @@
 <div
-    class="page-transition fixed inset-0 z-[999] grid place-content-center bg-foreground"
+    class="page-transition fixed inset-0 z-[999] grid place-content-center bg-brand-black"
 >
 </div>
 
 <script>
     import { gsap } from "@/lib/gsap";
+    import { FADE_DURATION, sound } from "@/lib/howler";
 
     gsap.to(".page-transition", {
         yPercent: -100,
@@ -30,7 +31,10 @@
                     anchor.href.indexOf("mailto") === -1
                 ) {
                     e.preventDefault();
+                    sound.fade(sound.volume(), 0, FADE_DURATION);
+
                     const destination = anchor.href;
+
                     gsap.set(".page-transition", {
                         yPercent: 100,
                     });

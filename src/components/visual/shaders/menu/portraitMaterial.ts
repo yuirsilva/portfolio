@@ -1,53 +1,55 @@
 import { shaderMaterial } from "@react-three/drei";
-import { Vector2, Vector4 } from "three";
+import { Vector4 } from "three";
 
 const PortraitMaterial = shaderMaterial(
     {
-        uTime: 0,
-        uTexture: null,
-        uNormalTexture: null,
-        uPointer: new Vector2(0, 0),
-        uResolution: new Vector4(0, 0, 0, 0),
+        u_time: 0,
+        u_resolution: new Vector4(0, 0, 0, 0),
+        u_depthtexture: null,
     },
     // vertex shader
     /*glsl*/ `
-  precision mediump float;
-  varying vec2 vUv;
+	precision mediump float;
 
-  void main() {
-    vUv = uv;
+	varying vec2 v_uv;
 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.);
-  }`,
+	void main() {
+		v_uv = uv;
+		vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+
+		gl_Position = projectionMatrix * viewMatrix * modelPosition;
+	}`,
+
     // fragment shader
     /*glsl*/ `
-  precision mediump float;
+	precision mediump float; 
 
-  uniform sampler2D uTexture;
-  uniform sampler2D uNormalTexture;
-  uniform vec2 uPointer;
-  uniform vec4 uResolution;
+	// depth texture
+	uniform sampler2D u_depthtexture;
 
-  varying vec2 vUv;
+	// COMMON
+	uniform vec4 u_resolution;
+	uniform float u_time;
 
-  void main() {
-    vec2 newUV = (vUv - vec2(0.5)) * uResolution.zw + vec2(0.5);
+	varying vec2 v_uv;
 
-    vec3 ambientColor = vec3(0.1, 0.1, 0.1); // Ambient light color
+	void main() {
+		vec3 color = vec3(1.);
+		vec2 uv = v_uv;
 
-    vec3 normal = normalize(texture2D(uNormalTexture, vec2(vUv.x, vUv.y+0.1)).xyz * 2. - 1.);
-    vec3 diffuse = texture2D(uTexture, vec2(vUv.x, vUv.y+0.1)).xyz;
+		float t = u_time*0.4;
 
-    vec3 lightDirection = normalize(vec3(1.0, 1.0, 2.0));
-    lightDirection.x = uPointer.x;
-    lightDirection.y = uPointer.y;
+		uv.y += 0.06;
 
-    float diffuseIntensity = max(dot(normal, lightDirection), 0.6);
+		// depth
+		vec3 depth = texture2D(u_depthtexture, uv).xyz;
+		float d = abs(depth.r);
 
-    vec3 finalColor = ambientColor + diffuse * diffuseIntensity;
+		color = vec3(smoothstep(0.0, 0.4, fract(clamp(d, 0.2, 1.) -t)) * smoothstep(0.6, 0.5, fract(clamp(d, 0.2, 1.) -t)));
+		color *= vec3(0.843, 0.898, 1.);
 
-    gl_FragColor = vec4(finalColor, 1.);
-  }`
+		gl_FragColor = vec4(color, 1.);
+	}`
 );
 
 export default PortraitMaterial;

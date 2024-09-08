@@ -1,0 +1,40 @@
+---
+import Button from "@components/nav/Button.astro";
+---
+
+<Button id="theme-toggle" aria-label="Change the website's theme"
+    >[Theme]</Button
+>
+
+<script>
+    const THEMES = ["default", "neutro", "red", "periwinkle"];
+
+    type Theme = (typeof THEMES)[number];
+
+    const themeToggle = document.getElementById("theme-toggle");
+
+    const getTheme = () => {
+        if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+        ) {
+            return localStorage.getItem("theme");
+        }
+        return "default";
+    };
+
+    const setTheme = (theme: Theme) => {
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+    };
+
+    // Set initial theme
+    let currentThemeIndex = THEMES.findIndex((theme) => theme === getTheme());
+
+    setTheme(THEMES[currentThemeIndex] ?? "default");
+
+    themeToggle?.addEventListener("click", () => {
+        currentThemeIndex = (currentThemeIndex + 1) % THEMES.length;
+        setTheme(THEMES[currentThemeIndex] ?? "default");
+    });
+</script>

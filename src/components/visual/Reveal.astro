@@ -1,59 +1,100 @@
+---
+import Button from "@components/nav/Button.astro";
+---
+
 <div
-    class="reveal invisible fixed inset-0 z-[999] grid select-none place-content-center overflow-hidden bg-foreground text-center uppercase text-background [&_p]:opacity-0"
+    class="reveal fixed inset-0 z-[999] grid size-full place-content-center bg-black uppercase text-white"
 >
-    <div class="relative overflow-hidden">
-        <p class="gsap-text">Today</p>
-        <p class="gsap-text z-20 bg-foreground">Not</p>
-        <p class="gsap-text">Tomorrow</p>
+    <div class="relative overflow-hidden text-center [&>div]:overflow-hidden">
+        <div>
+            <p class="reveal-text">[ Today ]</p>
+        </div>
+        <div>
+            <p class="reveal-text">Not</p>
+        </div>
+        <div>
+            <p class="reveal-text">Tomorrow</p>
+        </div>
+        <div>
+            <p class="reveal-description">Yuri / 2024 / developer</p>
+        </div>
+        <Button id="reveal-button" class="pointer-events-none opacity-0">
+            <span class="animate-pulse">[</span>
+            enter
+            <span class="animate-pulse">]</span>
+        </Button>
     </div>
+    <p
+        class="reveal-bottom absolute bottom-5 left-1/2 -translate-x-1/2 select-none text-center text-neutral-400 opacity-0"
+    >
+        You've got something they don't
+    </p>
 </div>
 
 <script>
     import { gsap } from "@/lib/gsap";
+    import { sound } from "@/lib/howler";
+    import { CONSOLE_TEXT } from "@/content/quotes";
 
-    const reveal = document.querySelector("div.reveal");
+    console.log(CONSOLE_TEXT);
 
-    const timeline = gsap.timeline({
-        paused: true,
-        onComplete: () => {
-            if (reveal) reveal.remove();
-        },
+    const reveal_btn = document.getElementById("reveal-button");
+
+    gsap.set([".reveal-text", ".reveal-description"], {
+        yPercent: 100,
     });
-    timeline
-        .to(".gsap-text", {
-            opacity: 1,
-            stagger: 0.3,
-            scrambleText: { chars: "lowerCase", text: "{no days off}" },
-            duration: 0,
-        })
-        .to(".gsap-text", {
-            scrambleText: { text: "Today, not tomorrow" },
-            duration: 1,
-        })
-        .to(".gsap-text:first-child", {
-            yPercent: 100,
-            opacity: 0,
-        })
-        .to(
-            ".gsap-text:last-child",
-            {
-                yPercent: -100,
-                opacity: 0,
-            },
-            "<"
-        )
-        .to(".gsap-text", { yPercent: -200 })
-        .to(
-            ".reveal",
-            { yPercent: -100, duration: 1, ease: "ease_1" },
-            ">-0.5"
-        );
 
-    const currentHostname = location.host;
-    if (currentHostname !== document.referrer.split("/")[2]) {
-        gsap.set(".reveal", {
+    const tl = gsap.timeline({
+        paused: true,
+    });
+
+    tl.to(".reveal-text", {
+        yPercent: 0,
+        ease: "ease_1",
+        stagger: 0.08,
+    });
+
+    tl.to(".reveal-text", {
+        yPercent: -100,
+        ease: "ease_1",
+        stagger: 0.08,
+        delay: 0.4,
+    });
+
+    tl.to(".reveal-description", {
+        yPercent: 0,
+        ease: "ease_1",
+    });
+
+    tl.to(".reveal-bottom", {
+        autoAlpha: 1,
+        ease: "steps(4)",
+    });
+
+    tl.to(
+        "#reveal-button",
+        {
             autoAlpha: 1,
+            pointerEvents: "initial",
+            ease: "steps(4)",
+        },
+        "<"
+    );
+
+    const menuMusicBtn = document.getElementById(
+        "menu-music-switch"
+    ) as HTMLButtonElement;
+
+    reveal_btn?.addEventListener("click", () => {
+        menuMusicBtn.innerText = "[ sound on ]";
+
+        gsap.to(".reveal", {
+            autoAlpha: 0,
+            ease: "ease_1",
         });
-        timeline.play();
-    }
+
+        if (!sound.playing()) sound.play();
+    });
+
+    tl.play();
 </script>

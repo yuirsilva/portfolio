@@ -17,3 +17,12 @@ export const posts_index = new Array<string>(
     "A calming, muted color palette.",
     "You close your eyes and take a deep breath, feeling the stress of the day melt away."
 );
+
+export const CONSOLE_TEXT = `
+██╗   ██╗██╗   ██╗██████╗ ██╗
+╚██╗ ██╔╝██║   ██║██╔══██╗██║
+ ╚████╔╝ ██║   ██║██████╔╝██║
+  ╚██╔╝  ██║   ██║██╔══██╗██║
+   ██║   ╚██████╔╝██║  ██║██║
+   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═╝
+`;

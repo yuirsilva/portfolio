@@ -1,5 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Link from "@components/nav/Link.astro";
+import HomeFooter from "@components/visual/HomeFooter.astro";
 import Portrait from "@components/HomePortrait";
 import Marquee from "@components/visual/Marquee.astro";
 import Reveal from "@components/visual/Reveal.astro";
@@ -9,31 +11,41 @@ import Reveal from "@components/visual/Reveal.astro";
     title="Creative Developer — Yuri Silva"
     description="Creating modern interfaces, from design to code."
 >
-    <div
-        class="absolute left-1/2 top-1/2 hidden h-full max-h-[624px] w-full max-w-lg -translate-x-1/2 -translate-y-1/2 md:block"
-    >
-        <Portrait client:only="react" />
-    </div>
     <section
-        class="container relative my-auto uppercase sm:max-w-96 md:text-background [&_div]:flex [&_div]:justify-between"
+        class="md:text-background container relative my-auto max-w-96 px-5 uppercase [&_div]:flex [&_div]:justify-between"
+        aria-label="Main home section"
     >
         <div>
             <p>Yuri Silva</p>
-            <p class="italic">Available—2024</p>
+            <p>/available/</p>
         </div>
-        <p class="text-justify">
-            Olá, my name is Yuri and I'm a creative developer based in São
-            Paulo.
-        </p>
-        <div class="mt-4 hover:*:underline hover:*:underline-offset-2">
-            <a href="/about">About me</a>
-            <a href="/posts">Posts</a>
+        <div class="relative h-12">
+            <p class="pointer-events-none select-none text-justify opacity-0">
+                A (creative) developer based in São Paulo.
+            </p>
+            <div
+                class="absolute left-1/2 top-1/2 size-full max-w-lg -translate-x-1/2 -translate-y-1/2"
+            >
+                <Portrait client:only="react" />
+            </div>
+        </div>
+        <div class="mt-4">
+            <Link href="/about" class="hover:underline hover:underline-offset-2"
+                >About me</Link
+            >
+            <p>[2024]</p>
         </div>
     </section>
     <div
-        class="absolute bottom-24 left-1/2 flex w-36 -translate-x-1/2 select-none overflow-hidden uppercase"
+        class="absolute left-1/2 top-3/4 max-w-40 -translate-x-1/2 leading-none"
     >
-        <Marquee />
+        <Marquee
+            className="rounded-sm bg-brand-primary uppercase text-brand-white"
+        >
+            <li class="pt-[3px]">You've got something they don't</li>
+            <li class="pt-[3px]">You've got something they don't</li>
+        </Marquee>
     </div>
+    <HomeFooter />
 </Layout>
 <Reveal />
