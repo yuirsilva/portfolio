@@ -54,7 +54,7 @@ const PortraitMaterial = shaderMaterial(
 		vec3 depth = texture2D(u_depthtexture, i_uv).xyz;
 
 		// Image effect
-		vec3 d = vec3(smoothstep(0., 0.4*length(depth.r), clamp(length(depth.r - fract(u_time*0.2)*2.), 0.1, 1.) ));
+		vec3 d = vec3(smoothstep(0., 0.4*length(depth.r), clamp(length(depth.r - fract(u_time*0.3)*1.5), 0.1, 1.) ));
 
 		color = pow(vec3(d),vec3(4.));
 		color *= vec3(0.843, 0.898, 1.);
