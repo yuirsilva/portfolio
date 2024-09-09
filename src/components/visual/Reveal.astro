@@ -5,7 +5,9 @@ import Button from "@components/nav/Button.astro";
 <div
     class="reveal fixed inset-0 z-[999] grid size-full place-content-center bg-black uppercase text-white"
 >
-    <div class="relative overflow-hidden text-center [&>div]:overflow-hidden">
+    <div
+        class="reveal-first relative overflow-hidden text-center opacity-0 [&>div]:overflow-hidden"
+    >
         <div>
             <p class="reveal-text">[ Today ]</p>
         </div>
@@ -40,6 +42,7 @@ import Button from "@components/nav/Button.astro";
 
     const reveal_btn = document.getElementById("reveal-button");
 
+    gsap.set(".reveal-first", { autoAlpha: 1 });
     gsap.set([".reveal-text", ".reveal-description"], {
         yPercent: 100,
     });

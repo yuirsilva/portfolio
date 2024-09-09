@@ -49,8 +49,7 @@ const Experience = ({}) => {
     const mesh = useRef<THREE.Mesh>(null);
 
     const depth = useTexture("/images/input_depth.png");
-
-    const { gl } = useThree();
+    const size = useThree((state) => state.size);
 
     useFrame(({ clock: { elapsedTime }, pointer }) => {
         material.current.u_time = elapsedTime;
@@ -58,11 +57,8 @@ const Experience = ({}) => {
     });
 
     useEffect(() => {
-        const width = gl.domElement.offsetWidth;
-        const height = gl.domElement.offsetHeight;
-
         let imageAspect = depth.image.width / depth.image.height;
-        let viewportAspect = width / height;
+        let viewportAspect = size.width / size.height;
 
         let scaleX, scaleY;
         // FIX IMAGE ASPECT RATIO
@@ -74,13 +70,11 @@ const Experience = ({}) => {
             scaleY = viewportAspect / imageAspect;
         }
         material.current.u_resolution = new THREE.Vector4(
-            width,
-            height,
+            size.width,
+            size.height,
             scaleX,
             scaleY
         );
-
-        if (mesh.current) mesh.current.scale.set(scaleX, scaleY, 1);
     }, [depth]);
 
     return (
