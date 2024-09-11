@@ -1,4 +1,4 @@
-import PortraitMaterial from "@/components/visual/shaders/menu/portraitMaterial";
+import PortraitMaterial from "@components/visual/shaders/menu/portraitMaterial";
 import { useTexture } from "@react-three/drei";
 import {
     Canvas,
@@ -17,7 +17,9 @@ interface Material extends ShaderMaterialProps {
     u_time?: number;
     u_pointer?: THREE.Vector2;
 
-    u_depthtexture: THREE.Texture;
+    u_normaltex: THREE.Texture;
+    u_depthtex: THREE.Texture;
+    u_basetex: THREE.Texture;
 }
 
 declare module "@react-three/fiber" {
@@ -29,10 +31,11 @@ declare module "@react-three/fiber" {
 const Portrait = ({}) => {
     return (
         <Canvas
+            // linear
             orthographic
             camera={{
-                near: -1000,
-                far: 1000,
+                near: -100,
+                far: 100,
                 left: -0.5,
                 right: 0.5,
                 top: 0.5,
@@ -46,9 +49,11 @@ const Portrait = ({}) => {
 
 const Experience = ({}) => {
     const material = useRef<THREE.ShaderMaterial & Material>(null!);
-    const mesh = useRef<THREE.Mesh>(null);
 
+    const base = useTexture("/images/base.webp");
     const depth = useTexture("/images/input_depth.png");
+    const normal = useTexture("/images/normal.jpg");
+
     const size = useThree((state) => state.size);
 
     useFrame(({ clock: { elapsedTime }, pointer }) => {
@@ -79,13 +84,15 @@ const Experience = ({}) => {
 
     return (
         <>
-            <mesh ref={mesh}>
-                <planeGeometry args={[1, 1]} />
+            <mesh>
+                <planeGeometry args={[1, 1, 1, 1]} />
                 <portraitMaterial
                     ref={material}
                     key={PortraitMaterial.key}
+                    u_basetex={base}
+                    u_depthtex={depth}
+                    u_normaltex={normal}
                     side={THREE.DoubleSide}
-                    u_depthtexture={depth}
                 />
             </mesh>
         </>
