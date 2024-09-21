@@ -9,6 +9,7 @@ import Graphics from "@components/Graphics";
 import Layout from "@/layouts/Layout.astro";
 import Marquee from "@components/visual/Marquee.astro";
 import CurrentProject from "@components/current/CurrentProject.astro";
+import Link from "@components/nav/Link.astro";
 ---
 
 <Layout
@@ -55,11 +56,28 @@ import CurrentProject from "@components/current/CurrentProject.astro";
             <ul>
                 {
                     technologies.map((line) => (
-                        <li class="flex flex-wrap gap-4 border-b border-brand-neutral-200 py-2.5 first:border-t">
+                        <li class="flex flex-wrap gap-4 border-b border-brand-neutral-200 py-1.5 first:border-t">
                             <p>{line}</p>
                         </li>
                     ))
                 }
+            </ul>
+        </section>
+        <section class="space-y-5">
+            <p class="uppercase">[Experience]</p>
+            <ul>
+                <li
+                    class="flex flex-wrap justify-between gap-4 border-b border-brand-neutral-200 py-1.5 first:border-t"
+                >
+                    <Link
+                        href="https://www.itsjungle.xyz/"
+                        target="_blank"
+                        class="normal-case underline underline-offset-2"
+                        >Jungle</Link
+                    >
+                    <p>Frontend Engineer</p>
+                    <p>2024</p>
+                </li>
             </ul>
         </section>
         <section class="flex flex-col gap-5">
