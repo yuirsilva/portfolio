@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import TIMBRE_0 from "@/assets/timbre_0.png";
+import TIMBRE_1 from "@/assets/timbre_1.png";
+import TIMBRE_2 from "@/assets/timbre_2.png";
+
+const PROJECT_URL = "https://timbre.yvri.vercel.app";
+---
+
+<p>(Currently working project)</p>
+<div class="relative">
+    <a href={PROJECT_URL} target="_blank">
+        <div
+            class="project-images invisible [&_img:not(:first-child)]:absolute [&_img:not(:first-child)]:left-0 [&_img:not(:first-child)]:top-0"
+        >
+            <Image
+                src={TIMBRE_0}
+                alt="Timbre, a project I'm currently working on"
+            />
+            <Image
+                src={TIMBRE_1}
+                alt="Timbre, a project I'm currently working on"
+            />
+            <Image
+                src={TIMBRE_2}
+                alt="Timbre, a project I'm currently working on"
+            />
+        </div>
+    </a>
+</div>
+<p>TIMBRE — A COLLECTION OF SOUNDS FOR YOUR WEBSITE.</p>
+
+<script>
+    import { gsap } from "@/lib/gsap";
+
+    const tl = gsap.timeline({
+        defaults: { ease: "steps(1)" },
+    });
+
+    const targets = gsap.utils.toArray<HTMLImageElement>(".project-images img");
+    const NUM_TARGETS = targets.length;
+
+    const DURATION = 1;
+    const PAUSE = 0.75;
+
+    const STAGGER = DURATION + PAUSE;
+    const REPEAT_DELAY = STAGGER * (NUM_TARGETS - 1) + PAUSE;
+
+    function init() {
+        gsap.set(".project-images", { autoAlpha: 1 });
+
+        tl.from(targets, {
+            duration: DURATION,
+            opacity: 0,
+            stagger: {
+                each: STAGGER,
+                repeat: -1,
+                repeatDelay: REPEAT_DELAY,
+            },
+        }).to(
+            targets,
+            {
+                duration: DURATION,
+                opacity: 0,
+                stagger: {
+                    each: STAGGER,
+                    repeat: -1,
+                    repeatDelay: REPEAT_DELAY,
+                },
+            },
+            STAGGER
+        );
+    }
+
+    init();
+
+    tl.pause(DURATION);
+    gsap.delayedCall(1, () => tl.play());
+</script>

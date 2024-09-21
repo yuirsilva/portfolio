@@ -8,6 +8,7 @@ import { technologies, body } from "@/content/about-me";
 import Graphics from "@components/Graphics";
 import Layout from "@/layouts/Layout.astro";
 import Marquee from "@components/visual/Marquee.astro";
+import CurrentProject from "@components/current/CurrentProject.astro";
 ---
 
 <Layout
@@ -45,6 +46,10 @@ import Marquee from "@components/visual/Marquee.astro";
             <p>{body[1]}</p>
             <p>{body[2]}</p>
         </section>
+        <!-- project -->
+        <section class="space-y-5 uppercase">
+            <CurrentProject />
+        </section>
         <section class="space-y-5 text-base">
             <p class="uppercase">[Technologies in My Arsenal]</p>
             <ul>
@@ -59,7 +64,7 @@ import Marquee from "@components/visual/Marquee.astro";
         </section>
         <section class="flex flex-col gap-5">
             <h2 class="text-justify text-base">
-                I like to play CS2 in my free time, make music sometimes, read
+                I like to play games in my free time, make music sometimes, read
                 blog posts
             </h2>
             <div
