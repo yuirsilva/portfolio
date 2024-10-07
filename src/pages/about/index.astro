@@ -17,16 +17,16 @@ import Link from "@components/nav/Link.astro";
     description="If you can do it today don't wait until tomorrow."
 >
     <section
-        class="container flex max-w-xl flex-col gap-20 px-5 pb-6 pt-32 text-brand-black"
+        class="container flex max-w-xl flex-col gap-20 px-5 pb-6 pt-32 uppercase text-brand-black"
     >
         <!-- top -->
         <section class="flex flex-col items-center gap-12 overflow-hidden">
-            <div class="w-fit border border-brand-black px-1.5 py-1 uppercase">
+            <div class="w-fit border border-brand-black px-1.5 py-1">
                 <p class="-mb-[3px]">please, create something</p>
             </div>
             <div class="relative h-16">
                 <h1
-                    class="flex flex-col text-5xl tracking-tighter *:leading-[8px]"
+                    class="flex flex-col text-5xl normal-case tracking-tighter *:leading-[8px]"
                     id="about-h1"
                 >
                     <span>YURI SILVA</span>
@@ -36,7 +36,7 @@ import Link from "@components/nav/Link.astro";
                     <span>developer</span>
                 </h1>
             </div>
-            <Marquee className="bg-brand-secondary uppercase text-brand-black">
+            <Marquee className="bg-brand-secondary text-brand-black">
                 <li class="pt-[3px]">{"// please, create something"}</li>
                 <li class="pt-[3px]">{"// please, create something"}</li>
             </Marquee>
@@ -47,11 +47,11 @@ import Link from "@components/nav/Link.astro";
             <p>{body[1]}</p>
         </section>
         <!-- project -->
-        <section class="space-y-5 uppercase">
+        <section class="space-y-5">
             <CurrentProject />
         </section>
-        <section class="space-y-5 text-base">
-            <p class="uppercase">[Technologies in My Arsenal]</p>
+        <section class="space-y-5">
+            <p>[Technologies in My Arsenal]</p>
             <ul>
                 {
                     technologies.map((line) => (
@@ -63,7 +63,7 @@ import Link from "@components/nav/Link.astro";
             </ul>
         </section>
         <section class="space-y-5">
-            <p class="uppercase">[Experience]</p>
+            <p>[Experience]</p>
             <ul>
                 <li
                     class="flex flex-wrap justify-between gap-4 border-b border-brand-neutral-200 py-1.5 first:border-t"
@@ -112,7 +112,7 @@ import Link from "@components/nav/Link.astro";
                 <Graphics.recycle />
                 <Graphics.rain />
             </div>
-            <div class="flex flex-col items-center gap-3 uppercase">
+            <div class="flex flex-col items-center gap-3">
                 <Graphics.todaynottomorrow />
                 <div class="text-center">
                     <p>Today, not tomorrow</p>
