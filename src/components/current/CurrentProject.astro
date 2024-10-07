@@ -14,14 +14,17 @@ const PROJECT_URL = "https://timbre.yvri.vercel.app";
             class="project-images invisible [&_img:not(:first-child)]:absolute [&_img:not(:first-child)]:left-0 [&_img:not(:first-child)]:top-0"
         >
             <Image
+                loading="eager"
                 src={TIMBRE_0}
                 alt="Timbre, a project I'm currently working on"
             />
             <Image
+                loading="eager"
                 src={TIMBRE_1}
                 alt="Timbre, a project I'm currently working on"
             />
             <Image
+                loading="eager"
                 src={TIMBRE_2}
                 alt="Timbre, a project I'm currently working on"
             />
@@ -40,7 +43,7 @@ const PROJECT_URL = "https://timbre.yvri.vercel.app";
     const targets = gsap.utils.toArray<HTMLImageElement>(".project-images img");
     const NUM_TARGETS = targets.length;
 
-    const DURATION = 1;
+    const DURATION = 0.5;
     const PAUSE = 0.75;
 
     const STAGGER = DURATION + PAUSE;

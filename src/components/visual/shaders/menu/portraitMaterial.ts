@@ -44,7 +44,7 @@ const PortraitMaterial = shaderMaterial(
 
 		// Image UVs
 		vec2 iUv = uv;
-		iUv.y += 0.06;
+		iUv.y += 0.12;
 
 		// Ambient light
 		vec3 ambientColor = vec3(0.);
