@@ -1,7 +1,8 @@
 ---
-import { github, linkedin } from "@/content/social-links";
-import ScrollText from "@components/visual/ScrollText.astro";
 import { MenuLinks } from "@/content/menu-links";
+import { github, linkedin } from "@/content/social-links";
+
+import ScrollText from "@components/visual/ScrollText.astro";
 import Portrait from "@components/menu/Portrait";
 import ThemeToggle from "@components/ThemeToggle.astro";
 import Clock from "@components/menu/Clock.astro";
@@ -20,8 +21,8 @@ import Button from "@components/nav/Button.astro";
     >
         {
             MenuLinks.map((link) => (
-                <div class="menu-nav-item overflow-hidden">
-                    <Link href={link.href} class="group leading-none">
+                <div class="menu-nav-item overflow-hidden last:-mb-1">
+                    <Link href={link.href} class="group">
                         <ScrollText initial="top-full right-full">
                             {link.title}
                         </ScrollText>
@@ -41,7 +42,7 @@ import Button from "@components/nav/Button.astro";
             <ScrollText>LinkedIn [↗]</ScrollText>
         </Link>
     </div>
-    <div class="flex w-full justify-center gap-4 py-3">
+    <div class="flex w-full justify-center gap-4 pb-2 pt-3">
         <ThemeToggle />
         <Button id="menu-music-switch">[ sound off ]</Button>
     </div>
