@@ -14,9 +14,9 @@ import * as THREE from "three";
 extend({ TextMaterial });
 
 interface Material extends ShaderMaterialProps {
-    u_time?: number;
-    u_pointer?: THREE.Vector2;
-    u_noisetex: THREE.Texture;
+    uTime?: number;
+    uPointer?: THREE.Vector2;
+    tNoise: THREE.Texture;
 }
 
 declare module "@react-three/fiber" {
@@ -43,16 +43,16 @@ const FONT_SIZE = 16 / 100;
 const Heading = () => {
     const material = useRef<THREE.ShaderMaterial & Material>(null!);
 
-    const noisetex = useKTX2("/images/noise-simplex-layered.ktx2");
-    noisetex.wrapS = THREE.RepeatWrapping;
-    noisetex.wrapT = THREE.RepeatWrapping;
+    const tNoise = useKTX2("/images/noise-simplex-layered.ktx2");
+    tNoise.wrapS = THREE.RepeatWrapping;
+    tNoise.wrapT = THREE.RepeatWrapping;
 
     const { size } = useThree();
     const aspect = size.width / size.height;
 
     useFrame(({ clock, pointer }) => {
-        material.current.u_time = clock.elapsedTime;
-        material.current.u_pointer = pointer;
+        material.current.uTime = clock.elapsedTime;
+        material.current.uPointer = pointer;
     });
 
     return (
@@ -71,7 +71,7 @@ const Heading = () => {
             <textMaterial
                 ref={material}
                 key={TextMaterial.key}
-                u_noisetex={noisetex}
+                tNoise={tNoise}
             />
         </Text>
     );

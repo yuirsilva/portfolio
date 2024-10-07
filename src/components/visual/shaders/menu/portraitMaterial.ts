@@ -1,27 +1,25 @@
 import { shaderMaterial } from "@react-three/drei";
-import { Vector2, Vector4 } from "three";
 
 const PortraitMaterial = shaderMaterial(
     {
-        u_time: 0,
-        u_resolution: new Vector4(0, 0, 0, 0),
-        u_pointer: new Vector2(0, 0),
-
-        u_depthtex: null,
-        u_normaltex: null,
-        u_basetex: null,
+        uPointer: null,
+        tDepth: null,
+        tNormal: null,
+        tBase: null,
     },
     // vertex shader
     /*glsl*/ `
 	precision mediump float;
 
-	varying vec2 v_uv;
+	varying vec2 vUv;
 
 	void main() {
-		v_uv = uv;
 		vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
 		gl_Position = projectionMatrix * viewMatrix * modelPosition;
+
+		// Varyings
+		vUv = uv;
 	}`,
 
     // fragment shader
@@ -29,50 +27,41 @@ const PortraitMaterial = shaderMaterial(
 	precision mediump float; 
 
 	// Depth texture
-	uniform sampler2D u_depthtex;
-	uniform sampler2D u_basetex;
-	uniform sampler2D u_normaltex;
+	uniform sampler2D tBase;
+	uniform sampler2D tDepth;
+	uniform sampler2D tNormal;
 
 	// Common uniforms
-	uniform vec4 u_resolution;
-	uniform vec2 u_pointer;
-	uniform float u_time;
+	uniform vec2 uPointer;
+	uniform vec2 uImageSizes;
+	uniform vec2 uViewportSizes;
 
-	varying vec2 v_uv;
+	varying vec2 vUv;
 
 	void main() {
-		// Final color
+		vec2 uv = vUv;
 		vec3 color = vec3(0.);
 
-		// UV
-		vec2 uv = v_uv;
-		vec2 scale = u_resolution.zw;
-		float aspect = u_resolution.x/u_resolution.y;
-
-		// // Image UVs
-		vec2 i_uv = uv;
-		i_uv -= 0.5;
-		i_uv.y *= scale.x/scale.y;
-		i_uv += 0.5;
-
-		i_uv.y += 0.12;
+		// Image UVs
+		vec2 iUv = uv;
+		iUv.y += 0.06;
 
 		// Ambient light
-		vec3 ambientColor = vec3(0.); // Ambient light color
+		vec3 ambientColor = vec3(0.);
 
 		// Normal
-		vec3 normal = normalize(texture2D(u_normaltex, i_uv).xyz * 2. - 1.);
+		vec3 normal = normalize(texture2D(tNormal, iUv).xyz * 2. - 1.);
 
 		// Diffuse
-		vec3 diffuse = texture2D(u_basetex, i_uv).xyz;
+		vec3 diffuse = texture2D(tBase, iUv).xyz;
 
 		// Depth
-		vec3 depth = texture2D(u_depthtex, i_uv).xyz;
+		vec3 depth = texture2D(tDepth, iUv).xyz;
 
 		// Light
 		vec3 lightDirection = normalize(vec3(1.0, 1.0, 2.0));
-		lightDirection.x = u_pointer.x; 
-		lightDirection.y = u_pointer.y; 
+		lightDirection.x = uPointer.x; 
+		lightDirection.y = uPointer.y; 
 
 		float diffuseIntensity = max(dot(normal+depth, lightDirection), 0.6);
 

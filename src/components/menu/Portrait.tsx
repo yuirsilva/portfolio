@@ -13,13 +13,14 @@ import * as THREE from "three";
 extend({ PortraitMaterial });
 
 interface Material extends ShaderMaterialProps {
-    u_resolution?: THREE.Vector4;
-    u_time?: number;
-    u_pointer?: THREE.Vector2;
+    uPointer?: THREE.Vector2;
 
-    u_normaltex: THREE.Texture;
-    u_depthtex: THREE.Texture;
-    u_basetex: THREE.Texture;
+    uImageSizes?: [number, number];
+    uViewportSizes?: [number, number];
+
+    tNormal: THREE.Texture;
+    tDepth: THREE.Texture;
+    tBase: THREE.Texture;
 }
 
 declare module "@react-three/fiber" {
@@ -31,7 +32,6 @@ declare module "@react-three/fiber" {
 const Portrait = ({}) => {
     return (
         <Canvas
-            // linear
             orthographic
             camera={{
                 near: -100,
@@ -49,53 +49,45 @@ const Portrait = ({}) => {
 
 const Experience = ({}) => {
     const material = useRef<THREE.ShaderMaterial & Material>(null!);
+    const plane = useRef<THREE.Mesh>(null);
 
-    const base = useTexture("/images/base.webp");
-    const depth = useTexture("/images/input_depth.png");
-    const normal = useTexture("/images/normal.jpg");
+    const tBase = useTexture("/images/base.webp");
+    const tDepth = useTexture("/images/input_depth.png");
+    const tNormal = useTexture("/images/normal.jpg");
 
-    const size = useThree((state) => state.size);
+    const { size } = useThree();
 
-    useFrame(({ clock: { elapsedTime }, pointer }) => {
-        material.current.u_time = elapsedTime;
-        material.current.u_pointer = pointer;
+    useFrame(({ pointer }) => {
+        material.current.uPointer = pointer;
     });
 
     useEffect(() => {
-        let imageAspect = depth.image.width / depth.image.height;
-        let viewportAspect = size.width / size.height;
+        let scale: [number, number] = [0, 0];
 
-        let scaleX, scaleY;
-        // FIX IMAGE ASPECT RATIO
+        const imageAspect = tDepth.image.width / tDepth.image.height;
+        const viewportAspect = size.width / size.height;
+
         if (imageAspect > viewportAspect) {
-            scaleX = imageAspect / viewportAspect;
-            scaleY = 1;
+            scale = [imageAspect / viewportAspect, 1];
         } else {
-            scaleX = 1;
-            scaleY = viewportAspect / imageAspect;
+            scale = [1, viewportAspect / imageAspect];
         }
-        material.current.u_resolution = new THREE.Vector4(
-            size.width,
-            size.height,
-            scaleX,
-            scaleY
-        );
-    }, [depth]);
+
+        if (!plane.current) return;
+        plane.current.scale.set(scale[0], scale[1], 1);
+    }, [tBase, size]);
 
     return (
-        <>
-            <mesh>
-                <planeGeometry args={[1, 1, 1, 1]} />
-                <portraitMaterial
-                    ref={material}
-                    key={PortraitMaterial.key}
-                    u_basetex={base}
-                    u_depthtex={depth}
-                    u_normaltex={normal}
-                    side={THREE.DoubleSide}
-                />
-            </mesh>
-        </>
+        <mesh ref={plane}>
+            <planeGeometry args={[1, 1, 1, 1]} />
+            <portraitMaterial
+                ref={material}
+                key={PortraitMaterial.key}
+                tBase={tBase}
+                tDepth={tDepth}
+                tNormal={tNormal}
+            />
+        </mesh>
     );
 };
 
