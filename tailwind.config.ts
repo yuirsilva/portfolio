@@ -6,34 +6,23 @@ const config = {
     content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
     prefix: "",
     theme: {
-        container: {
-            center: true,
-            screens: {
-                "2xl": "1400px",
-            },
-        },
         extend: {
+            fontSize: {
+                base: ["1rem", "1.25rem"],
+            },
             fontFamily: {
-                mono: ["Supply Mono", ...defaultTheme.fontFamily.mono],
+                sans: ["he", ...defaultTheme.fontFamily.sans],
+                serif: ["te", ...defaultTheme.fontFamily.serif],
             },
             colors: {
                 brand: {
                     white: "var(--white)",
                     black: "var(--black)",
-                    "neutral-100": "var(--neutral-100)",
-                    "neutral-200": "var(--neutral-200)",
+                    "neutral-500": "var(--neutral-500)",
                     primary: "var(--primary)",
-                    secondary: "var(--secondary)",
+                    "logo-primary": "var(--logo-primary)",
+                    "logo-secondary": "var(--logo-secondary)",
                 },
-            },
-            keyframes: {
-                slider: {
-                    from: { transform: "translateX(0)" },
-                    to: { transform: "translateX(calc(-100% - 1rem))" },
-                },
-            },
-            animation: {
-                slider: "slider 12s linear infinite",
             },
         },
     },

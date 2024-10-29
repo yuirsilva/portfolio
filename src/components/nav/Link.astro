@@ -1,15 +1,21 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 
-interface Props extends HTMLAttributes<"a"> {}
+interface Props extends HTMLAttributes<"a"> {
+    variant?: "default";
+}
 
-const { class: className, ...props } = Astro.props;
+const { class: className, variant = "default", ...props } = Astro.props;
+
+const linkVariants = {
+    default:
+        "focus-visible:outline-none focus-visible:ring ring-offset-brand-white focus-visible:ring-offset-2 focus-visible:ring-brand-black",
+};
 ---
 
 <a
+    class={`${linkVariants[variant]}${className ? " " + className : ""}`}
     {...props}
-    class={className +
-        " uppercase focus-visible:outline-none focus-visible:ring ring-offset-brand-white focus-visible:ring-offset-2 focus-visible:ring-brand-black"}
 >
     <slot />
 </a>

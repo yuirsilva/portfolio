@@ -1,103 +1,13 @@
----
-import Button from "@components/nav/Button.astro";
----
-
 <div
-    class="reveal fixed inset-0 z-[999] grid size-full place-content-center bg-black uppercase text-white"
+    id="reveal"
+    class="fixed inset-0 z-[999] size-full select-none place-content-center bg-black text-center text-sm uppercase text-white"
 >
-    <div
-        class="reveal-first relative overflow-hidden text-center opacity-0 [&>div]:overflow-hidden"
-    >
-        <div>
-            <p class="reveal-text">[ Today ]</p>
-        </div>
-        <div>
-            <p class="reveal-text">Not</p>
-        </div>
-        <div>
-            <p class="reveal-text">Tomorrow</p>
-        </div>
-        <div>
-            <p class="reveal-description">Yuri / 2024 / developer</p>
-        </div>
-        <Button id="reveal-button" class="pointer-events-none opacity-0">
-            <span class="animate-pulse">[</span>
-            enter
-            <span class="animate-pulse">]</span>
-        </Button>
+    <div class="overflow-hidden">
+        <h1
+            id="reveal-heading"
+            class="relative text-5xl font-bold tracking-tight text-[#ee0506]"
+        >
+            Yuri Silva
+        </h1>
     </div>
-    <p
-        class="reveal-bottom absolute bottom-5 left-1/2 -translate-x-1/2 select-none text-center text-neutral-400 opacity-0"
-    >
-        You've got something they don't
-    </p>
 </div>
-
-<script>
-    import { gsap } from "@/lib/gsap";
-    import { sound } from "@/lib/howler";
-    import { CONSOLE_TEXT } from "@/content/quotes";
-
-    console.log(CONSOLE_TEXT);
-
-    const reveal_btn = document.getElementById("reveal-button");
-
-    gsap.set(".reveal-first", { autoAlpha: 1 });
-    gsap.set([".reveal-text", ".reveal-description"], {
-        yPercent: 100,
-    });
-
-    const tl = gsap.timeline({
-        paused: true,
-    });
-
-    tl.to(".reveal-text", {
-        yPercent: 0,
-        ease: "ease_1",
-        stagger: 0.08,
-    });
-
-    tl.to(".reveal-text", {
-        yPercent: -100,
-        ease: "ease_1",
-        stagger: 0.08,
-        delay: 0.4,
-    });
-
-    tl.to(".reveal-description", {
-        yPercent: 0,
-        ease: "ease_1",
-    });
-
-    tl.to(".reveal-bottom", {
-        autoAlpha: 1,
-        ease: "steps(4)",
-    });
-
-    tl.to(
-        "#reveal-button",
-        {
-            autoAlpha: 1,
-            pointerEvents: "initial",
-            ease: "steps(4)",
-        },
-        "<"
-    );
-
-    const menuMusicBtn = document.getElementById(
-        "menu-music-switch"
-    ) as HTMLButtonElement;
-
-    reveal_btn?.addEventListener("click", () => {
-        menuMusicBtn.innerText = "[ sound on ]";
-
-        gsap.to(".reveal", {
-            autoAlpha: 0,
-            ease: "ease_1",
-        });
-
-        if (!sound.playing()) sound.play();
-    });
-
-    tl.play();
-</script>

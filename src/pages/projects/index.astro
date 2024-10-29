@@ -1,0 +1,107 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import ProjectsCanvas from "@components/projects/ProjectCanvas.astro";
+import { Image } from "astro:assets";
+
+// images
+import TIMBRE from "@/assets/timbre_canvas.jpg";
+
+import IMG0 from "@/assets/00.jpg";
+import IMG1 from "@/assets/01.jpg";
+import IMG2 from "@/assets/02.jpg";
+import IMG3 from "@/assets/03.jpg";
+import IMG4 from "@/assets/04.jpg";
+import IMG5 from "@/assets/05.jpg";
+import IMG6 from "@/assets/06.jpg";
+import IMG7 from "@/assets/07.jpg";
+---
+
+<Layout title="Work" description="My work." namespace="Projects">
+    <div
+        class="pointer-events-none invisible fixed top-0 -z-[999] flex w-[180px] select-none flex-wrap items-center justify-center gap-20 opacity-0"
+    >
+        <div class="projects-imgs flex flex-col">
+            <Image
+                src={TIMBRE}
+                title="Timbre"
+                data-year="2024"
+                data-type="project"
+                data-github="https://github.com/yuirsilva/timbre"
+                data-website="https://timbre.yvri.vercel.app"
+                alt="A collection of sounds for your website."
+            />
+            <Image
+                src={IMG0}
+                title="Hear no Evil"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG1}
+                title="Something0"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG2}
+                title="Something1"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG3}
+                title="Something2"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG4}
+                title="Something3"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG5}
+                title="Something4"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG5}
+                title="Something5"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG6}
+                title="Something6"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG7}
+                title="Something7"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+            <Image
+                src={IMG7}
+                title="Something8"
+                data-year="2024"
+                data-type="image"
+                alt="Gallery image"
+            />
+        </div>
+    </div>
+    <ProjectsCanvas />
+</Layout>

@@ -1,177 +1,77 @@
 ---
-import { Picture } from "astro:assets";
+import { body, technologies } from "@/content/about-me";
+import { email, github, linkedin } from "@/content/social-links";
 
-import { email } from "@/content/social-links";
-import visage from "@/assets/visage.webp";
-import { technologies, body } from "@/content/about-me";
-
-import Graphics from "@components/Graphics";
 import Layout from "@/layouts/Layout.astro";
-import Marquee from "@components/visual/Marquee.astro";
-import CurrentProject from "@components/current/CurrentProject.astro";
 import Link from "@components/nav/Link.astro";
+import ScrollText from "@components/visual/ScrollText.astro";
 ---
 
 <Layout
-    title="About — Yuri Silva"
+    title="About"
     description="If you can do it today don't wait until tomorrow."
+    namespace="About"
 >
-    <section
-        class="container flex max-w-xl flex-col gap-20 px-5 pb-6 pt-32 uppercase text-brand-black"
-    >
-        <!-- top -->
-        <section class="flex flex-col items-center gap-12 overflow-hidden">
-            <div class="w-fit border border-brand-black px-1.5 py-1">
-                <p class="-mb-[3px]">please, create something</p>
-            </div>
-            <div class="relative h-16">
-                <h1
-                    class="flex flex-col text-5xl normal-case tracking-tighter *:leading-[8px]"
-                    id="about-h1"
-                >
-                    <span>YURI SILVA</span>
-                    <span>is</span>
-                    <span>a</span>
-                    <span>creative</span>
-                    <span>developer</span>
-                </h1>
-            </div>
-            <Marquee className="bg-brand-secondary text-brand-black">
-                <li class="pt-[3px]">{"// please, create something"}</li>
-                <li class="pt-[3px]">{"// please, create something"}</li>
-            </Marquee>
+    <section class="mt-auto flex flex-col gap-4 p-5 *:space-y-4">
+        <section class="uppercase">
+            <h2 data-animation>Latest Project</h2>
+            <Link
+                data-animation
+                href="https://timbre.yvri.vercel.app/"
+                target="_blank"
+                class="block w-fit text-brand-neutral-500 underline underline-offset-2"
+                >Timbre — A collection of sounds for your website.</Link
+            >
         </section>
-        <!--  -->
-        <section class="space-y-5 [&_p]:text-pretty">
-            <p>{body[0]}</p>
-            <p>{body[1]}</p>
-        </section>
-        <!-- project -->
-        <section class="space-y-5">
-            <CurrentProject />
-        </section>
-        <section class="space-y-5">
-            <p>[Technologies in My Arsenal]</p>
-            <ul>
+        <section class="uppercase [&_p]:text-brand-neutral-500">
+            <h2 data-animation class="text-base">Technologies</h2>
+            <div class="space-y-2">
                 {
                     technologies.map((line) => (
-                        <li class="flex flex-wrap gap-4 border-b border-brand-neutral-200 py-1.5 first:border-t">
-                            <p>{line}</p>
-                        </li>
+                        <p data-animation class="max-w-[400px]">
+                            {line}
+                        </p>
                     ))
                 }
-            </ul>
+            </div>
         </section>
-        <section class="space-y-5">
-            <p>[Experience]</p>
-            <ul>
-                <li
-                    class="flex flex-wrap justify-between gap-4 border-b border-brand-neutral-200 py-1.5 first:border-t"
-                >
-                    <Link
-                        href="https://www.itsjungle.xyz/"
-                        target="_blank"
-                        class="normal-case underline underline-offset-2"
-                        >Jungle</Link
-                    >
-                    <p>Frontend Engineer</p>
-                    <p>2024</p>
-                </li>
-            </ul>
-        </section>
-        <section class="flex flex-col gap-5">
-            <h2 class="text-justify text-base">
-                I like to play games in my free time, make music sometimes, read
-                blog posts
-            </h2>
+        <section class="uppercase">
+            <h2 data-animation class="text-base">Experience</h2>
             <div
-                class="about-image relative h-[clamp(144px,12vh,224px)] w-full overflow-hidden saturate-[0.25]"
+                data-animation
+                class="flex flex-wrap gap-4 text-brand-neutral-500"
             >
-                <Picture
-                    src={visage}
-                    formats={["webp", "jpg"]}
-                    alt="A screenshot from the game Visage"
-                    class="about-main-image h-full select-none object-none object-center"
-                />
-                {
-                    [...Array(4)].map((_, i) => (
-                        <Picture
-                            style={{ zIndex: i }}
-                            src={visage}
-                            formats={["webp", "jpg"]}
-                            alt="A screenshot from the game Visage"
-                            class="pointer-events-none absolute inset-0 size-full select-none object-none object-center"
-                        />
-                    ))
-                }
+                <Link
+                    href="https://x.com/jungle_xyz"
+                    target="_blank"
+                    class="underline underline-offset-2">Jungle</Link
+                >
+                <p>Frontend Engineer</p>
+                <p>2024</p>
             </div>
         </section>
-        <footer class="flex flex-col items-center gap-4">
-            <div class="flex">
-                <Graphics.ce />
-                <Graphics.recycle />
-                <Graphics.rain />
+        <section class="flex flex-wrap items-end justify-between gap-8">
+            <div class="space-y-4">
+                <p data-animation class="max-w-xl">{body[0]}</p>
+                <p data-animation class="max-w-xl">{body[1]}</p>
+                <h1
+                    data-split-text
+                    class="overflow-hidden text-5xl font-bold uppercase"
+                >
+                    About me
+                </h1>
             </div>
-            <div class="flex flex-col items-center gap-3">
-                <Graphics.todaynottomorrow />
-                <div class="text-center">
-                    <p>Today, not tomorrow</p>
-                    <p>São Paulo, Brazil</p>
-                    <a
-                        href={email}
-                        class="lowercase underline underline-offset-2"
-                        >yuxipersonal@gmail.com</a
-                    >
-                </div>
-            </div>
-        </footer>
+            <aside class="flex flex-wrap gap-4 overflow-hidden uppercase">
+                <Link data-link href={github} target="_blank" class="group">
+                    <ScrollText>GitHub</ScrollText>
+                </Link>
+                <Link data-link href={linkedin} target="_blank" class="group">
+                    <ScrollText>LinkedIn</ScrollText>
+                </Link>
+                <Link data-link href={email} class="group">
+                    <ScrollText>Email</ScrollText>
+                </Link>
+            </aside>
+        </section>
     </section>
 </Layout>
-
-<script>
-    import { gsap } from "@/lib/gsap";
-
-    gsap.set("#about-h1 span", {
-        color: "var(--neutral-200)",
-    });
-
-    let tl = gsap.timeline({
-        repeat: -1,
-        onRepeat: () => {
-            gsap.set("#about-h1 span", { clearProps: "all" });
-        },
-    });
-    tl.to("#about-h1 span", {
-        keyframes: {
-            color: ["var(--black)", "var(--neutral-200)"],
-        },
-        ease: "steps(1)",
-        stagger: 1,
-        duration: 2,
-    }).set(
-        "#about-h1 span",
-        {
-            zIndex: 90,
-            stagger: 1,
-            duration: 2,
-        },
-        "<"
-    );
-
-    gsap.set(".about-image picture:not(:first-child) img", {
-        xPercent: 100,
-        objectPosition: "80% 50%",
-    });
-    const img_anim = gsap.to(".about-image picture:not(:first-child) img", {
-        objectPosition: "50% 50%",
-        xPercent: 0,
-        stagger: 0.14,
-        paused: true,
-    });
-
-    let main_image = document.querySelector(
-        ".about-main-image"
-    ) as HTMLPictureElement;
-    main_image.addEventListener("pointerenter", () => img_anim.play());
-    main_image.addEventListener("pointerleave", () => img_anim.reverse());
-</script>

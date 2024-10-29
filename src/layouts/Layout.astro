@@ -1,37 +1,49 @@
 ---
 import Header from "@components/nav/Header.astro";
 import Favicon from "@components/visual/Favicon.astro";
-import PageTransition from "@components/visual/PageTransition.astro";
 import Head from "@components/Head.astro";
+import Reveal from "@components/visual/Reveal.astro";
+
+export type Namespace = "Home" | "About" | "Projects" | "404";
 
 interface Props {
     title: string;
     description?: string;
     ogImage?: string;
+    namespace: Namespace;
 }
 
 const {
     title,
     description = "Creative Developer.",
     ogImage = "/default-opengraph.png",
+    namespace,
 } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-    <Head title={title} description={description} ogImage={ogImage} />
+    <Head
+        title={`${title} — Yuri Silva`}
+        description={description}
+        ogImage={ogImage}
+    />
 
     <body
-        class="flex min-h-screen flex-col overflow-x-hidden font-mono text-base tracking-[-0.4px] antialiased"
+        data-barba="wrapper"
+        class="flex min-h-screen flex-col overflow-x-hidden font-sans text-base"
     >
         <Favicon />
-        <Header />
+        <Reveal />
 
-        <main class="relative flex flex-1 flex-col">
+        <main
+            data-barba="container"
+            data-barba-namespace={namespace}
+            class="relative flex flex-1 flex-col"
+        >
+            <Header namespace={namespace} />
             <slot />
         </main>
-
-        <PageTransition />
 
         <style is:global>
             @tailwind base;
@@ -39,8 +51,19 @@ const {
             @tailwind utilities;
 
             @font-face {
-                font-family: "Supply Mono";
-                src: url("/fonts/PPSupplyMono-Regular.woff2") format("woff2");
+                font-family: "he";
+                src:
+                    url("/fonts/he.woff2") format("woff2 supports variations"),
+                    url("/fonts/he.woff2") format("woff2-variations");
+                font-weight: 400 700;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: "te";
+                src: url("/fonts/te.woff2") format("woff2");
+                font-synthesis: none;
+                font-style: normal;
                 font-display: swap;
             }
 
@@ -52,61 +75,66 @@ const {
                 scrollbar-width: none;
             }
 
+            [data-barba="container"] {
+                position: absolute;
+                inset: 0;
+            }
+
             @layer base {
                 :root {
+                    font-synthesis: none;
+                    text-rendering: optimizeLegibility;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    color-scheme: light dark;
+
                     /* DEFAULT theme */
                     --white: theme("colors.white");
                     --black: theme("colors.black");
-                    --neutral-100: theme("colors.neutral.100");
-                    --neutral-200: theme("colors.neutral.200");
-
+                    --neutral-500: theme("colors.neutral.500");
                     --primary: #2563ea;
-                    --secondary: #d7e5ff;
-                }
 
-                [data-theme="neutro"] {
-                    --white: theme("colors.stone.100");
-                    --black: theme("colors.stone.700");
-                    --neutral-100: theme("colors.stone.100");
-                    --neutral-200: theme("colors.stone.200");
-
-                    --primary: #747169;
-                    --secondary: theme("colors.stone.200");
+                    --logo-primary: #2563ea;
+                    --logo-secondary: theme("colors.black");
                 }
 
                 [data-theme="red"] {
-                    --white: #f00901;
+                    --white: #ee0506;
                     --black: theme("colors.black");
-                    --neutral-100: #ff554f;
-                    --neutral-200: #ff5f59;
-
+                    --neutral-500: theme("colors.black");
                     --primary: theme("colors.black");
-                    --secondary: theme("colors.red.400");
+
+                    --logo-primary: theme("colors.black");
+                    --logo-secondary: theme("colors.black");
                 }
 
-                [data-theme="periwinkle"] {
-                    --white: #7287c0;
-                    --black: theme("colors.black");
-                    --neutral-100: theme("colors.black");
-                    --neutral-200: #8496c8;
+                [data-theme="halloween"] {
+                    --white: #ff9100;
+                    --black: #252422;
+                    --neutral-500: #403d39;
+                    --primary: #6bd425;
 
-                    --primary: theme("colors.black");
-                    --secondary: #b8c3df;
+                    --logo-primary: #240046;
+                    --logo-secondary: #9d4edd;
                 }
-            }
 
-            @layer base {
+                ::-moz-selection {
+                    /* Code for Firefox */
+                    color: var(--white);
+                    background: var(--primary);
+                }
+
+                ::selection {
+                    color: var(--white);
+                    background: var(--primary);
+                }
+
                 body {
                     @apply bg-brand-white text-brand-black;
-                    font-feature-settings:
-                        "rlig" 1,
-                        "calt" 1;
-                    text-rendering: optimizeLegibility;
-                    -webkit-text-size-adjust: 100%;
-                    -moz-text-size-adjust: 100%;
-                    text-size-adjust: 100%;
                 }
             }
         </style>
+        <script src="../components/ThemeToggle.ts"></script>
+        <script src="../lib/barba.ts"></script>
     </body>
 </html>

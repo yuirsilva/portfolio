@@ -1,0 +1,19 @@
+---
+import { github, linkedin } from "@/content/social-links";
+import Link from "@components/nav/Link.astro";
+import ScrollText from "@components/visual/ScrollText.astro";
+---
+
+<footer class="absolute bottom-0 w-full p-5 uppercase">
+    <div class="flex items-end justify-between overflow-hidden">
+        <p data-animation class="font-bold">YS24</p>
+        <div data-animation class="flex gap-4 text-brand-neutral-500">
+            <Link href={github} target="_blank" class="group">
+                <ScrollText>GitHub</ScrollText>
+            </Link>
+            <Link href={linkedin} target="_blank" class="group">
+                <ScrollText>LinkedIn</ScrollText>
+            </Link>
+        </div>
+    </div>
+</footer>

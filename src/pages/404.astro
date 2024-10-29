@@ -1,13 +1,17 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-
-import { four_oh_four as quotes } from "@/content/quotes";
+import Link from "@components/nav/Link.astro";
 ---
 
-<Layout title="Page not found — Yuri Silva" description="Where did you go?">
-    <section class="container my-auto uppercase">
-        <h1>Page not <span class="italic">found</span></h1>
-        <p class="mb-4 mt-2">{quotes[(quotes.length * Math.random()) | 0]}</p>
-        <a href="/" class="underline underline-offset-2">Go back to homepage</a>
+<Layout title="Page not found" description="Where did you go?" namespace="404">
+    <section class="m-auto p-5 text-center uppercase">
+        <p>Page not found</p>
+        <p class="mb-4 mt-2 max-w-96">
+            life, a library with infinite shelves, but only one book you're
+            allowed to read
+        </p>
+        <Link href="/" class="underline underline-offset-2"
+            >Go back to homepage</Link
+        >
     </section>
 </Layout>

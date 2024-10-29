@@ -1,0 +1,48 @@
+<section
+    id="project-dialog"
+    class="fixed inset-0 z-[999] flex size-full p-5 uppercase"
+>
+    <div id="project-bg" class="fixed inset-0 select-none bg-black/80"></div>
+    <div
+        class="z-[999] flex h-fit w-full flex-col gap-5 bg-brand-white p-5 min-[540px]:h-full"
+    >
+        <div class="flex flex-wrap items-start justify-between gap-5">
+            <div class="project-info flex flex-col [&>div]:gap-2 [&_div]:flex">
+                <div>
+                    <p>title</p>
+                    <p id="project-title">[project.title]</p>
+                </div>
+                <div>
+                    <p>year</p>
+                    <p id="project-year">[project.year]</p>
+                </div>
+                <div id="project-links">
+                    <p>links</p>
+                    <div
+                        class="flex-wrap [&_a]:underline-offset-2 hover:[&_a]:underline"
+                    >
+                        <a id="project-github" href="/" target="_blank"
+                            >github</a
+                        ><p class="mx-1">/</p>
+                        <a id="project-website" href="/" target="_blank"
+                            >website</a
+                        >
+                    </div>
+                </div>
+            </div>
+            <button
+                title="Close project"
+                type="button"
+                id="project-close-button"
+                class="uppercase"
+            >
+                close
+            </button>
+        </div>
+        <div
+            class="mx-auto my-auto flex min-h-0 min-w-0 [&_img]:size-full [&_img]:object-scale-down"
+        >
+            <img id="project-image" />
+        </div>
+    </div>
+</section>

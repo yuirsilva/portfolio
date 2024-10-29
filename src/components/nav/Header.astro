@@ -1,20 +1,72 @@
 ---
+import type { Namespace } from "@/layouts/Layout.astro";
+
+import Link from "@components/nav/Link.astro";
 import MagneticButton from "@components/nav/MagneticButton.astro";
-import Menu from "@components/menu/Menu.astro";
-import MenuButton from "@components/menu/MenuButton.astro";
-import Graphics from "@components/Graphics";
+import ScrollText from "@components/visual/ScrollText.astro";
+
+const menuItems = [
+    {
+        href: "/",
+        text: "Home",
+    },
+    {
+        href: "/about",
+        text: "About",
+    },
+    {
+        href: "/projects",
+        text: "Projects",
+    },
+];
+
+interface Props {
+    namespace: Namespace;
+}
+
+const { namespace } = Astro.props;
+
+const filtered = menuItems.filter((link) => link.text !== namespace);
 ---
 
 <header
-    class="header sticky top-0 z-[99] flex w-full items-center justify-between overflow-hidden px-5 pt-5"
+    id="header"
+    class="sticky top-0 z-[99] flex w-full items-end justify-between overflow-hidden px-5 pt-5"
 >
     <MagneticButton className="z-10">
         <a href="/" aria-label="Go to homepage">
-            <Graphics.logo />
+            <svg
+                width="56"
+                height="22"
+                viewBox="0 0 56 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    class="fill-brand-logo-primary"
+                    d="M11 22C4.92487 22 5.87285e-08 17.0751 1.31174e-07 11C2.03619e-07 4.92487 4.92487 5.87285e-08 11 1.31174e-07C17.0751 2.03619e-07 22 4.92487 22 11L22 16.1333C22 17.872 22 18.7414 21.7343 19.4335C21.3281 20.4918 20.4918 21.3281 19.4335 21.7343C18.7414 22 17.872 22 16.1333 22L11 22Z"
+                ></path>
+                <path
+                    class="fill-brand-logo-secondary"
+                    d="M45 -4.80825e-07C51.0751 -2.15273e-07 56 4.92487 56 11C56 17.0751 51.0751 22 45 22L29.8667 22C28.128 22 27.2586 22 26.5665 21.7343C25.5082 21.3281 24.6719 20.4918 24.2657 19.4335C24 18.7414 24 17.8601 24 16.0976C24 11.3761 24 9.01538 24.6936 7.15589C25.8085 4.16652 28.1665 1.80853 31.1559 0.693551C33.0154 -1.00469e-06 35.3436 -9.0292e-07 40 -6.99382e-07L45 -4.80825e-07Z"
+                ></path>
+            </svg>
         </a>
     </MagneticButton>
-    <nav class="z-10">
-        <MenuButton />
+    <nav class="flex">
+        {
+            filtered.map((link, i) => {
+                return (
+                    <>
+                        <Link href={link.href} class="group text-xl">
+                            <ScrollText scrolledClassName="font-serif">{`${link.text}${i + 1 === filtered.length ? "" : ","}`}</ScrollText>
+                        </Link>
+                        <div class="select-none" aria-hidden="true">
+                            &nbsp;
+                        </div>
+                    </>
+                );
+            })
+        }
     </nav>
-    <Menu />
 </header>
