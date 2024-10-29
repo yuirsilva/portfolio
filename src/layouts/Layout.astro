@@ -31,7 +31,7 @@ const {
 
     <body
         data-barba="wrapper"
-        class="flex min-h-screen flex-col overflow-x-hidden font-sans text-base"
+        class="flex min-h-[calc(var(--vh,_1vh)_*_100)] flex-col overflow-x-hidden font-sans text-base"
     >
         <Favicon />
         <Reveal />
@@ -136,5 +136,6 @@ const {
         </style>
         <script src="../components/ThemeToggle.ts"></script>
         <script src="../lib/barba.ts"></script>
+        <script src="../lib/real-viewport.ts"></script>
     </body>
 </html>
