@@ -3,7 +3,6 @@ import barba from "@barba/core";
 import type { ITransitionData } from "@barba/core/dist/core/src/src/defs";
 
 import HomeCanvas from "@components/home/homeCanvas";
-// import { Dialog } from "@components/projects/dialog/manageDialog";
 import Projects from "@components/projects/projectCanvas";
 import { toggleTheme } from "@components/ThemeToggle";
 
