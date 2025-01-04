@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 import Header from "@components/nav/Header.astro";
 import Favicon from "@components/visual/Favicon.astro";
 import Head from "@components/Head.astro";
@@ -31,7 +33,7 @@ const {
 
     <body
         data-barba="wrapper"
-        class="flex min-h-[calc(var(--vh,_1vh)_*_100)] flex-col overflow-x-hidden font-sans text-base"
+        class="tracking-tighest flex min-h-[calc(var(--vh,_1vh)_*_100)] flex-col overflow-x-hidden font-sans text-base"
     >
         <Favicon />
         <Reveal />
@@ -45,7 +47,7 @@ const {
             <slot />
         </main>
 
-        <style is:global>
+        <!-- <style is:global>
             @tailwind base;
             @tailwind components;
             @tailwind utilities;
@@ -108,16 +110,6 @@ const {
                     --logo-secondary: theme("colors.black");
                 }
 
-                [data-theme="halloween"] {
-                    --white: #ff9100;
-                    --black: #252422;
-                    --neutral-500: #403d39;
-                    --primary: #6bd425;
-
-                    --logo-primary: #240046;
-                    --logo-secondary: #9d4edd;
-                }
-
                 ::-moz-selection {
                     /* Code for Firefox */
                     color: var(--white);
@@ -130,10 +122,10 @@ const {
                 }
 
                 body {
-                    @apply bg-brand-white text-brand-black;
+                    @apply bg-white text-black;
                 }
             }
-        </style>
+        </style> -->
         <script src="../components/ThemeToggle.ts"></script>
         <script src="../lib/barba.ts"></script>
         <script src="../lib/real-viewport.ts"></script>

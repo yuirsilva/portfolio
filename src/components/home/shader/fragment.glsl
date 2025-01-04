@@ -1,6 +1,7 @@
 uniform sampler2D tImage;
 uniform float uTime;
 uniform float uOpacity;
+uniform float uKonamiCode;
 
 varying vec2 vUv;
 
@@ -24,5 +25,6 @@ void main() {
     uv += noise.r * 0.0015;
 
     vec4 image = texture2D(tImage, mix(pUv, uv, uOpacity));
+    image = mix(image, vec4(noise, 1.), uKonamiCode);
     gl_FragColor = image * uOpacity;
 }

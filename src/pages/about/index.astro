@@ -12,20 +12,20 @@ import ScrollText from "@components/visual/ScrollText.astro";
     description="If you can do it today don't wait until tomorrow."
     namespace="About"
 >
-    <section class="mt-auto flex flex-col gap-4 p-5 *:space-y-4">
+    <section class="mt-auto flex flex-col gap-6 p-5 *:space-y-4">
         <section class="uppercase">
             <h2 data-animation>Latest Project</h2>
             <Link
                 data-animation
                 href="https://timbre.yvri.vercel.app/"
                 target="_blank"
-                class="block w-fit text-brand-neutral-500 underline underline-offset-2"
+                class="block w-fit text-neutral-500 underline underline-offset-2"
                 >Timbre — A collection of sounds for your website.</Link
             >
         </section>
-        <section class="uppercase [&_p]:text-brand-neutral-500">
+        <section class="uppercase [&_p]:text-neutral-500">
             <h2 data-animation class="text-base">Technologies</h2>
-            <div class="space-y-2">
+            <div class="space-y-2 md:space-y-1">
                 {
                     technologies.map((line) => (
                         <p data-animation class="max-w-[400px]">
@@ -35,25 +35,41 @@ import ScrollText from "@components/visual/ScrollText.astro";
                 }
             </div>
         </section>
-        <section class="uppercase">
+        <section class="uppercase [&>div]:mt-0">
             <h2 data-animation class="text-base">Experience</h2>
-            <div
-                data-animation
-                class="flex flex-wrap gap-4 text-brand-neutral-500"
-            >
-                <Link
-                    href="https://x.com/jungle_xyz"
-                    target="_blank"
-                    class="underline underline-offset-2">Jungle</Link
+            <div class="space-y-1">
+                <div
+                    data-animation
+                    class="flex flex-wrap gap-x-4 gap-y-2 text-neutral-500"
                 >
-                <p>Frontend Engineer</p>
-                <p>2024</p>
+                    <Link
+                        href="https://x.com/jungle_xyz"
+                        target="_blank"
+                        class="underline underline-offset-2">Jungle</Link
+                    >
+                    <p>Frontend Engineer</p>
+                    <p>2024</p>
+                </div>
+                <div
+                    data-animation
+                    class="flex flex-wrap gap-x-4 gap-y-2 text-neutral-500"
+                >
+                    <Link
+                        href="https://buzzvel.com/"
+                        target="_blank"
+                        class="underline underline-offset-2">Buzzvel</Link
+                    >
+                    <p>Frontend Engineer</p>
+                    <p>Present</p>
+                </div>
             </div>
         </section>
         <section class="flex flex-wrap items-end justify-between gap-8">
-            <div class="space-y-4">
-                <p data-animation class="max-w-xl">{body[0]}</p>
-                <p data-animation class="max-w-xl">{body[1]}</p>
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <p data-animation class="max-w-xl">{body[0]}</p>
+                    <p data-animation class="max-w-xl">{body[1]}</p>
+                </div>
                 <h1
                     data-split-text
                     class="overflow-hidden text-5xl font-bold uppercase"

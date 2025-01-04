@@ -4,17 +4,15 @@ import Layout from "@/layouts/Layout.astro";
 import ProjectsCanvas from "@components/projects/ProjectCanvas.astro";
 import { Image } from "astro:assets";
 
-// images
-import TIMBRE from "@/assets/timbre_canvas.jpg";
-
-import IMG0 from "@/assets/00.jpg";
-import IMG1 from "@/assets/01.jpg";
-import IMG2 from "@/assets/02.jpg";
-import IMG3 from "@/assets/03.jpg";
-import IMG4 from "@/assets/04.jpg";
-import IMG5 from "@/assets/05.jpg";
-import IMG6 from "@/assets/06.jpg";
-import IMG7 from "@/assets/07.jpg";
+import TIMBRE from "@/assets/timbre_project.png";
+import HEARNOEVIL from "@/assets/hearnoevil_poster.png";
+import ALIEN from "@/assets/alien_poster.png";
+import EXAMPLE0 from "@/assets/example0.jpg";
+import EXAMPLE1 from "@/assets/example1.jpg";
+import EXAMPLE2 from "@/assets/example2.jpg";
+import EXAMPLE3 from "@/assets/example3.jpg";
+import EXAMPLE4 from "@/assets/example4.jpg";
+import EXAMPLE5 from "@/assets/example5.jpg";
 ---
 
 <Layout title="Work" description="My work." namespace="Projects">
@@ -29,79 +27,66 @@ import IMG7 from "@/assets/07.jpg";
                 data-type="project"
                 data-github="https://github.com/yuirsilva/timbre"
                 data-website="https://timbre.yvri.vercel.app"
-                alt="A collection of sounds for your website."
+                alt="Timbre, a collection of sounds for your website."
             />
             <Image
-                src={IMG0}
-                title="Hear no Evil"
+                src={HEARNOEVIL}
+                title="Hear no Evil (Poster)"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="Hear no Evil, See no Evil, Speak no Evil (Poster)."
             />
             <Image
-                src={IMG1}
-                title="Something0"
+                src={ALIEN}
+                title="Alien (Poster)"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="An Alien inspired poster."
             />
             <Image
-                src={IMG2}
-                title="Something1"
+                src={EXAMPLE0}
+                title="I no longer fear the razor guarding my heel"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="An example image"
             />
             <Image
-                src={IMG3}
-                title="Something2"
+                src={EXAMPLE1}
+                title="different"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="An example image"
             />
             <Image
-                src={IMG4}
-                title="Something3"
+                src={EXAMPLE2}
+                title="notequal"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="An example image"
             />
             <Image
-                src={IMG5}
-                title="Something4"
+                src={EXAMPLE3}
+                title="equal"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="An example image"
             />
             <Image
-                src={IMG5}
-                title="Something5"
+                src={EXAMPLE4}
+                title="same"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
+                alt="An example image"
             />
             <Image
-                src={IMG6}
-                title="Something6"
+                src={EXAMPLE5}
+                title="test"
                 data-year="2024"
                 data-type="image"
-                alt="Gallery image"
-            />
-            <Image
-                src={IMG7}
-                title="Something7"
-                data-year="2024"
-                data-type="image"
-                alt="Gallery image"
-            />
-            <Image
-                src={IMG7}
-                title="Something8"
-                data-year="2024"
-                data-type="image"
-                alt="Gallery image"
+                alt="An example image"
             />
         </div>
     </div>
     <ProjectsCanvas />
+    <script src="../../components/projects/projectCanvas.ts"></script>
 </Layout>

@@ -37,17 +37,16 @@ const commonLeave = (data: ITransitionData) => {
 const commonOnce = (): gsap.core.Timeline => {
     const tl = gsap.timeline();
 
-    tl.to("#reveal-heading", {
-        delay: 1,
+    tl.to("#reveal-text", {
+        delay: 0.4,
     });
 
-    tl.to("#reveal-heading", {
+    tl.to("#reveal-text", {
         yPercent: -100,
-        scale: 0.8,
     });
 
     tl.to("#reveal", {
-        autoAlpha: 0,
+        yPercent: -100,
     });
 
     return tl;
@@ -204,10 +203,6 @@ barba.init({
                 projectCanvas = new Projects({
                     dom: document.getElementById("projects-container")!,
                 });
-
-                gsap.set(["#project-dialog", "#project-close-button"], {
-                    autoAlpha: 0,
-                });
             },
         },
     ],
@@ -259,6 +254,12 @@ barba.init({
             },
             leave: async (data) => {
                 await commonLeave(data);
+            },
+        },
+        {
+            name: "default",
+            once: () => {
+                commonOnce();
             },
         },
     ],

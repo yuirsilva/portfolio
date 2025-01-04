@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import fragment from "@components/home/shader/fragment.glsl";
 import vertex from "@components/home/shader/vertex.glsl";
+import { onKonamiCode } from "@/lib/konami-code";
 
 interface Options {
     dom: HTMLElement;
@@ -80,11 +81,20 @@ export default class Home {
 
         this.promise = Promise.all([preloadSectionImage]).then(() => {
             this.addSection();
+            this.triggerKonamiCode();
 
             this.resize();
             this.setupResize();
 
             this.render();
+        });
+    }
+
+    triggerKonamiCode() {
+        onKonamiCode(() => {
+            console.log("コナミコマンド");
+            if (this.material.uniforms.uKonamiCode)
+                this.material.uniforms.uKonamiCode.value = 1;
         });
     }
 
@@ -99,6 +109,7 @@ export default class Home {
                 tImage: { value: null },
                 uOpacity: { value: 0 },
                 uTime: { value: 0 },
+                uKonamiCode: { value: 0 },
             },
         });
 

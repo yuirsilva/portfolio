@@ -67,7 +67,7 @@ export default class Projects {
 
     dialog: Dialog;
 
-    constructor({ dom, itemWidth = 180, gap = 50 }: ProjectsConfig) {
+    constructor({ dom, itemWidth = 180, gap = 60 }: ProjectsConfig) {
         this.dialog = new Dialog();
 
         this.isDragging = false;
@@ -113,7 +113,7 @@ export default class Projects {
         );
         this.controls.listenToKeyEvents(window);
         this.controls.enableDamping = true;
-        this.controls.panSpeed = 0.5;
+        this.controls.panSpeed = 0.75;
         this.controls.keys = {
             LEFT: "KeyA",
             UP: "KeyW",
@@ -224,12 +224,19 @@ export default class Projects {
         columns += columns % 2;
 
         const rows = Math.ceil(totalElements / columns);
-        const remainingElements = columns * rows - totalElements;
+
+        console.log(
+            "columns:",
+            columns,
+            "rows:",
+            rows,
+            "totalElements:",
+            totalElements
+        );
 
         return {
             columns,
             rows,
-            remainingElements,
         };
     }
 

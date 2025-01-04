@@ -1,4 +1,4 @@
-const THEMES = ["default", "red", "halloween"];
+const THEMES = ["default", "red"];
 type Theme = (typeof THEMES)[number];
 
 const getTheme = () => {
